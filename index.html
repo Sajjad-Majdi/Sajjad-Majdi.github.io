@@ -212,6 +212,11 @@ h2 em{font-style:normal;color:var(--violet)}
 .c-a{grid-column:span 4}.c-b{grid-column:span 2}.c-c{grid-column:span 3}.c-d{grid-column:span 3}
 .c-a .viz{position:absolute;inset-inline-end:24px;top:24px;width:42%;max-width:290px;opacity:.9}
 .c-a .txt{max-width:56%}
+.xp .card{display:flex;gap:20px;align-items:flex-start}.xp .ic{flex:none;margin:0}.xp .role{color:var(--cyan);font-weight:700;font-size:15px;margin:6px 0 0}.xp .when{color:var(--muted);font-size:14px;margin:4px 0 0}.xp p{margin:12px 0 0}
+.c-w{grid-column:span 2;display:flex;flex-direction:column}.c-w p{flex:1}
+.wl{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-weight:700;color:var(--cyan);text-decoration:none;direction:ltr;align-self:flex-start}
+.wl:hover{text-decoration:underline}.wl svg{width:16px;height:16px}
+@media (max-width:900px){.c-w{grid-column:auto}}
 @media (max-width:900px){.bento{grid-template-columns:1fr}.c-a,.c-b,.c-c,.c-d{grid-column:auto}.c-a .viz{display:none}.c-a .txt{max-width:none}}
 
 /* skills */
@@ -266,6 +271,7 @@ h2 em{font-style:normal;color:var(--violet)}
 <nav class="nav"><div class="nav-in">
   <a class="lk" href="#apps" data-i18n="apps">اپ‌ها</a>
   <a class="lk opt" href="#projects" data-i18n="projects">پروژه‌ها</a>
+  <a class="lk opt" href="#webs" data-i18n="webs">وب‌سایت‌ها</a>
   <a class="lk opt" href="#skills" data-i18n="skills">مهارت‌ها</a>
   <a class="lk" href="#contact" data-i18n="contact">تماس</a>
   <button class="tbtn lng" id="lang" aria-label="English">EN</button>
@@ -293,7 +299,7 @@ h2 em{font-style:normal;color:var(--violet)}
       <div class="stats">
         <div class="stat"><div class="n" data-count="4">۰</div><div class="l" data-i18n="st1">اپ منتشرشده</div></div>
         <div class="stat"><div class="n" data-i18n="n2">۲</div><div class="l" data-i18n="st2">پلتفرم، اندروید و ویندوز</div></div>
-        <div class="stat"><div class="n" data-i18n="n1">۱</div><div class="l" data-i18n="st3">مدل زبانی اختصاصی</div></div>
+        <div class="stat"><div class="n" data-i18n="n1">۲</div><div class="l" data-i18n="st3">مدل زبانی فاین‌تیون‌شده</div></div>
         <div class="stat"><div class="n" data-i18n="n11">۱.۱<small style="font-size:16px"> مگ</small></div><div class="l" data-i18n="st4">سبک‌ترین اپ</div></div>
       </div>
     </div>
@@ -318,18 +324,18 @@ h2 em{font-style:normal;color:var(--violet)}
         <div><span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 9.2 19.3 6a.4.4 0 0 0-.7-.4l-1.8 3.2a11 11 0 0 0-9.6 0L5.4 5.6a.4.4 0 0 0-.7.4l1.8 3.2A10.4 10.4 0 0 0 1 17.5h22a10.4 10.4 0 0 0-5.5-8.3zM7 14.8a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg><span data-i18n="android">اندروید</span></span>
           <h3 data-i18n="hName">همیار</h3><div class="tag" data-i18n="hTag">دستیار صوتی فارسی، کاملاً آفلاین</div></div>
       </div>
-      <p class="d" data-i18n="hD">حرف بزن، همیار انجامش می‌ده. بدون اینترنت و روی گوشی‌های معمولی. گفتار فارسی روی خود گوشی به متن تبدیل می‌شه و یه مدل زبانی که خودم آموزشش دادم تصمیم می‌گیره چه کاری انجام بشه.</p>
+      <p class="d" data-i18n="hD">حرف بزن، همیار انجامش می‌ده. بدون اینترنت و روی گوشی‌های معمولی. گفتار فارسی روی خود گوشی به متن تبدیل می‌شه و مدل‌های زبانی که خودم فاین‌تیونشون کردم تصمیم می‌گیرن چه کاری انجام بشه.</p>
       <ul class="feats">
-        <li><span data-i18n="hF1">مدل اختصاصی <b class="ltr">hamyar-v1</b>، فاین‌تیون‌شده روی FunctionGemma برای دستورهای فارسی</span></li>
+        <li><span data-i18n="hF1">دو مدل اختصاصی که خودم فاین‌تیون کردم: <b>همیار لایت</b> برای دستورهای سریع و <b>همیار پرو</b> برای گفتگو و کارهای چندمرحله‌ای</span></li>
         <li><span data-i18n="hF2">جواب هر دستور در کمتر از ۰.۶ ثانیه، روی یه گوشی میان‌رده</span></li>
         <li><span data-i18n="hF3">تماس، یادآور، مسیریابی، آب‌وهوا، تقویم شمسی و قمری، ماشین‌حساب</span></li>
         <li><span data-i18n="hF4">هسته‌ی ذره‌ای سه‌بعدی که با صدای تو زنده می‌شه</span></li>
       </ul>
       <div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">LiteRT-LM</span><span class="chip">sherpa-onnx</span><span class="chip">Fine-tuning</span></div>
       <div class="dl">
-        <a class="btn app-dl" href="https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/hamyar-v1.0.9/Hamyar-1.0.9.apk">
+        <a class="btn app-dl" href="https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/hamyar-v1.1.0/Hamyar-1.1.0.apk">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="dlApk">دانلود APK</span></a>
-        <div class="meta"><span data-i18n="hV">نسخه <b>۱.۰.۹</b></span><span data-i18n="hS">حجم <b>۲۰.۵ مگ</b></span></div>
+        <div class="meta"><span data-i18n="hV">نسخه <b>۱.۱.۰</b></span><span data-i18n="hS">حجم <b>۱.۹ مگ</b></span></div>
       </div>
     </div>
     <div class="visual" data-stack>
@@ -361,9 +367,9 @@ h2 em{font-style:normal;color:var(--violet)}
       </ul>
       <div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Gemini</span><span class="chip">Cloudflare Workers</span><span class="chip">SQLite</span></div>
       <div class="dl">
-        <a class="btn app-dl" href="https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/lumen-keep-v1.7.3/LumenKeep-1.7.3.apk">
+        <a class="btn app-dl" href="https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/lumen-keep-v1.7.4/LumenKeep-1.7.4.apk">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="dlApk">دانلود APK</span></a>
-        <div class="meta"><span data-i18n="lV">نسخه <b>۱.۷.۳</b></span><span data-i18n="lS">حجم <b>۱.۹ مگ</b></span></div>
+        <div class="meta"><span data-i18n="lV">نسخه <b>۱.۷.۴</b></span><span data-i18n="lS">حجم <b>۱.۹ مگ</b></span></div>
       </div>
     </div>
     <div class="visual" data-stack>
@@ -480,6 +486,54 @@ h2 em{font-style:normal;color:var(--violet)}
   </div>
 </div></section>
 
+<section class="sec" id="work"><div class="wrap">
+  <div class="eyebrow rv" data-i18n="xpE">سابقه کار</div>
+  <h2 class="rv" data-i18n="xpH">جاهایی که <em>کار کردم</em></h2>
+  <div class="bento xp">
+    <div class="card c-c rv">
+      <div class="ic" style="background:linear-gradient(135deg,var(--violet),var(--pink))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><circle cx="5.5" cy="16" r="2.6"/><circle cx="18.5" cy="16" r="2.6"/><path d="M9.7 10.3 7 13.8M14.3 10.3l2.7 3.5"/></svg></div>
+      <div><h4 data-i18n="x1h">تیم فناور کارو</h4>
+        <div class="role" data-i18n="x1r">توسعه‌دهنده اندروید و وب و متخصص هوش مصنوعی</div>
+        <div class="when" data-i18n="x1w">از ۱۴۰۴ تا امروز</div>
+        <p data-i18n="x1">ساخت سامانه‌ی تحلیل تماس AIVA و سامانه‌ی صورتجلسه‌ی سرانجام و وب‌سایت تیم</p></div>
+    </div>
+    <div class="card c-d rv">
+      <div class="ic" style="background:linear-gradient(135deg,var(--cyan),#5BA8FF)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></div>
+      <div><h4 data-i18n="x2h">شرکت آهار</h4>
+        <div class="role" data-i18n="x2r">کارآموز مهندسی نرم‌افزار</div>
+        <div class="when" data-i18n="x2w">تابستان ۱۴۰۵</div></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="webs"><div class="wrap">
+  <div class="eyebrow rv" data-i18n="web2">وب</div>
+  <h2 class="rv" data-i18n="websH">وب‌سایت‌هایی که <em>ساختم</em></h2>
+  <div class="bento">
+    <div class="card c-w rv">
+      <div class="ic" style="background:linear-gradient(135deg,var(--violet),var(--pink))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><circle cx="5.5" cy="16" r="2.6"/><circle cx="18.5" cy="16" r="2.6"/><path d="M9.7 10.3 7 13.8M14.3 10.3l2.7 3.5"/></svg></div>
+      <h4 data-i18n="w1h">تیم فناور کارو</h4>
+      <p data-i18n="w1">عضو تیم فناور کارو هستم و وب‌سایت تیم رو خودم طراحی کردم و ساختم</p>
+      <div class="chips"><span class="chip">Web Design</span><span class="chip">HTML & CSS</span><span class="chip">Nginx</span></div>
+      <a class="wl" href="https://caroai.ir" target="_blank" rel="noopener">caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+    <div class="card c-w rv">
+      <div class="ic" style="background:linear-gradient(135deg,var(--pink),var(--amber))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h2l2-6 4 12 3-9 2 3h5"/></svg></div>
+      <h4 data-i18n="w2h">سامانه‌ی AIVA</h4>
+      <p data-i18n="w2">وب‌سایت و پنل سامانه‌ی تحلیل تماس‌های تلفنی با هوش مصنوعی برای شرکت‌ها</p>
+      <div class="chips"><span class="chip">Django</span><span class="chip">React</span><span class="chip">Speech AI</span></div>
+      <a class="wl" href="https://aiva.caroai.ir" target="_blank" rel="noopener">aiva.caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+    <div class="card c-w rv">
+      <div class="ic" style="background:linear-gradient(135deg,var(--cyan),#5BA8FF)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
+      <h4 data-i18n="w3h">سرانجام</h4>
+      <p data-i18n="w3">سامانه‌ی هوشمند صورتجلسه که از صدای جلسه خلاصه و مصوبه‌ها و کارهای هر نفر رو درمیاره</p>
+      <div class="chips"><span class="chip">Next.js</span><span class="chip">PostgreSQL</span><span class="chip">AI</span></div>
+      <a class="wl" href="https://saranjam.caroai.ir" target="_blank" rel="noopener">saranjam.caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+  </div>
+</div></section>
+
 <section class="sec" id="skills"><div class="wrap">
   <div class="eyebrow rv" data-i18n="toolbox">جعبه‌ابزار</div>
   <h2 class="rv" data-i18n="skills">مهارت‌ها</h2>
@@ -494,7 +548,7 @@ h2 em{font-style:normal;color:var(--violet)}
   <div class="edu">
     <div class="card rv">
       <div class="ic" style="background:linear-gradient(135deg,var(--violet),var(--pink));flex:none;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
-      <div><div class="big" data-i18n="edu1">کارشناسی مهندسی کامپیوتر</div><div class="sm" data-i18n="edu2">دانشگاه تهران، پردیس فارابی · از ۱۴۰۱، در حال تحصیل</div></div>
+      <div><div class="big" data-i18n="edu1">کارشناسی مهندسی کامپیوتر</div><div class="sm" data-i18n="edu2">دانشگاه تهران · از ۱۴۰۱، در حال تحصیل</div></div>
     </div>
     <div class="card rv"><div class="lang">
       <div><span data-i18n="fa">فارسی</span><span class="sm" data-i18n="native">زبان مادری</span></div><div class="bar"><i style="--w:1"></i></div>
@@ -527,7 +581,7 @@ let lang='fa',roleGen=0,ri=0;
 let vtOn=false;
 const vt=f=>{if(vtOn){f();return null}vtOn=true;const t=document.startViewTransition(f);for(const k of ['ready','updateCallbackDone'])t[k].catch(()=>{});t.finished.catch(()=>{}).then(()=>vtOn=false);return t};
 const fa=s=>lang==='en'?String(s):String(s).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
-const EN={"apps": "Apps", "projects": "Projects", "skills": "Skills", "contact": "Contact", "h1": "Sajjad <span class=\"g\">Majdi</span>", "lead": "I take ideas all the way to real products: from AI agents and RAG systems to custom-trained language models and apps that run fast and light on a phone.", "st1": "apps released", "st2": "platforms: Android & Windows", "st3": "custom language model", "st4": "smallest app", "myWork": "My work", "appsH": "Apps that <em>actually shipped</em>", "hName": "Hamyar", "hTag": "A fully offline Persian voice assistant", "hD": "Just talk and Hamyar gets it done, with no internet, on ordinary phones. Persian speech becomes text right on the device, and a language model I trained myself decides what to do.", "hF1": "Custom model <b>hamyar-v1</b>, fine-tuned from FunctionGemma for Persian commands", "hF2": "Answers each command in under 0.6 s on a mid-range phone", "hF3": "Calls, reminders, navigation, weather, Persian and lunar calendars, calculator", "hF4": "A 3D particle core that comes alive with your voice", "hV": "Version <b>1.0.9</b>", "hS": "Size <b>20.5 MB</b>", "lName": "Lumen Keep", "lTag": "Smart note keeper", "lD": "Notes that remember for you. Ask AI anything about what you wrote and get the answer with its source. Just talk, and it becomes a note.", "lF1": "“Ask your notes”, with answers linked to the notes they came from", "lF2": "Voice notes, dictation and one-tap magic edits", "lF3": "Offline-first, with private sync to Google Drive", "lF4": "Folders, tags, a home-screen widget and dark mode", "lV": "Version <b>1.7.3</b>", "lS": "Size <b>1.9 MB</b>", "sName": "Squish", "sTag": "Photo and video compressor", "sD": "Shrinks photos and videos with no loss the eye can see. It measures the quality of every file and compresses exactly as much as it should. The whole app is about one megabyte.", "sF1": "Its own video engine on hardware HEVC, with no ready-made media libraries", "sF2": "A quality score for every file, measured with SSIM against the original", "sF3": "HDR to SDR tone mapping and a before/after compare slider", "sF4": "A liquid-glass interface with fluid motion", "sV": "Version <b>1.0.4</b>", "sS": "Size <b>1.1 MB</b>", "dName": "Squish Desktop", "dTag": "Photo and video compressor for Windows", "dD": "Drag and drop, and the rest is automatic. Resolution stays the same, only the size drops. Everything runs on your own computer and nothing is uploaded anywhere.", "dF1": "Drag and drop, and compression starts on its own", "dF2": "Three modes: Balanced, High quality and Max savings", "dF3": "All common video and photo formats, from MP4 and MKV to PNG and WEBP", "dV": "Version <b>1.1.0</b>", "dS": "Size <b>28 MB</b>", "ai": "Artificial intelligence", "projH": "<em>AI</em> projects", "p1h": "HadithYab, smart hadith search", "p1": "A RAG system for searching hadith in natural language. Ask the way it comes to mind and find related hadith by meaning, not just by matching words.", "p2h": "AIVA System", "p2": "AI analysis of companies’ phone calls.", "p3": "A Flutter app for working with an AI agent, with an interface that makes the agent’s work visible and controllable.", "p4h": "Music to music video", "p4": "An app and pipeline that turns a song into a music video, with every step chained in LangChain.", "toolbox": "Toolbox", "c1": "Agents & workflows", "c2": "RAG & chatbots", "c3": "LLM & VLM", "c4": "Flutter & Dart", "c5": "C++", "c6": "Android apps", "c7": "Windows apps", "c8": "Git & GitHub", "edu1": "B.Sc. in Computer Engineering", "edu2": "University of Tehran, Farabi Campus · since 2022, in progress", "fa": "Persian", "native": "native", "en": "English", "pro": "professional", "contactH": "Let’s build something <em>great</em> together", "contactP": "For work or a project, message me on Telegram.", "web": "Website", "tg": "Telegram", "tgc": "Telegram channel", "github": "GitHub", "hf": "Hugging Face", "li": "LinkedIn", "pill": "Computer Engineering, University of Tehran", "rolePre": "I build", "seeApps": "See my apps", "n2": "2", "n1": "1", "n11": "1.1<small style=\"font-size:16px\"> MB</small>", "android": "Android", "androidMyket": "Android · Myket", "windows": "Windows", "dlApk": "Download APK", "dlExe": "Download installer", "sk1": "AI", "sk2": "Programming & apps", "sk3": "Infrastructure & tools"};
+const EN={"apps": "Apps", "projects": "Projects", "skills": "Skills", "contact": "Contact", "h1": "Sajjad <span class=\"g\">Majdi</span>", "lead": "I take ideas all the way to real products: from AI agents and RAG systems to custom-trained language models and apps that run fast and light on a phone.", "st1": "apps released", "st2": "platforms: Android & Windows", "st3": "fine-tuned language models", "st4": "smallest app", "myWork": "My work", "appsH": "Apps that <em>actually shipped</em>", "hName": "Hamyar", "hTag": "A fully offline Persian voice assistant", "hD": "Just talk and Hamyar gets it done, with no internet, on ordinary phones. Persian speech becomes text right on the device, and language models I fine-tuned myself decide what to do.", "hF1": "Two custom models I fine-tuned: <b>Hamyar Lite</b> for quick commands and <b>Hamyar Pro</b> for conversation and multi-step tasks", "hF2": "Answers each command in under 0.6 s on a mid-range phone", "hF3": "Calls, reminders, navigation, weather, Persian and lunar calendars, calculator", "hF4": "A 3D particle core that comes alive with your voice", "hV": "Version <b>1.1.0</b>", "hS": "Size <b>1.9 MB</b>", "lName": "Lumen Keep", "lTag": "Smart note keeper", "lD": "Notes that remember for you. Ask AI anything about what you wrote and get the answer with its source. Just talk, and it becomes a note.", "lF1": "“Ask your notes”, with answers linked to the notes they came from", "lF2": "Voice notes, dictation and one-tap magic edits", "lF3": "Offline-first, with private sync to Google Drive", "lF4": "Folders, tags, a home-screen widget and dark mode", "lV": "Version <b>1.7.4</b>", "lS": "Size <b>1.9 MB</b>", "sName": "Squish", "sTag": "Photo and video compressor", "sD": "Shrinks photos and videos with no loss the eye can see. It measures the quality of every file and compresses exactly as much as it should. The whole app is about one megabyte.", "sF1": "Its own video engine on hardware HEVC, with no ready-made media libraries", "sF2": "A quality score for every file, measured with SSIM against the original", "sF3": "HDR to SDR tone mapping and a before/after compare slider", "sF4": "A liquid-glass interface with fluid motion", "sV": "Version <b>1.0.4</b>", "sS": "Size <b>1.1 MB</b>", "dName": "Squish Desktop", "dTag": "Photo and video compressor for Windows", "dD": "Drag and drop, and the rest is automatic. Resolution stays the same, only the size drops. Everything runs on your own computer and nothing is uploaded anywhere.", "dF1": "Drag and drop, and compression starts on its own", "dF2": "Three modes: Balanced, High quality and Max savings", "dF3": "All common video and photo formats, from MP4 and MKV to PNG and WEBP", "dV": "Version <b>1.1.0</b>", "dS": "Size <b>28 MB</b>", "ai": "Artificial intelligence", "projH": "<em>AI</em> projects", "p1h": "HadithYab, smart hadith search", "p1": "A RAG system for searching hadith in natural language. Ask the way it comes to mind and find related hadith by meaning, not just by matching words.", "p2h": "AIVA System", "p2": "AI analysis of companies’ phone calls.", "p3": "A Flutter app for working with an AI agent, with an interface that makes the agent’s work visible and controllable.", "p4h": "Music to music video", "p4": "An app and pipeline that turns a song into a music video, with every step chained in LangChain.", "xpE": "Experience", "xpH": "Where I have <em>worked</em>", "x1h": "Caro tech team", "x1r": "Android, web and AI developer", "x1w": "2025 to now", "x1": "Built the AIVA call-analysis system, the Saranjam meeting-minutes system and the team website", "x2h": "Ahar company", "x2r": "Software engineering intern", "x2w": "Summer 2026", "webs": "Websites", "web2": "Web", "websH": "Websites I <em>built</em>", "w1h": "Caro tech team", "w1": "I am a member of the Caro tech team and designed and built the team website myself", "w2h": "AIVA System", "w2": "Website and panel of an AI system that analyzes companies’ phone calls", "w3h": "Saranjam", "w3": "A smart meeting-minutes system that turns meeting audio into a summary, decisions and each person’s tasks", "toolbox": "Toolbox", "c1": "Agents & workflows", "c2": "RAG & chatbots", "c3": "LLM & VLM", "c4": "Flutter & Dart", "c5": "C++", "c6": "Android apps", "c7": "Windows apps", "c8": "Git & GitHub", "edu1": "B.Sc. in Computer Engineering", "edu2": "University of Tehran · since 2022, in progress", "fa": "Persian", "native": "native", "en": "English", "pro": "professional", "contactH": "Let’s build something <em>great</em> together", "contactP": "For work or a project, message me on Telegram.", "web": "Website", "tg": "Telegram", "tgc": "Telegram channel", "github": "GitHub", "hf": "Hugging Face", "li": "LinkedIn", "pill": "Computer Engineering, University of Tehran", "rolePre": "I build", "seeApps": "See my apps", "n2": "2", "n1": "2", "n11": "1.1<small style=\"font-size:16px\"> MB</small>", "android": "Android", "androidMyket": "Android · Myket", "windows": "Windows", "dlApk": "Download APK", "dlExe": "Download installer", "sk1": "AI", "sk2": "Programming & apps", "sk3": "Infrastructure & tools"};
 const ROLES={fa:['ایجنت‌های هوش مصنوعی','سامانه‌های RAG','مدل‌های زبانی اختصاصی','اپ‌های اندروید سبک و سریع','ابزارهای ویندوز'],
   en:['AI agents','RAG systems','custom language models','fast, light Android apps','Windows tools']};
 const TITLE={fa:'سجاد مجدی | هوش مصنوعی و ساخت اپ',en:'Sajjad Majdi | AI engineer & app builder'};
