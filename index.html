@@ -73,7 +73,6 @@ img{display:block;max-width:100%}
 .tbtn svg{width:19px;height:19px}
 .tbtn.lng{font:800 13px/1 Vazirmatn,sans-serif;letter-spacing:.3px}
 :root[dir=ltr] .chips{justify-content:flex-start}
-:root[dir=ltr] .skill .chips{direction:ltr}
 :root[dir=ltr] .bar i{transform-origin:left}
 :root[dir=ltr] h1{letter-spacing:-2px;font-size:clamp(40px,6vw,100px)}
 :root[dir=ltr] .lead,:root[dir=ltr] .app p.d{line-height:1.7}
@@ -197,49 +196,159 @@ h2 em{font-style:normal;color:var(--violet)}
 }
 @media (max-width:420px){.visual{height:470px}.phone{width:205px;margin:0 0 0 -102px}}
 
-/* bento projects */
-.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
-.card{position:relative;border-radius:var(--radius);padding:30px;background:var(--surface);border:1px solid var(--line);overflow:hidden;isolation:isolate;
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s}
-.card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;
-  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),var(--glow),transparent 60%)}
-.card:hover{transform:translateY(-6px);border-color:var(--line2)}
-.card:hover::before{opacity:1}
-.card .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;margin-bottom:22px;color:#101330}
-.card .ic svg{width:26px;height:26px}
-.card h4{font-size:22px;font-weight:800;margin-bottom:8px;line-height:1.4}
-.card p{color:var(--muted);font-size:15.5px}
-.card .chips{margin:20px 0 0;justify-content:flex-end}
-.c-a{grid-column:span 4}.c-b{grid-column:span 2}.c-c{grid-column:span 3}.c-d{grid-column:span 3}
-.c-a .viz{position:absolute;inset-inline-end:24px;top:24px;width:42%;max-width:290px;opacity:.9}
-.c-a .txt{max-width:56%}
-.xp .card{display:flex;gap:20px;align-items:flex-start}.xp .ic{flex:none;margin:0}.xp .role{color:var(--cyan);font-weight:700;font-size:15px;margin:6px 0 0}.xp .when{color:var(--muted);font-size:14px;margin:4px 0 0}.xp p{margin:12px 0 0}
-.c-w{grid-column:span 3;display:flex;flex-direction:column}.c-w p{flex:1}
-.wl{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-weight:700;color:var(--cyan);text-decoration:none;direction:ltr;align-self:flex-start}
-.wl:hover{text-decoration:underline}.wl svg{width:16px;height:16px}
-@media (max-width:900px){.c-w{grid-column:auto}}
-@media (max-width:900px){.bento{grid-template-columns:1fr}.c-a,.c-b,.c-c,.c-d{grid-column:auto}.c-a .viz{display:none}.c-a .txt{max-width:none}}
+/* ---------- AI projects: one feature band + three open columns ---------- */
+.feat{--k:var(--violet);position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;padding:36px 44px;border-radius:32px;overflow:hidden;isolation:isolate;
+  border:1px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--violet) 16%,transparent),color-mix(in srgb,var(--cyan) 7%,transparent) 60%,transparent),var(--surface);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+.feat::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .5s;background:radial-gradient(520px circle at var(--mx,70%) var(--my,30%),var(--glow),transparent 60%)}
+.feat:hover::before{opacity:1}
+.feat .viz{width:100%;max-width:440px;justify-self:center;opacity:.95}
+.ttl{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.ttl svg{width:30px;height:30px;color:var(--k);flex:none}
+.feat h3{font-size:clamp(24px,2.6vw,32px);font-weight:900;line-height:1.3;color:var(--text)}
+.feat p{color:var(--muted);font-size:16.5px;max-width:520px}
+.tech{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:18px;overflow:hidden;font-size:13px;font-weight:700;color:var(--faint);letter-spacing:.2px}
+.tech span{position:relative;white-space:nowrap;unicode-bidi:isolate}
+.tech span::before{content:"";position:absolute;inset-inline-start:-13px;top:50%;margin-top:-2px;width:4px;height:4px;border-radius:50%;background:var(--k);opacity:.8}
+.pcols{display:grid;grid-template-columns:repeat(2,1fr);margin-top:16px}
+.pcol{--k:var(--violet);padding:34px 30px 10px;border-inline-start:1px solid var(--line)}
+.pcol:first-child{padding-inline-start:4px;border-inline-start:0}
+.pcol:last-child{padding-inline-end:4px}
+.pcol .ttl{gap:12px;margin-bottom:8px}
+.pcol .ttl svg{width:24px;height:24px}
+.pcol h4{font-size:21px;font-weight:800;color:var(--text);line-height:1.4}
+.pcol p{color:var(--muted);font-size:15.5px}
+.pcol .tech{margin-top:14px}
+@media (max-width:900px){
+  .feat{grid-template-columns:1fr;padding:28px 22px;border-radius:26px;gap:18px}
+  .feat .viz{max-width:220px}
+  .pcols{grid-template-columns:1fr;margin-top:6px}
+  .pcol,.pcol:first-child,.pcol:last-child{padding:22px 0 20px;border-inline-start:0;border-top:1px solid var(--line)}
+}
 
-/* skills */
-.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.skill h4{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800;margin-bottom:18px}
-.skill h4 i{width:10px;height:10px;border-radius:50%;background:var(--k);box-shadow:0 0 14px var(--k)}
-.skill .chips{justify-content:flex-start;direction:rtl;margin:0}
-.skill .chip{font-size:14px;padding:7px 14px;color:var(--text);transition:transform .3s,border-color .3s,background .3s}
-.skill .chip:hover{transform:translateY(-2px);border-color:var(--k);background:color-mix(in srgb,var(--k) 14%,transparent)}
-@media (max-width:900px){.skills{grid-template-columns:1fr}}
+/* ---------- work: heading beside a timeline ---------- */
+.split{display:grid;grid-template-columns:.9fr 1.4fr;gap:40px 60px;align-items:start}
+.split h2{margin-bottom:0}
+.tl{position:relative;padding-inline-start:38px;padding-top:14px}
+.tl::before{content:"";position:absolute;inset-inline-start:8px;top:22px;bottom:0;width:2px;border-radius:2px;background:linear-gradient(180deg,var(--cyan),var(--violet) 55%,transparent)}
+.tli{position:relative;padding-bottom:46px}
+.tli:last-child{padding-bottom:8px}
+.tli::before{content:"";position:absolute;inset-inline-start:-38px;top:8px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:2.5px solid var(--violet);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--violet) 18%,transparent),0 0 18px var(--glow)}
+.tli.now::before{border-color:var(--cyan);box-shadow:0 0 0 4px color-mix(in srgb,var(--cyan) 20%,transparent),0 0 18px color-mix(in srgb,var(--cyan) 50%,transparent)}
+.tli.now::after{content:"";position:absolute;inset-inline-start:-38px;top:8px;width:18px;height:18px;border-radius:50%;border:2px solid var(--cyan);opacity:0;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.tl-when{font-size:14px;font-weight:700;color:var(--faint);letter-spacing:.2px}
+.tli h4{font-size:clamp(22px,2.2vw,27px);font-weight:900;color:var(--text);line-height:1.35;margin-top:4px}
+.tl-role{font-size:15.5px;font-weight:700;color:var(--cyan);margin-top:4px}
+.tli p{color:var(--muted);font-size:15.5px;margin-top:10px;max-width:560px}
+@media (max-width:900px){.split{grid-template-columns:1fr;gap:26px}.tl{padding-inline-start:32px;padding-top:4px}.tl::before{top:12px}.tli::before,.tli.now::after{inset-inline-start:-32px}}
 
-/* edu */
-.edu{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-top:18px}
-.edu .card{display:flex;gap:20px;align-items:center}
-.edu .big{font-size:20px;font-weight:800}
-.edu .sm{color:var(--muted);font-size:15px}
-.lang{display:flex;flex-direction:column;gap:14px;width:100%}
-.lang div:not(.bar){display:flex;justify-content:space-between;font-weight:700}
-.bar{height:8px;border-radius:9px;background:var(--line);overflow:hidden;margin-top:6px}
+/* ---------- websites: one tappable row per site ---------- */
+.sites{position:relative}
+.sites::before{content:"";position:absolute;inset-inline:0;top:0;height:1px;background:var(--line)}
+.site{--k:var(--violet);--k2:var(--cyan);position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) auto;gap:16px 36px;align-items:center;
+  padding:28px 22px;margin-inline:-22px;border-radius:22px;transition:background .35s,transform .25s}
+.site::after{content:"";position:absolute;inset-inline:22px;bottom:0;height:1px;background:var(--line)}
+.site:hover{background:var(--chip)}
+.site:active{transform:scale(.992);background:color-mix(in srgb,var(--k) 16%,transparent)}
+.site h4{font-size:23px;font-weight:800;color:var(--text);line-height:1.35}
+.site .tech{margin-top:8px}
+.site p{color:var(--muted);font-size:15.5px}
+.site .url{display:inline-flex;align-items:center;gap:12px;justify-self:end;direction:ltr;font-size:15px;font-weight:700;color:var(--text);transition:color .3s}
+:root[dir=rtl] .site .url{flex-direction:row-reverse}
+.site .url i{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1px solid var(--line2);color:var(--text);
+  transition:background .35s,color .35s,border-color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.site .url svg{width:18px;height:18px}
+.site:hover .url{color:var(--k)}
+.site:hover .url i{background:linear-gradient(135deg,var(--k),var(--k2));color:#101330;border-color:transparent;transform:rotate(45deg)}
+@media (max-width:900px){
+  .site{grid-template-columns:1fr;gap:10px;padding:22px 16px;margin-inline:-16px}
+  .site::after{inset-inline:16px}
+  .site .url{justify-self:start;margin-top:4px}
+}
+
+/* ---------- skills, education, languages: one specimen table ---------- */
+.spec{border-top:1px solid var(--line)}
+.srow{--k:var(--violet);display:grid;grid-template-columns:250px minmax(0,1fr);gap:14px 40px;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.srow h4{display:flex;align-items:center;gap:12px;font-size:19px;font-weight:800;color:var(--text)}
+.srow h4 i{width:10px;height:10px;border-radius:50%;background:var(--k);box-shadow:0 0 14px var(--k);flex:none}
+.slist{display:flex;flex-wrap:wrap;gap:10px 30px;align-items:center;overflow:hidden}
+.slist span{position:relative;font-size:16px;font-weight:600;color:var(--text);transition:color .3s;white-space:nowrap;unicode-bidi:isolate}
+.slist span::before{content:"";position:absolute;inset-inline-start:-17.5px;top:50%;margin-top:-2.5px;width:5px;height:5px;border-radius:50%;background:var(--k);opacity:.7}
+.slist span:hover{color:var(--k)}
+.edu .big{font-size:19px;font-weight:800;color:var(--text)}
+.edu .sm{font-size:15px;color:var(--muted);margin-top:4px}
+.langs{display:grid;grid-template-columns:repeat(2,minmax(0,240px));gap:28px}
+.lang{display:flex;flex-direction:column;gap:8px}
+.lang .ln{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;color:var(--text);font-size:16px}
+.lang .ln .sm{font-size:14px;color:var(--muted);font-weight:600}
+.bar{height:6px;border-radius:9px;background:var(--line);overflow:hidden}
 .bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--violet),var(--cyan));transform-origin:right;transform:scaleX(0);transition:transform 1.4s cubic-bezier(.2,.8,.2,1) .2s}
 .in .bar i{transform:scaleX(var(--w))}
-@media (max-width:900px){.edu{grid-template-columns:1fr}}
+@media (max-width:900px){.srow{grid-template-columns:1fr;gap:12px;padding:22px 0}.langs{grid-template-columns:1fr 1fr;gap:18px}}
+@media (max-width:400px){.langs{grid-template-columns:1fr}}
+
+/* ---------- websites: one browser window with four tabs, real previews ---------- */
+.stage{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px 56px;align-items:center}
+.stage>*{min-width:0}
+.wcopy{display:none}
+.wcopy.on{display:block;animation:rise .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.wcopy h3{font-size:clamp(26px,2.6vw,34px);font-weight:900;color:var(--text);line-height:1.3}
+.wcopy p{color:var(--muted);font-size:16.5px;margin-top:10px;max-width:460px}
+.wcopy .tech{margin-top:16px}
+.wcopy .btn{margin-top:26px;direction:ltr;height:48px;font-size:15px}
+.wcopy .btn svg{transition:transform .4s}
+.wcopy .btn:hover svg{transform:translate(2px,-2px)}
+.dev{position:relative;padding-bottom:12%}
+.bw{position:relative;border-radius:18px;overflow:hidden;background:var(--surface-solid);border:1px solid var(--line2);box-shadow:var(--shadow)}
+.bbar{display:flex;align-items:flex-end;gap:4px;height:46px;padding:0 10px;direction:ltr;background:var(--bg2);border-bottom:1px solid var(--line)}
+.dots3{display:flex;gap:6px;align-self:center;margin:0 10px 0 4px;flex:none}
+.dots3 i{width:10px;height:10px;border-radius:50%;background:var(--line2)}
+.tabs{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;flex:1;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tabs.me{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent)}
+.tabs.ms{-webkit-mask-image:linear-gradient(90deg,transparent,#000 44px);mask-image:linear-gradient(90deg,transparent,#000 44px)}
+.tabs.ms.me{-webkit-mask-image:linear-gradient(90deg,transparent,#000 44px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,transparent,#000 44px,#000 calc(100% - 44px),transparent)}
+.tab{flex:none;scroll-snap-align:center;height:36px;padding:0 16px;border:0;border-radius:12px 12px 0 0;background:transparent;color:var(--muted);font:600 13.5px/1 Vazirmatn,sans-serif;cursor:pointer;
+  transition:background .3s,color .3s,transform .15s;white-space:nowrap}
+.tab:hover{color:var(--text);background:color-mix(in srgb,var(--surface-solid) 55%,transparent)}
+.tab.on{color:var(--text);background:var(--surface-solid)}
+.tab:active{transform:scale(.95)}
+.addr{display:flex;align-items:center;gap:10px;height:40px;padding:0 12px;direction:ltr;border-bottom:1px solid var(--line)}
+.burl{flex:1;display:flex;align-items:center;gap:7px;height:27px;padding:0 12px;border-radius:999px;background:var(--bg2);font-size:12.5px;font-weight:600;color:var(--muted);letter-spacing:.2px}
+.burl svg{width:11px;height:11px;flex:none}
+.bopen{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;color:var(--muted);transition:background .3s,color .3s,transform .15s}
+.bopen svg{width:15px;height:15px}
+.bopen:hover{background:var(--chip);color:var(--text)}
+.bopen:active{transform:scale(.88)}
+.screen{position:relative;aspect-ratio:1280/800;overflow:hidden;background:var(--bg2)}
+.pane{position:absolute;inset:0;display:none}
+.pane.on{display:block;animation:fade .7s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.shot img{width:100%;height:auto;display:block}
+.pane.on .shot{animation:autoscroll 20s cubic-bezier(.45,0,.35,1) 1.4s infinite}
+.bw:hover .pane.on .shot{animation-play-state:paused}
+@keyframes autoscroll{0%,10%{transform:none}50%,60%{transform:translateY(var(--sc,-66.6667%))}100%{transform:none}}
+.ph-dev{position:absolute;bottom:-12%;inset-inline-end:-3%;width:26%;padding:5px;border-radius:26px;background:#0B0D24;box-shadow:0 30px 60px -24px rgba(5,6,30,.75),inset 0 0 0 1.5px rgba(255,255,255,.1);z-index:3}
+.ph-dev::before{content:"";position:absolute;top:10px;left:50%;width:26%;height:11px;margin-left:-13%;border-radius:999px;background:#0B0D24;z-index:2}
+.pscreen{position:relative;border-radius:21px;overflow:hidden;aspect-ratio:585/1266;background:var(--bg2)}
+.pp{position:absolute;inset:0;display:none}
+.pp.on{display:block;animation:fade .7s}
+.pp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.only-light{display:none!important}
+:root[data-theme="light"] .only-light{display:block!important}:root[data-theme="light"] .only-dark{display:none!important}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .only-light{display:block!important}:root:not([data-theme="dark"]) .only-dark{display:none!important}}
+@media (max-width:900px){
+  .stage{grid-template-columns:1fr;gap:30px}
+  .dev{order:-1;padding-bottom:16%}
+  .bw{border-radius:14px}
+  .bbar{height:42px}.tab{height:34px;padding:0 13px;font-size:13px}
+  .ph-dev{width:30%;border-radius:20px;padding:4px;inset-inline-end:3%}.pscreen{border-radius:16px}.ph-dev::before{height:8px;top:7px}
+  .wcopy .btn{margin-top:20px}
+}
+@media (max-width:480px){.dots3{display:none}.bbar{padding:0 6px}}
 
 /* contact */
 .contact{text-align:center;padding:90px 30px;border-radius:44px;position:relative;overflow:hidden;isolation:isolate;border:1px solid var(--line);background:var(--surface)}
@@ -271,8 +380,8 @@ h2 em{font-style:normal;color:var(--violet)}
 
 <nav class="nav"><div class="nav-in">
   <a class="lk" href="#apps" data-i18n="apps">اپ‌ها</a>
-  <a class="lk opt" href="#projects" data-i18n="projects">پروژه‌ها</a>
   <a class="lk opt" href="#webs" data-i18n="webs">وب‌سایت‌ها</a>
+  <a class="lk opt" href="#projects" data-i18n="projects">پروژه‌ها</a>
   <a class="lk opt" href="#skills" data-i18n="skills">مهارت‌ها</a>
   <a class="lk" href="#contact" data-i18n="contact">تماس</a>
   <button class="tbtn lng" id="lang" aria-label="English">EN</button>
@@ -299,7 +408,7 @@ h2 em{font-style:normal;color:var(--violet)}
       </div>
       <div class="stats">
         <div class="stat"><div class="n" data-count="4">۰</div><div class="l" data-i18n="st1">اپ منتشرشده</div></div>
-        <div class="stat"><div class="n" data-count="4">۰</div><div class="l" data-i18n="st5">وب‌سایت و سامانه‌ی تحت وب</div></div>
+        <div class="stat"><div class="n" data-count="3">۰</div><div class="l" data-i18n="st5">وب‌سایت و سامانه‌ی تحت وب</div></div>
         <div class="stat"><div class="n" data-i18n="n2">۲</div><div class="l" data-i18n="st2">پلتفرم، اندروید و ویندوز</div></div>
         <div class="stat"><div class="n" data-i18n="n1">۲</div><div class="l" data-i18n="st3">مدل زبانی فاین‌تیون‌شده</div></div>
         <div class="stat"><div class="n" data-i18n="n11">۱.۱<small style="font-size:16px"> مگ</small></div><div class="l" data-i18n="st4">سبک‌ترین اپ</div></div>
@@ -448,97 +557,124 @@ h2 em{font-style:normal;color:var(--violet)}
   </article>
 </div></section>
 
-<section class="sec" id="projects"><div class="wrap">
-  <div class="eyebrow rv" data-i18n="ai">هوش مصنوعی</div>
-  <h2 class="rv" data-i18n="projH">پروژه‌های <em>هوش مصنوعی</em></h2>
-  <div class="bento">
-    <div class="card c-a rv">
-      <svg class="viz" viewBox="0 0 300 200" fill="none" aria-hidden="true">
-        <g stroke="var(--line2)" stroke-width="1.5"><path d="M40 100 L120 50 M40 100 L120 100 M40 100 L120 150 M120 50 L200 75 M120 100 L200 75 M120 100 L200 125 M120 150 L200 125 M200 75 L265 100 M200 125 L265 100"/></g>
-        <g fill="var(--violet)"><circle cx="40" cy="100" r="9"/><circle cx="265" cy="100" r="11" fill="var(--cyan)"/></g>
-        <g fill="var(--surface-solid)" stroke="var(--violet)" stroke-width="2"><circle cx="120" cy="50" r="7"/><circle cx="120" cy="100" r="7"/><circle cx="120" cy="150" r="7"/><circle cx="200" cy="75" r="7"/><circle cx="200" cy="125" r="7"/></g>
-        <circle r="4" fill="var(--cyan)"><animateMotion dur="3s" repeatCount="indefinite" path="M40 100 L120 100 L200 75 L265 100"/></circle>
-        <circle r="4" fill="var(--pink)"><animateMotion dur="3s" begin="1.5s" repeatCount="indefinite" path="M40 100 L120 150 L200 125 L265 100"/></circle>
-      </svg>
-      <div class="txt">
-        <div class="ic" style="background:linear-gradient(135deg,var(--violet),var(--cyan))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8 11h6M11 8v6"/></svg></div>
-        <h4 data-i18n="p1h">حدیث‌یاب هوشمند</h4>
-        <p data-i18n="p1">سامانه‌ی RAG برای جستجوی حدیث با زبان طبیعی. سؤالت رو همون‌طور که به ذهنت می‌رسه بپرس و حدیث‌های مرتبط رو بر اساس معنا پیدا کن، نه فقط کلمه.</p>
-        <div class="chips"><span class="chip">RAG</span><span class="chip">Embeddings</span><span class="chip">Reranking</span></div>
-      </div>
-    </div>
-    <div class="card c-b rv">
-      <div class="ic" style="background:linear-gradient(135deg,var(--pink),var(--amber))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
-      <h4 data-i18n="p2h">سامانه‌ی AIVA</h4>
-      <p data-i18n="p2">تحلیل تماس‌های تلفنی شرکت‌ها با هوش مصنوعی.</p>
-      <div class="chips"><span class="chip">Speech AI</span><span class="chip">LLM</span></div>
-    </div>
-    <div class="card c-c rv">
-      <div class="ic" style="background:linear-gradient(135deg,var(--cyan),#5BA8FF)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01M9 7l2 2 4-4"/></svg></div>
-      <h4>Agent PowerUI</h4>
-      <p data-i18n="p3">اپ فلاتری برای کار با ایجنت هوش مصنوعی، با رابطی که کار ایجنت رو قابل‌دیدن و قابل‌کنترل می‌کنه.</p>
-      <div class="chips"><span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">AI Agents</span></div>
-    </div>
-    <div class="card c-d rv">
-      <div class="ic" style="background:linear-gradient(135deg,var(--amber),var(--pink))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-      <h4 data-i18n="p4h">موزیک به موزیک‌ویدیو</h4>
-      <p data-i18n="p4">اپ و پایپلاینی که از یه آهنگ، موزیک‌ویدیو می‌سازه. مرحله‌ها با LangChain به هم وصل شدن.</p>
-      <div class="chips"><span class="chip">LangChain</span><span class="chip">Pipelines</span><span class="chip">GenAI</span></div>
-    </div>
-  </div>
-</div></section>
-
-<section class="sec" id="work"><div class="wrap">
-  <div class="eyebrow rv" data-i18n="xpE">سابقه کار</div>
-  <h2 class="rv" data-i18n="xpH">جاهایی که <em>کار کردم</em></h2>
-  <div class="bento xp">
-    <div class="card c-c rv">
-      <div class="ic" style="background:linear-gradient(135deg,var(--violet),var(--pink))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><circle cx="5.5" cy="16" r="2.6"/><circle cx="18.5" cy="16" r="2.6"/><path d="M9.7 10.3 7 13.8M14.3 10.3l2.7 3.5"/></svg></div>
-      <div><h4 data-i18n="x1h">تیم فناور کارو</h4>
-        <div class="role" data-i18n="x1r">توسعه‌دهنده اندروید و وب و متخصص هوش مصنوعی</div>
-        <div class="when" data-i18n="x1w">از ۱۴۰۴ تا امروز</div>
-        <p data-i18n="x1">ساخت سامانه‌ی تحلیل تماس AIVA و سامانه‌ی صورتجلسه‌ی سرانجام و وب‌سایت تیم</p></div>
-    </div>
-    <div class="card c-d rv">
-      <div class="ic" style="background:linear-gradient(135deg,var(--cyan),#5BA8FF)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></div>
-      <div><h4 data-i18n="x2h">شرکت آهار</h4>
-        <div class="role" data-i18n="x2r">کارآموز مهندسی نرم‌افزار</div>
-        <div class="when" data-i18n="x2w">تابستان ۱۴۰۵</div></div>
-    </div>
-  </div>
-</div></section>
-
 <section class="sec" id="webs"><div class="wrap">
   <div class="eyebrow rv" data-i18n="web2">وب</div>
   <h2 class="rv" data-i18n="websH">وب‌سایت‌هایی که <em>ساختم</em></h2>
-  <div class="bento">
-    <div class="card c-w rv">
-      <div class="ic" style="background:linear-gradient(135deg,var(--violet),var(--pink))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><circle cx="5.5" cy="16" r="2.6"/><circle cx="18.5" cy="16" r="2.6"/><path d="M9.7 10.3 7 13.8M14.3 10.3l2.7 3.5"/></svg></div>
-      <h4 data-i18n="w1h">تیم فناور کارو</h4>
-      <p data-i18n="w1">عضو تیم فناور کارو هستم و وب‌سایت تیم رو خودم طراحی کردم و ساختم</p>
-      <div class="chips"><span class="chip">Web Design</span><span class="chip">HTML & CSS</span><span class="chip">Nginx</span></div>
-      <a class="wl" href="https://caroai.ir" target="_blank" rel="noopener">caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  <div class="stage rv" id="stage">
+    <div class="copies">
+      <div class="wcopy on">
+        <h3 data-i18n="w1h">تیم فناور کارو</h3>
+        <p data-i18n="w1">عضو تیم فناور کارو هستم و وب‌سایت تیم رو خودم طراحی کردم و ساختم</p>
+        <div class="tech" style="--k:var(--violet)"><span>Web Design</span><span>HTML &amp; CSS</span><span>Nginx</span></div>
+        <a class="btn s" href="https://caroai.ir" target="_blank" rel="noopener">caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <div class="wcopy">
+        <h3 data-i18n="w2h">سامانه‌ی AIVA</h3>
+        <p data-i18n="w2">وب‌سایت و پنل سامانه‌ی تحلیل تماس‌های تلفنی با هوش مصنوعی برای شرکت‌ها</p>
+        <div class="tech" style="--k:var(--pink)"><span>Django</span><span>React</span><span>Speech AI</span></div>
+        <a class="btn s" href="https://aiva.caroai.ir" target="_blank" rel="noopener">aiva.caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <div class="wcopy">
+        <h3 data-i18n="w3h">سرانجام</h3>
+        <p data-i18n="w3">سامانه‌ی هوشمند صورتجلسه که از صدای جلسه خلاصه و مصوبه‌ها و کارهای هر نفر رو درمیاره</p>
+        <div class="tech" style="--k:var(--cyan)"><span>Next.js</span><span>PostgreSQL</span><span>AI</span></div>
+        <a class="btn s" href="https://saranjam.caroai.ir" target="_blank" rel="noopener">saranjam.caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
     </div>
-    <div class="card c-w rv">
-      <div class="ic" style="background:linear-gradient(135deg,var(--pink),var(--amber))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h2l2-6 4 12 3-9 2 3h5"/></svg></div>
-      <h4 data-i18n="w2h">سامانه‌ی AIVA</h4>
-      <p data-i18n="w2">وب‌سایت و پنل سامانه‌ی تحلیل تماس‌های تلفنی با هوش مصنوعی برای شرکت‌ها</p>
-      <div class="chips"><span class="chip">Django</span><span class="chip">React</span><span class="chip">Speech AI</span></div>
-      <a class="wl" href="https://aiva.caroai.ir" target="_blank" rel="noopener">aiva.caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <div class="dev">
+      <div class="bw">
+        <div class="bbar">
+          <div class="dots3"><i></i><i></i><i></i></div>
+          <div class="tabs" role="tablist">
+            <button class="tab on" role="tab" data-url="caroai.ir" data-i18n="w1h">تیم فناور کارو</button>
+            <button class="tab" role="tab" data-url="aiva.caroai.ir" data-i18n="w2h">سامانه‌ی AIVA</button>
+            <button class="tab" role="tab" data-url="saranjam.caroai.ir" data-i18n="w3h">سرانجام</button>
+          </div>
+        </div>
+        <div class="addr">
+          <span class="burl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span id="burl">caroai.ir</span></span>
+          <a class="bopen" id="bopen" href="https://caroai.ir" target="_blank" rel="noopener" aria-label="caroai.ir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+        <div class="screen">
+          <div class="pane on"><div class="shot">
+            <img class="only-light" src="img/previews/caro-light-desk.webp" alt="" width="1280" height="2400" loading="lazy" decoding="async">
+            <img class="only-dark" src="img/previews/caro-dark-desk.webp" alt="" width="1280" height="2400" loading="lazy" decoding="async">
+          </div></div>
+          <div class="pane"><div class="shot">
+            <img class="only-light" src="img/previews/aiva-light-desk.webp" alt="" width="1280" height="2400" loading="lazy" decoding="async">
+            <img class="only-dark" src="img/previews/aiva-dark-desk.webp" alt="" width="1280" height="2400" loading="lazy" decoding="async">
+          </div></div>
+          <div class="pane"><div class="shot">
+            <img class="only-light" src="img/previews/saranjam-light-desk.webp" alt="" width="1280" height="2400" loading="lazy" decoding="async">
+            <img class="only-dark" src="img/previews/saranjam-dark-desk.webp" alt="" width="1280" height="2400" loading="lazy" decoding="async">
+          </div></div>
+        </div>
+      </div>
+      <div class="ph-dev" aria-hidden="true"><div class="pscreen">
+        <div class="pp on">
+          <img class="only-light" src="img/previews/caro-light-phone.webp" alt="" width="585" height="1266" loading="lazy" decoding="async">
+          <img class="only-dark" src="img/previews/caro-dark-phone.webp" alt="" width="585" height="1266" loading="lazy" decoding="async">
+        </div>
+        <div class="pp">
+          <img class="only-light" src="img/previews/aiva-light-phone.webp" alt="" width="585" height="1266" loading="lazy" decoding="async">
+          <img class="only-dark" src="img/previews/aiva-dark-phone.webp" alt="" width="585" height="1266" loading="lazy" decoding="async">
+        </div>
+        <div class="pp">
+          <img class="only-light" src="img/previews/saranjam-light-phone.webp" alt="" width="585" height="1266" loading="lazy" decoding="async">
+          <img class="only-dark" src="img/previews/saranjam-dark-phone.webp" alt="" width="585" height="1266" loading="lazy" decoding="async">
+        </div>
+      </div></div>
     </div>
-    <div class="card c-w rv">
-      <div class="ic" style="background:linear-gradient(135deg,var(--cyan),#5BA8FF)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
-      <h4 data-i18n="w3h">سرانجام</h4>
-      <p data-i18n="w3">سامانه‌ی هوشمند صورتجلسه که از صدای جلسه خلاصه و مصوبه‌ها و کارهای هر نفر رو درمیاره</p>
-      <div class="chips"><span class="chip">Next.js</span><span class="chip">PostgreSQL</span><span class="chip">AI</span></div>
-      <a class="wl" href="https://saranjam.caroai.ir" target="_blank" rel="noopener">saranjam.caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </div>
+</div></section>
+
+<section class="sec" id="projects"><div class="wrap">
+  <div class="eyebrow rv" data-i18n="ai">هوش مصنوعی</div>
+  <h2 class="rv" data-i18n="projH">پروژه‌های <em>هوش مصنوعی</em></h2>
+  <article class="feat rv" style="--k:var(--pink)">
+    <div>
+      <div class="ttl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><h3 data-i18n="p2h">سامانه‌ی AIVA</h3></div>
+      <p data-i18n="p2">تحلیل تماس‌های تلفنی شرکت‌ها با هوش مصنوعی<br>گفتار فارسی به متن تبدیل می‌شه و یه مدل زبانی هر تماس رو تحلیل می‌کنه</p>
+      <div class="tech"><span>Speech AI</span><span>LLM</span><span>Django</span></div>
     </div>
-    <div class="card c-w rv">
-      <div class="ic" style="background:linear-gradient(135deg,var(--violet),var(--cyan))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8 11h6M11 8v6"/></svg></div>
-      <h4 data-i18n="w4h">حدیث‌یاب</h4>
-      <p data-i18n="w4">جستجوی معنایی قرآن و نهج‌البلاغه و حدیث با زبان طبیعی روی وب</p>
-      <div class="chips"><span class="chip">FastAPI</span><span class="chip">RAG</span><span class="chip">Embeddings</span></div>
-      <a class="wl" href="https://hadithyab.onrender.com" target="_blank" rel="noopener">hadithyab.onrender.com<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <svg class="viz" viewBox="0 0 300 200" fill="none" aria-hidden="true">
+      <g stroke="var(--line2)" stroke-width="1.5"><path d="M40 100 L120 50 M40 100 L120 100 M40 100 L120 150 M120 50 L200 75 M120 100 L200 75 M120 100 L200 125 M120 150 L200 125 M200 75 L265 100 M200 125 L265 100"/></g>
+      <g fill="var(--violet)"><circle cx="40" cy="100" r="9"/><circle cx="265" cy="100" r="11" fill="var(--cyan)"/></g>
+      <g fill="var(--surface-solid)" stroke="var(--violet)" stroke-width="2"><circle cx="120" cy="50" r="7"/><circle cx="120" cy="100" r="7"/><circle cx="120" cy="150" r="7"/><circle cx="200" cy="75" r="7"/><circle cx="200" cy="125" r="7"/></g>
+      <circle r="4" fill="var(--cyan)"><animateMotion dur="3s" repeatCount="indefinite" path="M40 100 L120 100 L200 75 L265 100"/></circle>
+      <circle r="4" fill="var(--pink)"><animateMotion dur="3s" begin="1.5s" repeatCount="indefinite" path="M40 100 L120 150 L200 125 L265 100"/></circle>
+    </svg>
+  </article>
+  <div class="pcols">
+    <div class="pcol rv" style="--k:var(--cyan)">
+      <div class="ttl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01M9 7l2 2 4-4"/></svg><h4>Agent PowerUI</h4></div>
+      <p data-i18n="p3">اپ فلاتری برای کار با ایجنت هوش مصنوعی، با رابطی که کار ایجنت رو قابل‌دیدن و قابل‌کنترل می‌کنه.</p>
+      <div class="tech"><span>Flutter</span><span>Dart</span><span>AI Agents</span></div>
+    </div>
+    <div class="pcol rv" style="--k:var(--amber)">
+      <div class="ttl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><h4 data-i18n="p4h">موزیک به موزیک‌ویدیو</h4></div>
+      <p data-i18n="p4">اپ و پایپلاینی که از یه آهنگ، موزیک‌ویدیو می‌سازه. مرحله‌ها با LangChain به هم وصل شدن.</p>
+      <div class="tech"><span>LangChain</span><span>Pipelines</span><span>GenAI</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="work"><div class="wrap split">
+  <div>
+    <div class="eyebrow rv" data-i18n="xpE">سابقه کار</div>
+    <h2 class="rv" data-i18n="xpH">جاهایی که <em>کار کردم</em></h2>
+  </div>
+  <div class="tl">
+    <div class="tli now rv">
+      <div class="tl-when" data-i18n="x1w">از ۱۴۰۴ تا امروز</div>
+      <h4 data-i18n="x1h">تیم فناور کارو</h4>
+      <div class="tl-role" data-i18n="x1r">توسعه‌دهنده اندروید و وب و متخصص هوش مصنوعی</div>
+      <p data-i18n="x1">ساخت سامانه‌ی تحلیل تماس AIVA و سامانه‌ی صورتجلسه‌ی سرانجام و وب‌سایت تیم</p>
+    </div>
+    <div class="tli rv">
+      <div class="tl-when" data-i18n="x2w">تابستان ۱۴۰۵</div>
+      <h4 data-i18n="x2h">شرکت آهار</h4>
+      <div class="tl-role" data-i18n="x2r">کارآموز مهندسی نرم‌افزار</div>
     </div>
   </div>
 </div></section>
@@ -546,22 +682,18 @@ h2 em{font-style:normal;color:var(--violet)}
 <section class="sec" id="skills"><div class="wrap">
   <div class="eyebrow rv" data-i18n="toolbox">جعبه‌ابزار</div>
   <h2 class="rv" data-i18n="skills">مهارت‌ها</h2>
-  <div class="skills">
-    <div class="card skill rv" style="--k:var(--violet)"><h4><i></i><span data-i18n="sk1">هوش مصنوعی</span></h4><div class="chips">
-      <span class="chip" data-i18n="c1">ساخت ایجنت و ورک‌فلو</span><span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">LlamaIndex</span><span class="chip" data-i18n="c2">RAG و چت‌بات</span><span class="chip" data-i18n="c3">LLM و VLM</span><span class="chip">Hugging Face</span><span class="chip">PyTorch</span><span class="chip">Deep Learning</span></div></div>
-    <div class="card skill rv" style="--k:var(--cyan)"><h4><i></i><span data-i18n="sk2">برنامه‌نویسی و اپ</span></h4><div class="chips">
-      <span class="chip">Python</span><span class="chip" data-i18n="c4">Flutter و Dart</span><span class="chip" data-i18n="c5">++C</span><span class="chip">SQL</span><span class="chip" data-i18n="c6">اپ اندروید</span><span class="chip" data-i18n="c7">اپ ویندوز</span></div></div>
-    <div class="card skill rv" style="--k:var(--pink)"><h4><i></i><span data-i18n="sk3">زیرساخت و ابزار</span></h4><div class="chips">
-      <span class="chip">Docker</span><span class="chip">Docker Compose</span><span class="chip">Nginx</span><span class="chip" data-i18n="c8">Git و GitHub</span></div></div>
-  </div>
-  <div class="edu">
-    <div class="card rv">
-      <div class="ic" style="background:linear-gradient(135deg,var(--violet),var(--pink));flex:none;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
-      <div><div class="big" data-i18n="edu1">کارشناسی مهندسی کامپیوتر</div><div class="sm" data-i18n="edu2">دانشگاه تهران · از ۱۴۰۱، در حال تحصیل</div></div>
-    </div>
-    <div class="card rv"><div class="lang">
-      <div><span data-i18n="fa">فارسی</span><span class="sm" data-i18n="native">زبان مادری</span></div><div class="bar"><i style="--w:1"></i></div>
-      <div><span data-i18n="en">انگلیسی</span><span class="sm" data-i18n="pro">حرفه‌ای</span></div><div class="bar"><i style="--w:.9"></i></div>
+  <div class="spec">
+    <div class="srow rv" style="--k:var(--violet)"><h4><i></i><span data-i18n="sk1">هوش مصنوعی</span></h4><div class="slist">
+      <span data-i18n="c1">ساخت ایجنت و ورک‌فلو</span><span>LangGraph</span><span>LangChain</span><span>LlamaIndex</span><span data-i18n="c2">RAG و چت‌بات</span><span data-i18n="c3">LLM و VLM</span><span>Hugging Face</span><span>PyTorch</span><span>Deep Learning</span></div></div>
+    <div class="srow rv" style="--k:var(--cyan)"><h4><i></i><span data-i18n="sk2">برنامه‌نویسی و اپ</span></h4><div class="slist">
+      <span>Python</span><span data-i18n="c4">Flutter و Dart</span><span data-i18n="c5">++C</span><span>SQL</span><span data-i18n="c6">اپ اندروید</span><span data-i18n="c7">اپ ویندوز</span></div></div>
+    <div class="srow rv" style="--k:var(--pink)"><h4><i></i><span data-i18n="sk3">زیرساخت و ابزار</span></h4><div class="slist">
+      <span>Docker</span><span>Docker Compose</span><span>Nginx</span><span data-i18n="c8">Git و GitHub</span></div></div>
+    <div class="srow rv" style="--k:var(--amber)"><h4><i></i><span data-i18n="eduL">تحصیلات</span></h4><div class="edu">
+      <div class="big" data-i18n="edu1">کارشناسی مهندسی کامپیوتر</div><div class="sm" data-i18n="edu2">دانشگاه تهران · از ۱۴۰۱، در حال تحصیل</div></div></div>
+    <div class="srow rv" style="--k:#5BA8FF"><h4><i></i><span data-i18n="langL">زبان‌ها</span></h4><div class="langs">
+      <div class="lang"><div class="ln"><span data-i18n="fa">فارسی</span><span class="sm" data-i18n="native">زبان مادری</span></div><div class="bar"><i style="--w:1"></i></div></div>
+      <div class="lang"><div class="ln"><span data-i18n="en">انگلیسی</span><span class="sm" data-i18n="pro">حرفه‌ای</span></div><div class="bar"><i style="--w:.9"></i></div></div>
     </div></div>
   </div>
 </div></section>
@@ -590,7 +722,7 @@ let lang='fa',roleGen=0,ri=0;
 let vtOn=false;
 const vt=f=>{if(vtOn){f();return null}vtOn=true;const t=document.startViewTransition(f);for(const k of ['ready','updateCallbackDone'])t[k].catch(()=>{});t.finished.catch(()=>{}).then(()=>vtOn=false);return t};
 const fa=s=>lang==='en'?String(s):String(s).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
-const EN={"apps": "Apps", "projects": "Projects", "skills": "Skills", "contact": "Contact", "h1": "Sajjad <span class=\"g\">Majdi</span>", "lead": "I take ideas all the way to real products: from AI agents and RAG systems to custom-trained language models and apps that run fast and light on a phone.", "st1": "apps released", "st2": "platforms: Android & Windows", "st3": "fine-tuned language models", "st5": "websites and web systems", "st4": "smallest app", "myWork": "My work", "appsH": "Apps that <em>actually shipped</em>", "hName": "Hamyar", "hTag": "A fully offline Persian voice assistant", "hD": "Just talk and Hamyar gets it done, with no internet, on ordinary phones. Persian speech becomes text right on the device, and language models I fine-tuned myself decide what to do.", "hF1": "Two custom models I fine-tuned: <b>Hamyar Lite</b> for quick commands and <b>Hamyar Pro</b> for conversation and multi-step tasks", "hF2": "Answers each command in under 0.6 s on a mid-range phone", "hF3": "Calls, reminders, navigation, weather, Persian and lunar calendars, calculator", "hF4": "A 3D particle core that comes alive with your voice", "hV": "Version <b>1.1.0</b>", "hS": "Size <b>1.9 MB</b>", "lName": "Lumen Keep", "lTag": "Smart note keeper", "lD": "Notes that remember for you. Ask AI anything about what you wrote and get the answer with its source. Just talk, and it becomes a note.", "lF1": "“Ask your notes”, with answers linked to the notes they came from", "lF2": "Voice notes, dictation and one-tap magic edits", "lF3": "Offline-first, with private sync to Google Drive", "lF4": "A Tasks section with projects, a calendar and a home-screen widget", "lV": "Version <b>1.8</b>", "lS": "Size <b>2.1 MB</b>", "sName": "Squish", "sTag": "Photo and video compressor", "sD": "Shrinks photos and videos with no loss the eye can see. It measures the quality of every file and compresses exactly as much as it should. The whole app is about one megabyte.", "sF1": "Its own video engine on hardware HEVC, with no ready-made media libraries", "sF2": "A quality score for every file, measured with SSIM against the original", "sF3": "HDR to SDR tone mapping and a before/after compare slider", "sF4": "A liquid-glass interface with fluid motion", "sV": "Version <b>1.0.4</b>", "sS": "Size <b>1.1 MB</b>", "dName": "Squish Desktop", "dTag": "Photo and video compressor for Windows", "dD": "Drag and drop, and the rest is automatic. Resolution stays the same, only the size drops. Everything runs on your own computer and nothing is uploaded anywhere.", "dF1": "Drag and drop, and compression starts on its own", "dF2": "Three modes: Balanced, High quality and Max savings", "dF3": "All common video and photo formats, from MP4 and MKV to PNG and WEBP", "dV": "Version <b>1.1.0</b>", "dS": "Size <b>28 MB</b>", "ai": "Artificial intelligence", "projH": "<em>AI</em> projects", "p1h": "HadithYab, smart hadith search", "p1": "A RAG system for searching hadith in natural language. Ask the way it comes to mind and find related hadith by meaning, not just by matching words.", "p2h": "AIVA System", "p2": "AI analysis of companies’ phone calls.", "p3": "A Flutter app for working with an AI agent, with an interface that makes the agent’s work visible and controllable.", "p4h": "Music to music video", "p4": "An app and pipeline that turns a song into a music video, with every step chained in LangChain.", "xpE": "Experience", "xpH": "Where I have <em>worked</em>", "x1h": "Caro tech team", "x1r": "Android, web and AI developer", "x1w": "2025 to now", "x1": "Built the AIVA call-analysis system, the Saranjam meeting-minutes system and the team website", "x2h": "Ahar company", "x2r": "Software engineering intern", "x2w": "Summer 2026", "webs": "Websites", "web2": "Web", "websH": "Websites I <em>built</em>", "w1h": "Caro tech team", "w1": "I am a member of the Caro tech team and designed and built the team website myself", "w2h": "AIVA System", "w2": "Website and panel of an AI system that analyzes companies’ phone calls", "w4h": "HadithYab", "w4": "Semantic search of the Quran, Nahj al-Balagha and hadith in natural language, on the web", "w3h": "Saranjam", "w3": "A smart meeting-minutes system that turns meeting audio into a summary, decisions and each person’s tasks", "toolbox": "Toolbox", "c1": "Agents & workflows", "c2": "RAG & chatbots", "c3": "LLM & VLM", "c4": "Flutter & Dart", "c5": "C++", "c6": "Android apps", "c7": "Windows apps", "c8": "Git & GitHub", "edu1": "B.Sc. in Computer Engineering", "edu2": "University of Tehran · since 2022, in progress", "fa": "Persian", "native": "native", "en": "English", "pro": "professional", "contactH": "Let’s build something <em>great</em> together", "contactP": "For work or a project, message me on Telegram.", "web": "Website", "tg": "Telegram", "tgc": "Telegram channel", "github": "GitHub", "hf": "Hugging Face", "li": "LinkedIn", "pill": "Computer Engineering, University of Tehran", "rolePre": "I build", "seeApps": "See my apps", "n2": "2", "n1": "2", "n11": "1.1<small style=\"font-size:16px\"> MB</small>", "android": "Android", "androidMyket": "Android · Myket", "windows": "Windows", "dlApk": "Download APK", "dlExe": "Download installer", "sk1": "AI", "sk2": "Programming & apps", "sk3": "Infrastructure & tools"};
+const EN={"apps": "Apps", "projects": "Projects", "skills": "Skills", "contact": "Contact", "h1": "Sajjad <span class=\"g\">Majdi</span>", "lead": "I take ideas all the way to real products: from AI agents and RAG systems to custom-trained language models and apps that run fast and light on a phone.", "st1": "apps released", "st2": "platforms: Android & Windows", "st3": "fine-tuned language models", "st5": "websites and web systems", "st4": "smallest app", "myWork": "My work", "appsH": "Apps that <em>actually shipped</em>", "hName": "Hamyar", "hTag": "A fully offline Persian voice assistant", "hD": "Just talk and Hamyar gets it done, with no internet, on ordinary phones. Persian speech becomes text right on the device, and language models I fine-tuned myself decide what to do.", "hF1": "Two custom models I fine-tuned: <b>Hamyar Lite</b> for quick commands and <b>Hamyar Pro</b> for conversation and multi-step tasks", "hF2": "Answers each command in under 0.6 s on a mid-range phone", "hF3": "Calls, reminders, navigation, weather, Persian and lunar calendars, calculator", "hF4": "A 3D particle core that comes alive with your voice", "hV": "Version <b>1.1.0</b>", "hS": "Size <b>1.9 MB</b>", "lName": "Lumen Keep", "lTag": "Smart note keeper", "lD": "Notes that remember for you. Ask AI anything about what you wrote and get the answer with its source. Just talk, and it becomes a note.", "lF1": "“Ask your notes”, with answers linked to the notes they came from", "lF2": "Voice notes, dictation and one-tap magic edits", "lF3": "Offline-first, with private sync to Google Drive", "lF4": "A Tasks section with projects, a calendar and a home-screen widget", "lV": "Version <b>1.8</b>", "lS": "Size <b>2.1 MB</b>", "sName": "Squish", "sTag": "Photo and video compressor", "sD": "Shrinks photos and videos with no loss the eye can see. It measures the quality of every file and compresses exactly as much as it should. The whole app is about one megabyte.", "sF1": "Its own video engine on hardware HEVC, with no ready-made media libraries", "sF2": "A quality score for every file, measured with SSIM against the original", "sF3": "HDR to SDR tone mapping and a before/after compare slider", "sF4": "A liquid-glass interface with fluid motion", "sV": "Version <b>1.0.4</b>", "sS": "Size <b>1.1 MB</b>", "dName": "Squish Desktop", "dTag": "Photo and video compressor for Windows", "dD": "Drag and drop, and the rest is automatic. Resolution stays the same, only the size drops. Everything runs on your own computer and nothing is uploaded anywhere.", "dF1": "Drag and drop, and compression starts on its own", "dF2": "Three modes: Balanced, High quality and Max savings", "dF3": "All common video and photo formats, from MP4 and MKV to PNG and WEBP", "dV": "Version <b>1.1.0</b>", "dS": "Size <b>28 MB</b>", "ai": "Artificial intelligence", "projH": "<em>AI</em> projects", "p2h": "AIVA System", "p2": "AI analysis of companies’ phone calls<br>Persian speech becomes text and a language model analyzes every call", "p3": "A Flutter app for working with an AI agent, with an interface that makes the agent’s work visible and controllable.", "p4h": "Music to music video", "p4": "An app and pipeline that turns a song into a music video, with every step chained in LangChain.", "xpE": "Experience", "xpH": "Where I have <em>worked</em>", "x1h": "Caro tech team", "x1r": "Android, web and AI developer", "x1w": "2025 to now", "x1": "Built the AIVA call-analysis system, the Saranjam meeting-minutes system and the team website", "x2h": "Ahar company", "x2r": "Software engineering intern", "x2w": "Summer 2026", "webs": "Websites", "web2": "Web", "websH": "Websites I <em>built</em>", "w1h": "Caro tech team", "w1": "I am a member of the Caro tech team and designed and built the team website myself", "w2h": "AIVA System", "w2": "Website and panel of an AI system that analyzes companies’ phone calls", "w3h": "Saranjam", "w3": "A smart meeting-minutes system that turns meeting audio into a summary, decisions and each person’s tasks", "toolbox": "Toolbox", "c1": "Agents & workflows", "c2": "RAG & chatbots", "c3": "LLM & VLM", "c4": "Flutter & Dart", "c5": "C++", "c6": "Android apps", "c7": "Windows apps", "c8": "Git & GitHub", "edu1": "B.Sc. in Computer Engineering", "edu2": "University of Tehran · since 2022, in progress", "fa": "Persian", "native": "native", "en": "English", "pro": "professional", "contactH": "Let’s build something <em>great</em> together", "contactP": "For work or a project, message me on Telegram.", "web": "Website", "tg": "Telegram", "tgc": "Telegram channel", "github": "GitHub", "hf": "Hugging Face", "li": "LinkedIn", "pill": "Computer Engineering, University of Tehran", "rolePre": "I build", "seeApps": "See my apps", "n2": "2", "n1": "2", "n11": "1.1<small style=\"font-size:16px\"> MB</small>", "android": "Android", "androidMyket": "Android · Myket", "windows": "Windows", "dlApk": "Download APK", "dlExe": "Download installer", "sk1": "AI", "sk2": "Programming & apps", "sk3": "Infrastructure & tools", "eduL": "Education", "langL": "Languages"};
 const ROLES={fa:['ایجنت‌های هوش مصنوعی','سامانه‌های RAG','مدل‌های زبانی اختصاصی','اپ‌های اندروید سبک و سریع','ابزارهای ویندوز'],
   en:['AI agents','RAG systems','custom language models','fast, light Android apps','Windows tools']};
 const TITLE={fa:'سجاد مجدی | هوش مصنوعی و ساخت اپ',en:'Sajjad Majdi | AI engineer & app builder'};
@@ -638,7 +770,7 @@ const so=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)links
 document.querySelectorAll('section.sec').forEach(s=>so.observe(s));
 
 /* spotlight */
-document.querySelectorAll('.app,.card').forEach(el=>el.addEventListener('pointermove',e=>{const b=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-b.left)+'px');el.style.setProperty('--my',(e.clientY-b.top)+'px')}));
+document.querySelectorAll('.app,.feat').forEach(el=>el.addEventListener('pointermove',e=>{const b=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-b.left)+'px');el.style.setProperty('--my',(e.clientY-b.top)+'px')}));
 
 /* phone stacks */
 document.querySelectorAll('[data-stack]').forEach(v=>{
@@ -662,6 +794,11 @@ document.querySelectorAll('[data-stack]').forEach(v=>{
   new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(v);
   build();lay();restart();addEventListener('resize',lay);
 });
+
+/* website tabs */
+{const st=document.getElementById('stage');if(st){const tabs=[...st.querySelectorAll('.tab')],pan=[...st.querySelectorAll('.pane')],pp=[...st.querySelectorAll('.pp')],cp=[...st.querySelectorAll('.wcopy')],u=document.getElementById('burl'),o=document.getElementById('bopen');
+const ts=st.querySelector('.tabs'),more=()=>{ts.classList.toggle('me',ts.scrollWidth-ts.clientWidth-ts.scrollLeft>2);ts.classList.toggle('ms',ts.scrollLeft>2)};ts.addEventListener('scroll',more,{passive:true});addEventListener('resize',more);more();
+tabs.forEach((t,i)=>t.addEventListener('click',()=>{[tabs,pan,pp,cp].forEach(a=>a.forEach((e,j)=>e.classList.toggle('on',i===j)));u.textContent=t.dataset.url;o.href='https://'+t.dataset.url;o.setAttribute('aria-label',t.dataset.url);t.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'})}))}}
 
 /* hero particle core around the portrait */
 const cv=document.getElementById('core'),cx=cv.getContext('2d'),cv2=document.getElementById('core2'),cx2=cv2.getContext('2d'),por=document.getElementById('portrait');
