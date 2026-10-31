@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>سجاد مجدی | هوش مصنوعی و ساخت اپ</title>
-<meta name="description" content="سجاد مجدی، دانشجوی مهندسی کامپیوتر دانشگاه تهران. سازنده ایجنت‌های هوش مصنوعی، سامانه‌های RAG و اپ‌های اندروید و ویندوز.">
+<meta name="description" content="سجاد مجدی، دانشجوی مهندسی کامپیوتر دانشگاه تهران. سازنده اپ‌های اندروید و ویندوز، وب‌سایت‌های آنلاین و مدل‌های هوش مصنوعی اختصاصی.">
 <meta name="theme-color" content="#14173A">
 <meta property="og:title" content="سجاد مجدی">
-<meta property="og:description" content="ایجنت‌های هوش مصنوعی، سامانه‌های RAG و اپ‌هایی که واقعاً منتشر شده‌اند.">
+<meta property="og:description" content="اپ‌های اندروید و ویندوز، سامانه‌های تحت وب و مدل‌های هوش مصنوعی که واقعاً منتشر شده‌اند.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%239A8CFF'/%3E%3Cstop offset='1' stop-color='%2355E6D6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='108' height='108' rx='54' fill='%231B2050'/%3E%3Cpath d='M74.7 46.5A22 22 0 1 1 57.8 32.3' stroke='url(%23g)' stroke-width='7' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='68.6' cy='36.6' r='5' fill='%2355E6D6'/%3E%3Ccircle cx='54' cy='54' r='8' fill='%239A8CFF'/%3E%3C/svg%3E">
 <link rel="preload" href="vazirmatn.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -16,10 +16,11 @@
   --bg:#14173A; --bg2:#191D47; --surface:rgba(38,43,94,.55); --surface-solid:#20245A; --raised:#272C68;
   --line:rgba(170,180,255,.14); --line2:rgba(170,180,255,.26);
   --text:#ECEDFF; --muted:#A9AEDB; --faint:#7C82B8;
-  --cyan:#55E6D6; --violet:#9A8CFF; --pink:#F48FD2; --amber:#FFC77A;
+  --cyan:#55E6D6; --violet:#9A8CFF; --pink:#F48FD2; --amber:#FFC77A; --blue:#5BA8FF;
   --accent:var(--violet); --glow:rgba(154,140,255,.35);
   --shadow:0 30px 80px -30px rgba(5,6,30,.8);
   --chip:rgba(154,140,255,.12);
+  --ink:#101330;
   --radius:28px;
   color-scheme:dark;
 }
@@ -27,16 +28,18 @@
   --bg:#E4E8F8; --bg2:#DCE1F5; --surface:rgba(241,243,253,.7); --surface-solid:#EEF1FC; --raised:#F4F5FD;
   --line:rgba(60,70,150,.13); --line2:rgba(60,70,150,.24);
   --text:#191C42; --muted:#4F5586; --faint:#7A80AE;
-  --cyan:#0C9C8F; --violet:#5A48D8; --pink:#C2378F; --amber:#B86E00;
+  --cyan:#0C9C8F; --violet:#5A48D8; --pink:#C2378F; --amber:#B86E00; --blue:#2A72D6;
   --glow:rgba(90,72,216,.22); --shadow:0 30px 70px -34px rgba(40,50,130,.45); --chip:rgba(90,72,216,.09);
+  --ink:#F6F7FF;
   color-scheme:light;
 }}
 :root[data-theme="light"]{
   --bg:#E4E8F8; --bg2:#DCE1F5; --surface:rgba(241,243,253,.7); --surface-solid:#EEF1FC; --raised:#F4F5FD;
   --line:rgba(60,70,150,.13); --line2:rgba(60,70,150,.24);
   --text:#191C42; --muted:#4F5586; --faint:#7A80AE;
-  --cyan:#0C9C8F; --violet:#5A48D8; --pink:#C2378F; --amber:#B86E00;
+  --cyan:#0C9C8F; --violet:#5A48D8; --pink:#C2378F; --amber:#B86E00; --blue:#2A72D6;
   --glow:rgba(90,72,216,.22); --shadow:0 30px 70px -34px rgba(40,50,130,.45); --chip:rgba(90,72,216,.09);
+  --ink:#F6F7FF;
   color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -45,9 +48,11 @@ body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--te
   font-feature-settings:"ss01";-webkit-font-smoothing:antialiased;transition:background .5s,color .5s}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
+button{font-family:inherit}
 ::selection{background:var(--violet);color:#14173A}
 .wrap{width:min(1180px,100% - 32px);margin-inline:auto}
 .ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+b.ltr{font-weight:inherit}
 
 /* ambient background */
 .aurora{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
@@ -65,21 +70,23 @@ img{display:block;max-width:100%}
 .nav{position:fixed;top:14px;inset-inline:0;z-index:50;display:flex;justify-content:center;padding-inline:16px;pointer-events:none}
 .nav-in{pointer-events:auto;display:flex;align-items:center;gap:6px;padding:7px;border-radius:999px;background:var(--surface);
   border:1px solid var(--line);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);box-shadow:var(--shadow)}
-.brand{width:38px;height:38px;border-radius:50%;flex:none}
-.nav a.lk{padding:7px 14px;border-radius:999px;font-size:14.5px;font-weight:500;color:var(--muted);transition:color .25s,background .25s}
+.nav a.lk{padding:7px 14px;border-radius:999px;font-size:14.5px;font-weight:500;color:var(--muted);transition:color .25s,background .25s,transform .15s;white-space:nowrap}
 .nav a.lk:hover,.nav a.lk.on{color:var(--text);background:var(--chip)}
-.tbtn{width:38px;height:38px;border-radius:50%;border:0;background:var(--chip);color:var(--text);display:grid;place-items:center;cursor:pointer;transition:transform .3s}
+.nav a.lk:active{transform:scale(.94)}
+.tbtn{width:38px;height:38px;border-radius:50%;border:0;background:var(--chip);color:var(--text);display:grid;place-items:center;cursor:pointer;transition:transform .3s;flex:none}
 .tbtn:hover{transform:rotate(-20deg) scale(1.06)}
+.tbtn:active{transform:scale(.9)}
 .tbtn svg{width:19px;height:19px}
 .tbtn.lng{font:800 13px/1 Vazirmatn,sans-serif;letter-spacing:.3px}
 :root[dir=ltr] .chips{justify-content:flex-start}
 :root[dir=ltr] .bar i{transform-origin:left}
 :root[dir=ltr] h1{letter-spacing:-2px;font-size:clamp(40px,6vw,100px)}
-:root[dir=ltr] .lead,:root[dir=ltr] .app p.d{line-height:1.7}
+:root[dir=ltr] .lead{line-height:1.7}
 .tbtn .sun{display:none}
 :root[data-theme="light"] .tbtn .sun{display:block} :root[data-theme="light"] .tbtn .moon{display:none}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .tbtn .sun{display:block}:root:not([data-theme="dark"]) .tbtn .moon{display:none}}
-@media (max-width:620px){.nav a.lk.opt{display:none}}
+@media (max-width:880px){.nav a.lk.opt{display:none}}
+@media (max-width:400px){.nav a.lk.opt2{display:none}.nav a.lk{padding:7px 12px}}
 
 /* hero */
 .hero{min-height:100svh;display:grid;align-items:center;position:relative;padding:110px 0 70px}
@@ -97,7 +104,6 @@ img{display:block;max-width:100%}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--line);
   font-size:14px;color:var(--muted);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.pill b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--cyan));color:#14173A;font-size:12px}
 h1{white-space:nowrap;font-size:clamp(44px,7vw,112px);font-weight:900;line-height:1.02;letter-spacing:-.5px;margin:22px 0 10px}
 h1 .g{color:var(--violet)}
 @media (max-width:900px){h1{font-size:clamp(44px,14vw,96px)}:root[dir=ltr] h1{font-size:clamp(40px,12vw,88px)}}
@@ -116,114 +122,174 @@ h1 .g{color:var(--violet)}
 .btn.s{background:var(--surface);border:1px solid var(--line2);color:var(--text);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .btn:hover{transform:translateY(-3px)}
 .btn:active{transform:scale(.97)}
-.stats{display:flex;gap:30px;margin-top:44px;flex-wrap:wrap}
-.stat .n{font-size:34px;font-weight:800;line-height:1;color:var(--text)}
-.stat .l{font-size:13.5px;color:var(--faint);margin-top:8px}
+.stats{display:flex;gap:34px;margin-top:44px;flex-wrap:wrap}
+.stat .n{font-size:34px;font-weight:800;line-height:1.2;color:var(--text)}
+.stat .l{font-size:13.5px;color:var(--faint);margin-top:4px}
 .scroll-cue{position:absolute;bottom:22px;inset-inline:0;margin:auto;width:26px;height:42px;border:2px solid var(--line2);border-radius:20px;z-index:1}
-.scroll-cue::after{content:"";position:absolute;top:8px;left:50%;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--cyan);animation:cue 1.8s infinite}
-@keyframes cue{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
-@media (max-width:900px){.stats{display:grid;grid-template-columns:1fr 1fr;gap:26px 20px}.hero .wrap{grid-template-columns:1fr}.hero-space{order:-1;margin-bottom:6px}.portrait{width:min(200px,50vw)}}
+@media (max-width:900px){.stats{display:grid;grid-template-columns:1fr 1fr;gap:22px 20px}.hero .wrap{grid-template-columns:1fr}.hero-space{order:-1;margin-bottom:6px}.portrait{width:min(200px,50vw)}}
 
 /* ticker */
 .ticker{border-block:1px solid var(--line);padding:18px 0;overflow:hidden;direction:ltr;background:linear-gradient(90deg,var(--bg),transparent 12%,transparent 88%,var(--bg)),var(--surface)}
-.track{display:flex;gap:46px;width:max-content;animation:tick 48s linear infinite;font-weight:700;font-size:18px;color:var(--faint);white-space:nowrap}
+.track{display:flex;gap:46px;width:max-content;animation:tick 56s linear infinite;font-weight:700;font-size:18px;color:var(--faint);white-space:nowrap}
 .track span{display:inline-flex;align-items:center;gap:46px}
 .track span::after{content:"✦";color:var(--violet);font-size:13px}
 .ticker:hover .track{animation-play-state:paused}
 @keyframes tick{to{transform:translateX(-50%)}}
 
 /* sections */
-section.sec{padding:120px 0 40px}
+section.sec{padding:110px 0 30px}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--cyan);letter-spacing:.3px}
 .eyebrow::before{content:"";width:28px;height:2px;border-radius:2px;background:currentColor}
-h2{font-size:clamp(34px,5vw,60px);font-weight:900;line-height:1.15;margin:12px 0 48px}
+h2{font-size:clamp(32px,4.6vw,56px);font-weight:900;line-height:1.2;margin:12px 0 40px}
 h2 em{font-style:normal;color:var(--violet)}
+.tech{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:18px;overflow:hidden;font-size:13px;font-weight:700;color:var(--faint);letter-spacing:.2px;direction:ltr;justify-content:flex-start}
+.tech span{position:relative;white-space:nowrap;unicode-bidi:isolate}
+.tech span::before{content:"";position:absolute;inset-inline-start:-13px;top:50%;margin-top:-2px;width:4px;height:4px;border-radius:50%;background:var(--k,var(--violet));opacity:.8}
+:root[dir=rtl] .tech{justify-content:flex-end}
 
-/* app stage */
-.app{--a1:var(--violet);--a2:var(--cyan);position:relative;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
-  padding:56px;border-radius:40px;background:var(--surface);border:1px solid var(--line);margin-bottom:34px;overflow:hidden;isolation:isolate;
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
-.app::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(600px circle at var(--mx,70%) var(--my,30%),color-mix(in srgb,var(--a1) 22%,transparent),transparent 60%);transition:opacity .4s}
-.app::after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;z-index:-1;inset-inline-end:-160px;top:-120px;
-  background:radial-gradient(circle,color-mix(in srgb,var(--a2) 26%,transparent),transparent 65%);filter:blur(20px)}
-.app:nth-of-type(even) .visual{order:-1}
-.app-head{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.app-ico{width:68px;height:68px;border-radius:20px;flex:none;box-shadow:0 12px 30px -10px color-mix(in srgb,var(--a1) 60%,transparent)}
-.app-ico.round{border-radius:50%}
-.app h3{font-size:34px;font-weight:900;line-height:1.2}
-.app .tag{font-size:15px;color:var(--muted);font-weight:500}
-.app p.d{color:var(--muted);font-size:16.5px;margin-bottom:22px}
-.feats{list-style:none;display:grid;gap:10px;margin-bottom:24px}
-.feats li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:var(--text)}
-.feats li::before{content:"";flex:none;width:22px;height:22px;margin-top:3px;border-radius:8px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23101330' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.5 12.5l3.5 3.5 7.5-8'/%3E%3C/svg%3E") center/15px no-repeat,linear-gradient(135deg,var(--a1),var(--a2))}
-.feats li span{flex:1}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;direction:ltr;justify-content:flex-end}
-.chip{font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:var(--muted)}
-.dl{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.btn.app-dl{background:linear-gradient(135deg,var(--a1),var(--a2));color:#101330;box-shadow:0 14px 34px -14px color-mix(in srgb,var(--a1) 70%,transparent)}
-.meta{display:flex;gap:14px;font-size:13.5px;color:var(--faint)}
+/* ---------- cards (apps, desktop, other projects) ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px}
+.card{--a1:var(--violet);--a2:var(--cyan);--k:var(--a1);position:relative;display:flex;flex-direction:column;gap:12px;padding:18px 18px 16px;border-radius:22px;
+  background:var(--surface);border:1px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);isolation:isolate;overflow:hidden;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .4s}
+.card::after{content:"";position:absolute;z-index:-1;width:200px;height:200px;border-radius:50%;inset-inline-end:-70px;bottom:-90px;opacity:.6;
+  background:radial-gradient(circle,color-mix(in srgb,var(--a1) 30%,transparent),transparent 65%);transition:opacity .4s,transform .6s}
+.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--a1) 45%,var(--line));box-shadow:0 24px 50px -30px color-mix(in srgb,var(--a1) 50%,transparent)}
+.card:hover::after{opacity:1;transform:scale(1.35)}
+.card:active{transform:scale(.985)}
+.chead{display:flex;align-items:center;gap:12px;min-width:0}
+.tile{width:46px;height:46px;border-radius:14px;flex:none;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,var(--a1),var(--a2));color:var(--ink);
+  box-shadow:0 10px 24px -10px color-mix(in srgb,var(--a1) 75%,transparent)}
+.tile svg{width:24px;height:24px}
+.tile img,.tile svg.full{width:100%;height:100%;object-fit:cover}
+.tile.round,.tile.round img{border-radius:50%}
+.chead>div{min-width:0}
+.card h3{font-size:18px;font-weight:800;line-height:1.3;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .sub{font-size:13px;color:var(--faint);font-weight:600;line-height:1.5}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.75;flex:1}
+.card p b{color:var(--text);font-weight:700}
+.card .tech{margin-top:0;font-size:12.5px;gap:4px 20px}
+.cfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px;flex-wrap:wrap}
+.meta{display:flex;gap:12px;font-size:13px;color:var(--faint)}
 .meta b{color:var(--text);font-weight:700}
-.badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--a1) 16%,transparent);color:var(--a1);margin-bottom:10px}
-.badge svg{width:14px;height:14px}
+.fact{font-size:13px;color:var(--faint);line-height:1.7;padding:8px 12px;border-radius:12px;background:color-mix(in srgb,var(--a1) 9%,transparent)}
+.fact b{color:var(--text);font-weight:700}
+.acts{display:flex;align-items:center;gap:8px}
+.dlb{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;font-weight:700;font-size:14px;color:var(--ink);white-space:nowrap;
+  background:linear-gradient(135deg,var(--a1),var(--a2));box-shadow:0 10px 24px -12px color-mix(in srgb,var(--a1) 85%,transparent);transition:transform .3s cubic-bezier(.2,.9,.3,1.3),box-shadow .3s}
+.dlb svg{width:17px;height:17px;flex:none}
+.dlb:hover{transform:translateY(-2px);box-shadow:0 14px 28px -12px color-mix(in srgb,var(--a1) 90%,transparent)}
+.dlb:active{transform:scale(.94)}
+.gh{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line2);color:var(--muted);transition:background .3s,color .3s,transform .2s}
+.gh svg{width:18px;height:18px}
+.gh:hover{background:var(--chip);color:var(--text)}
+.gh:active{transform:scale(.9)}
+.nodl{font-size:13px;font-weight:700;color:var(--faint);padding:0 4px}
 
-/* phone stack */
-.visual{position:relative;height:620px;perspective:1600px}
+/* ---------- android: phone stack beside the app shelf ---------- */
+.shelf{display:grid;grid-template-columns:380px minmax(0,1fr);gap:28px 40px;align-items:start}
+.shelf .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.devcol{position:sticky;top:90px}
+.visual{position:relative;height:560px;perspective:1600px;overflow:clip;overflow-clip-margin:60px}
+@media (max-width:760px){.visual{overflow-clip-margin:14px}}
 .phones{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.phone{position:absolute;top:50%;left:50%;width:270px;aspect-ratio:var(--ar,9/20);transform-origin:center;translate:0 -50%;margin:0 0 0 -135px;border-radius:44px;padding:9px;
+.phone{position:absolute;top:50%;left:50%;width:240px;aspect-ratio:9/19.4;transform-origin:center;translate:0 -50%;margin:0 0 0 -120px;border-radius:40px;padding:8px;
   background:linear-gradient(145deg,#3A3F72,#15183A 40%,#2C3166);box-shadow:0 40px 80px -30px rgba(5,6,30,.75),inset 0 0 0 1.5px rgba(255,255,255,.12);
   transition:transform .8s cubic-bezier(.2,.85,.25,1),opacity .8s,filter .8s;cursor:pointer;will-change:transform}
-.phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:36px;background:var(--bg2)}
-.phone::after{content:"";position:absolute;top:18px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#0B0D24;box-shadow:inset 0 0 0 2px #22264F}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:33px;background:var(--bg2)}
+.phone::after{content:"";position:absolute;top:16px;left:50%;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:#0B0D24;box-shadow:inset 0 0 0 2px #22264F}
 .phone.noisland::after{display:none}
-.dots{position:absolute;bottom:-6px;inset-inline:0;display:flex;justify-content:center;gap:8px}
-.dots button{width:8px;height:8px;border-radius:99px;border:0;background:var(--line2);cursor:pointer;transition:width .4s,background .4s;padding:0}
-.dots button.on{width:26px;background:linear-gradient(90deg,var(--a1),var(--a2))}
-/* desktop window */
-.win{position:absolute;top:50%;left:50%;width:min(560px,100%);height:auto;transform:translate(-50%,-50%) rotateY(-10deg) rotateX(5deg);border-radius:18px;overflow:hidden;
-  box-shadow:0 50px 90px -30px rgba(5,6,30,.8),0 0 0 1px rgba(255,255,255,.08);transition:transform .8s cubic-bezier(.2,.85,.25,1)}
-.app:hover .win{transform:translate(-50%,-50%) rotateY(0) rotateX(0) scale(1.03)}
-.win-glow{position:absolute;inset:18% 12%;background:radial-gradient(circle,color-mix(in srgb,var(--a1) 50%,transparent),transparent 70%);filter:blur(40px)}
+.dots{position:absolute;bottom:-2px;inset-inline:0;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding-inline:20px}
+.dots button{width:7px;height:7px;border-radius:99px;border:0;background:var(--line2);cursor:pointer;transition:width .4s,background .4s,transform .15s;padding:0}
+.dots button:active{transform:scale(.8)}
+.dots button.on{width:22px;background:linear-gradient(90deg,var(--violet),var(--cyan))}
+.cap{text-align:center;margin-top:18px;min-height:3.2em}
+.cap b{display:block;font-size:17px;font-weight:800;color:var(--text)}
+.cap span{font-size:13.5px;color:var(--faint)}
+@media (max-width:1060px){.shelf{grid-template-columns:320px minmax(0,1fr)}.shelf .cards{grid-template-columns:1fr}.phone{width:210px;margin-left:-105px;border-radius:36px}.phone img{border-radius:30px}.visual{height:500px}}
+@media (max-width:760px){.shelf{grid-template-columns:1fr;gap:20px}.devcol{position:static}.shelf .cards{grid-template-columns:repeat(auto-fill,minmax(285px,1fr))}.visual{height:470px}}
+@media (max-width:420px){.visual{height:440px}.phone{width:195px;margin-left:-97px}}
+@media (max-width:480px){.cards{gap:10px}.card{padding:15px 15px 13px;gap:10px;border-radius:20px}.card p{font-size:14px}}
 
-@media (max-width:980px){
-  .app{grid-template-columns:1fr;padding:30px 22px;gap:10px;border-radius:30px}
-  .app:nth-of-type(even) .visual{order:0}
-  .visual{height:520px}
-  .phone{width:230px;margin:0 0 0 -115px;border-radius:38px}
-  .phone img{border-radius:31px}
-  .visual.desk{height:300px}
-  .app h3{font-size:28px}
-}
-@media (max-width:420px){.visual{height:470px}.phone{width:205px;margin:0 0 0 -102px}}
+/* ---------- desktop: bento of window cards ---------- */
+.bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.bento .big{grid-column:span 2}
+.wbar{display:flex;align-items:center;gap:10px;margin:-18px -18px 2px;padding:9px 16px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg2) 55%,transparent);direction:ltr}
+.wbar .dots3{display:flex;gap:6px;flex:none}
+.wbar .dots3 i{width:9px;height:9px;border-radius:50%;background:var(--line2)}
+.wbar .dots3 i:first-child{background:color-mix(in srgb,var(--a1) 80%,transparent)}
+.wbar .wt{flex:1;text-align:center;font-size:12.5px;font-weight:700;color:var(--faint);direction:ltr;unicode-bidi:isolate}
+.wbar .os{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--faint);flex:none}
+.wbar .os svg{width:12px;height:12px}
+.bigbody{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:22px;align-items:center}
+.bigbody>div{display:flex;flex-direction:column;gap:12px;min-width:0}
+.winbox{max-width:400px;justify-self:center;width:100%}
+.win{width:100%;height:auto;border-radius:14px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(5,6,30,.8),0 0 0 1px rgba(255,255,255,.08);transform:rotateY(-8deg) rotateX(4deg);transition:transform .8s cubic-bezier(.2,.85,.25,1)}
+.winbox{perspective:1400px}
+.dshot{margin:0 0 16px;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:1240/820;background:var(--bg2)}
+.dshot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.card:hover .win{transform:none}
+@media (max-width:980px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.bento{grid-template-columns:1fr}.bento .big{grid-column:auto}.bigbody{grid-template-columns:1fr}.win{transform:none}}
 
-/* ---------- AI projects: one feature band + three open columns ---------- */
-.feat{--k:var(--violet);position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;padding:36px 44px;border-radius:32px;overflow:hidden;isolation:isolate;
-  border:1px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--violet) 16%,transparent),color-mix(in srgb,var(--cyan) 7%,transparent) 60%,transparent),var(--surface);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
-.feat::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .5s;background:radial-gradient(520px circle at var(--mx,70%) var(--my,30%),var(--glow),transparent 60%)}
-.feat:hover::before{opacity:1}
-.feat .viz{width:100%;max-width:440px;justify-self:center;opacity:.95}
-.ttl{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-.ttl svg{width:30px;height:30px;color:var(--k);flex:none}
-.feat h3{font-size:clamp(24px,2.6vw,32px);font-weight:900;line-height:1.3;color:var(--text)}
-.feat p{color:var(--muted);font-size:16.5px;max-width:520px}
-.tech{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:18px;overflow:hidden;font-size:13px;font-weight:700;color:var(--faint);letter-spacing:.2px}
-.tech span{position:relative;white-space:nowrap;unicode-bidi:isolate}
-.tech span::before{content:"";position:absolute;inset-inline-start:-13px;top:50%;margin-top:-2px;width:4px;height:4px;border-radius:50%;background:var(--k);opacity:.8}
-.pcols{display:grid;grid-template-columns:repeat(2,1fr);margin-top:16px}
-.pcol{--k:var(--violet);padding:34px 30px 10px;border-inline-start:1px solid var(--line)}
-.pcol:first-child{padding-inline-start:4px;border-inline-start:0}
-.pcol:last-child{padding-inline-end:4px}
-.pcol .ttl{gap:12px;margin-bottom:8px}
-.pcol .ttl svg{width:24px;height:24px}
-.pcol h4{font-size:21px;font-weight:800;color:var(--text);line-height:1.4}
-.pcol p{color:var(--muted);font-size:15.5px}
-.pcol .tech{margin-top:14px}
+/* ---------- models: picker + spec sheet ---------- */
+.models{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;align-items:start}
+.mlist{display:grid;gap:8px;position:sticky;top:90px}
+.mtab{--k:var(--violet);text-align:start;display:grid;gap:2px;padding:13px 16px;border-radius:18px;border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--text);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .3s,border-color .3s,transform .2s,box-shadow .3s;position:relative;overflow:hidden}
+.mtab::before{content:"";position:absolute;inset-inline-start:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--k);opacity:0;transition:opacity .3s}
+.mtab:hover{border-color:color-mix(in srgb,var(--k) 40%,var(--line))}
+.mtab.on{border-color:color-mix(in srgb,var(--k) 55%,var(--line));background:color-mix(in srgb,var(--k) 11%,var(--surface));box-shadow:0 18px 40px -26px color-mix(in srgb,var(--k) 70%,transparent)}
+.mtab.on::before{opacity:1}
+.mtab:active{transform:scale(.97)}
+.mtab b{font-size:16px;font-weight:800;line-height:1.4}
+.mtab .mb{font-size:12.5px;color:var(--faint);font-weight:600;direction:ltr;unicode-bidi:isolate;justify-self:start}
+.mtab .mk{font-size:13px;font-weight:800;color:var(--k);margin-top:2px}
+.msheet{--k:var(--violet);display:none;padding:24px 26px 26px;border-radius:26px;background:var(--surface);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow);min-width:0}
+.msheet.on{display:block;animation:rise .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.mh{display:flex;justify-content:space-between;gap:14px 18px;align-items:flex-start;flex-wrap:wrap}
+.mh>div{min-width:0;flex:1 1 320px}
+.mh h3{font-size:clamp(22px,2.3vw,27px);font-weight:900;line-height:1.3;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mh code{font:600 12.5px/1.6 ui-monospace,Consolas,monospace;color:var(--faint);direction:ltr;unicode-bidi:isolate;padding:2px 9px;border-radius:8px;background:var(--chip)}
+.muse{flex:none;font-size:13px;font-weight:700;padding:6px 13px;border-radius:999px;background:color-mix(in srgb,var(--k) 16%,transparent);color:var(--k);white-space:nowrap}
+.what{color:var(--muted);font-size:15.5px;margin-top:6px;max-width:640px}
+.spec{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:20px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.spec>div{background:color-mix(in srgb,var(--surface-solid) 80%,transparent);padding:13px 16px;min-width:0}
+.spec dt{font-size:12.5px;font-weight:700;color:var(--k);letter-spacing:.2px}
+.spec dd{font-size:14px;color:var(--muted);margin-top:3px;line-height:1.7}
+.spec dd b{color:var(--text);font-weight:700}
+.bench{margin-top:16px;padding:16px 20px 14px;border-radius:18px;border:1px solid var(--line);background:color-mix(in srgb,var(--k) 6%,transparent)}
+.bt{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:8px}
+.bt small{display:inline-block;font-weight:600;color:var(--faint);font-size:12.5px;margin-inline-start:10px}
+.pair{display:grid;grid-template-columns:minmax(120px,.9fr) minmax(0,2.1fr) auto;gap:12px;align-items:center;font-size:13.5px;padding:5px 0}
+.pair .bl{color:var(--muted);font-weight:600;line-height:1.4}
+.pair i{position:relative;display:block;height:10px;border-radius:9px;background:var(--line)}
+.pair i::after{content:"";position:absolute;inset:0;inset-inline-end:auto;width:calc(var(--w)*100%);border-radius:9px;background:linear-gradient(90deg,var(--k),color-mix(in srgb,var(--k) 35%,var(--cyan)));
+  transform:scaleX(0);transform-origin:right;transition:transform 1.2s cubic-bezier(.2,.8,.2,1) .15s}
+:root[dir=ltr] .pair i::after{transform-origin:left}
+.in .pair i::after{transform:none}
+.pair i.b::before{content:"";position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:2px;background:var(--text);opacity:.6;inset-inline-start:calc(var(--b)*100%);z-index:1}
+.pair .bv{white-space:nowrap;font-weight:800;color:var(--text);font-size:14px;min-width:92px;text-align:end}
+.pair .bv small{font-weight:600;color:var(--faint);font-size:12.5px;margin-inline-end:6px}
+.pair .bv small::after{content:"\2190";margin-inline-start:6px;opacity:.8}
+:root[dir=ltr] .pair .bv small::after{content:"\2192"}
+.bn{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--faint);margin-top:8px;line-height:1.6}
+.bn::before{content:"";flex:none;width:12px;height:2px;border-radius:2px;background:var(--text);opacity:.6}
 @media (max-width:900px){
-  .feat{grid-template-columns:1fr;padding:28px 22px;border-radius:26px;gap:18px}
-  .feat .viz{max-width:220px}
-  .pcols{grid-template-columns:1fr;margin-top:6px}
-  .pcol,.pcol:first-child,.pcol:last-child{padding:22px 0 20px;border-inline-start:0;border-top:1px solid var(--line)}
+  .models{grid-template-columns:1fr}
+  .mlist{position:static;display:flex;overflow-x:auto;scrollbar-width:none;gap:8px;padding:4px 2px 10px;margin-inline:-16px;padding-inline:16px;scroll-snap-type:x proximity}
+  .mlist::-webkit-scrollbar{display:none}
+  .mtab{flex:none;width:200px;scroll-snap-align:start}
+  .spec{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .msheet{padding:20px 18px 20px;border-radius:22px}
+}
+@media (max-width:600px){
+  .spec{grid-template-columns:1fr}
+  .pair{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
+  .pair i{grid-column:1/-1;margin-bottom:4px}
+  .pair .bv{min-width:0}
+  .bench{padding:14px 14px 12px}
 }
 
 /* ---------- work: heading beside a timeline ---------- */
@@ -244,32 +310,8 @@ h2 em{font-style:normal;color:var(--violet)}
 .tli p{color:var(--muted);font-size:15.5px;margin-top:10px;max-width:560px}
 @media (max-width:900px){.split{grid-template-columns:1fr;gap:26px}.tl{padding-inline-start:32px;padding-top:4px}.tl::before{top:12px}.tli::before,.tli.now::after{inset-inline-start:-32px}}
 
-/* ---------- websites: one tappable row per site ---------- */
-.sites{position:relative}
-.sites::before{content:"";position:absolute;inset-inline:0;top:0;height:1px;background:var(--line)}
-.site{--k:var(--violet);--k2:var(--cyan);position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) auto;gap:16px 36px;align-items:center;
-  padding:28px 22px;margin-inline:-22px;border-radius:22px;transition:background .35s,transform .25s}
-.site::after{content:"";position:absolute;inset-inline:22px;bottom:0;height:1px;background:var(--line)}
-.site:hover{background:var(--chip)}
-.site:active{transform:scale(.992);background:color-mix(in srgb,var(--k) 16%,transparent)}
-.site h4{font-size:23px;font-weight:800;color:var(--text);line-height:1.35}
-.site .tech{margin-top:8px}
-.site p{color:var(--muted);font-size:15.5px}
-.site .url{display:inline-flex;align-items:center;gap:12px;justify-self:end;direction:ltr;font-size:15px;font-weight:700;color:var(--text);transition:color .3s}
-:root[dir=rtl] .site .url{flex-direction:row-reverse}
-.site .url i{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1px solid var(--line2);color:var(--text);
-  transition:background .35s,color .35s,border-color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
-.site .url svg{width:18px;height:18px}
-.site:hover .url{color:var(--k)}
-.site:hover .url i{background:linear-gradient(135deg,var(--k),var(--k2));color:#101330;border-color:transparent;transform:rotate(45deg)}
-@media (max-width:900px){
-  .site{grid-template-columns:1fr;gap:10px;padding:22px 16px;margin-inline:-16px}
-  .site::after{inset-inline:16px}
-  .site .url{justify-self:start;margin-top:4px}
-}
-
 /* ---------- skills, education, languages: one specimen table ---------- */
-.spec{border-top:1px solid var(--line)}
+.spec-t{border-top:1px solid var(--line)}
 .srow{--k:var(--violet);display:grid;grid-template-columns:250px minmax(0,1fr);gap:14px 40px;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
 .srow h4{display:flex;align-items:center;gap:12px;font-size:19px;font-weight:800;color:var(--text)}
 .srow h4 i{width:10px;height:10px;border-radius:50%;background:var(--k);box-shadow:0 0 14px var(--k);flex:none}
@@ -289,14 +331,13 @@ h2 em{font-style:normal;color:var(--violet)}
 @media (max-width:900px){.srow{grid-template-columns:1fr;gap:12px;padding:22px 0}.langs{grid-template-columns:1fr 1fr;gap:18px}}
 @media (max-width:400px){.langs{grid-template-columns:1fr}}
 
-/* ---------- websites: one browser window with four tabs, real previews ---------- */
+/* ---------- websites: one browser window with tabs, real previews ---------- */
 .stage{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px 56px;align-items:center}
 .stage>*{min-width:0}
 .wcopy{display:none}
 .wcopy.on{display:block;animation:rise .6s cubic-bezier(.2,.8,.2,1)}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .wcopy h3{font-size:clamp(26px,2.6vw,34px);font-weight:900;color:var(--text);line-height:1.3}
-.wcopy p{color:var(--muted);font-size:16.5px;margin-top:10px;max-width:460px}
+.wcopy p{color:var(--muted);font-size:16px;margin-top:10px;max-width:460px}
 .wcopy .tech{margin-top:16px}
 .wcopy .btn{margin-top:26px;direction:ltr;height:48px;font-size:15px}
 .wcopy .btn svg{transition:transform .4s}
@@ -359,6 +400,7 @@ h2 em{font-style:normal;color:var(--violet)}
 .links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:820px;margin:auto}
 .lnk{display:flex;flex-direction:column;align-items:center;gap:10px;padding:24px 12px;border-radius:24px;background:var(--surface-solid);border:1px solid var(--line);transition:transform .4s cubic-bezier(.2,.9,.3,1.3),border-color .3s}
 .lnk:hover{transform:translateY(-6px) scale(1.03);border-color:var(--violet)}
+.lnk:active{transform:scale(.96)}
 .lnk svg{width:30px;height:30px}
 .avt{position:relative;width:30px;height:30px}
 .avt img{width:100%;height:100%;border-radius:50%;display:block}
@@ -378,11 +420,20 @@ h2 em{font-style:normal;color:var(--violet)}
 <body>
 <div class="aurora"><i></i><i></i><i></i></div><div class="grain"></div>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></symbol>
+  <symbol id="i-win" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.5 10 4.5v7H3zM11 4.4 21 3v8.5H11zM3 12.5h7v7L3 18.5zM11 12.5h10V21l-10-1.4z"/></symbol>
+</defs></svg>
+
 <nav class="nav"><div class="nav-in">
-  <a class="lk" href="#apps" data-i18n="apps">اپ‌ها</a>
-  <a class="lk opt" href="#webs" data-i18n="webs">وب‌سایت‌ها</a>
-  <a class="lk opt" href="#projects" data-i18n="projects">پروژه‌ها</a>
-  <a class="lk opt" href="#skills" data-i18n="skills">مهارت‌ها</a>
+  <a class="lk" href="#android" data-i18n="nApps">اپ‌ها</a>
+  <a class="lk opt" href="#webs" data-i18n="nWeb">وب</a>
+  <a class="lk opt" href="#desktop" data-i18n="nDesk">دسکتاپ</a>
+  <a class="lk opt2" href="#models" data-i18n="nModels">مدل‌ها</a>
+  <a class="lk opt" href="#more" data-i18n="nMore">پروژه‌ها</a>
+  <a class="lk opt" href="#skills" data-i18n="nSkills">مهارت‌ها</a>
   <a class="lk" href="#contact" data-i18n="contact">تماس</a>
   <button class="tbtn lng" id="lang" aria-label="English">EN</button>
   <button class="tbtn" id="theme" aria-label="تغییر تم">
@@ -395,23 +446,22 @@ h2 em{font-style:normal;color:var(--violet)}
   <canvas id="core" aria-hidden="true"></canvas><canvas id="core2" aria-hidden="true"></canvas>
   <div class="wrap">
     <div>
-      <span class="pill"><span data-i18n="pill">مهندسی کامپیوتر، دانشگاه تهران</span></span>
+      <span class="pill"><span data-i18n="pill">مهندسی کامپیوتر · دانشگاه تهران</span></span>
       <h1 data-i18n="h1">سجاد <span class="g">مجدی</span></h1>
       <div class="role"><span data-i18n="rolePre">سازنده‌ی</span> <span class="rot" id="rot">ایجنت‌های هوش مصنوعی</span></div>
-      <p class="lead" data-i18n="lead">ایده رو می‌گیرم و تا یه محصول واقعی می‌برمش. از ایجنت و سامانه‌ی RAG تا مدل زبانی اختصاصی و اپ‌هایی که سبک و سریع روی گوشی اجرا می‌شن.</p>
+      <p class="lead" data-i18n="lead">ایده رو می‌گیرم و تا یه محصول واقعی می‌برمش<br>از ایجنت و مدل زبانی اختصاصی تا اپ‌هایی که سبک و سریع روی گوشی اجرا می‌شن</p>
       <div class="cta">
-        <a class="btn p" href="#apps"><span data-i18n="seeApps">اپ‌هام رو ببین</span>
+        <a class="btn p" href="#android"><span data-i18n="seeApps">کارهام رو ببین</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
         <a class="btn s" href="https://github.com/Sajjad-Majdi" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>
+          <svg><use href="#i-gh"/></svg>
           <span data-i18n="github">گیت‌هاب</span></a>
       </div>
       <div class="stats">
-        <div class="stat"><div class="n" data-count="4">۰</div><div class="l" data-i18n="st1">اپ منتشرشده</div></div>
-        <div class="stat"><div class="n" data-count="3">۰</div><div class="l" data-i18n="st5">وب‌سایت و سامانه‌ی تحت وب</div></div>
-        <div class="stat"><div class="n" data-i18n="n2">۲</div><div class="l" data-i18n="st2">پلتفرم، اندروید و ویندوز</div></div>
-        <div class="stat"><div class="n" data-i18n="n1">۲</div><div class="l" data-i18n="st3">مدل زبانی فاین‌تیون‌شده</div></div>
-        <div class="stat"><div class="n" data-i18n="n11">۱.۱<small style="font-size:16px"> مگ</small></div><div class="l" data-i18n="st4">سبک‌ترین اپ</div></div>
+        <div class="stat"><div class="n" data-count="8">۰</div><div class="l" data-i18n="st1">اپ اندروید</div></div>
+        <div class="stat"><div class="n" data-count="5">۰</div><div class="l" data-i18n="st2">نرم‌افزار دسکتاپ</div></div>
+        <div class="stat"><div class="n" data-count="3">۰</div><div class="l" data-i18n="st3">وب‌سایت آنلاین</div></div>
+        <div class="stat"><div class="n" data-count="4">۰</div><div class="l" data-i18n="st4">مدل فاین‌تیون‌شده</div></div>
       </div>
     </div>
     <div class="hero-space"><div class="portrait" id="portrait"><img src="img/me.webp" alt="سجاد مجدی" data-en="Sajjad Majdi" width="640" height="640" fetchpriority="high"></div></div>
@@ -419,166 +469,184 @@ h2 em{font-style:normal;color:var(--violet)}
 </header>
 
 <div class="ticker" aria-hidden="true"><div class="track" id="track">
-  <span>LangGraph</span><span>LangChain</span><span>LlamaIndex</span><span>RAG</span><span>PyTorch</span><span>Hugging Face</span><span>LLM &amp; VLM</span><span>Flutter</span><span>Kotlin</span><span>Jetpack Compose</span><span>Python</span><span>Docker</span><span>Tauri</span><span>LiteRT</span>
+  <span>Kotlin</span><span>Jetpack Compose</span><span>Flutter</span><span>Rust</span><span>Tauri</span><span>Python</span><span>PyTorch</span><span>Hugging Face</span><span>LoRA &amp; QLoRA</span><span>llama.cpp</span><span>ONNX</span><span>LiteRT</span><span>Django</span><span>React</span><span>Next.js</span><span>Node.js</span><span>Docker</span><span>LangGraph</span><span>RAG</span>
 </div></div>
 
 <main>
-<section class="sec" id="apps"><div class="wrap">
-  <div class="eyebrow rv" data-i18n="myWork">ساخته‌های من</div>
-  <h2 class="rv" data-i18n="appsH">اپ‌هایی که <em>واقعاً منتشر شدن</em></h2>
+<!-- ================= ANDROID APPS ================= -->
+<section class="sec" id="android"><div class="wrap">
+  <div class="eyebrow rv" data-i18n="andE">اندروید</div>
+  <h2 class="rv" data-i18n="andH">اپ‌های <em>اندروید</em></h2>
+  <div class="shelf rv">
+    <div class="devcol">
+      <div class="visual" data-stack id="stack">
+        <div class="phones">
+          <figure class="phone noisland" data-app="hamyar"><img src="img/hamyar-1.webp" alt="صفحه‌ی اصلی" data-en="Home screen" loading="lazy" width="600" height="1240"></figure>
+          <figure class="phone noisland" data-app="hamyar"><img src="img/hamyar-2.webp" alt="جواب آب‌وهوا" data-en="Weather answer" loading="lazy" width="600" height="1240"></figure>
+          <figure class="phone noisland" data-app="hamyar"><img src="img/hamyar-3.webp" alt="به مامان زنگ بزن" data-en="Calling mom" loading="lazy" width="600" height="1240"></figure>
+          <figure class="phone noisland" data-app="hamyar"><img src="img/hamyar-4.webp" alt="دستیار روی هر صفحه" data-en="Assistant over any screen" loading="lazy" width="600" height="1240"></figure>
+          <figure class="phone noisland" data-app="hamyar"><img src="img/hamyar-5.webp" alt="تنظیمات" data-en="Settings" loading="lazy" width="600" height="1240"></figure>
+          <figure class="phone noisland" data-app="lumen"><img src="img/lumen-1.webp" alt="صفحه‌ی اصلی" data-en="Home screen" loading="lazy" width="540" height="1203"></figure>
+          <figure class="phone noisland" data-app="lumen"><img src="img/lumen-2.webp" alt="پرسش از یادداشت‌ها" data-en="Asking your notes" loading="lazy" width="540" height="1203"></figure>
+          <figure class="phone noisland" data-app="lumen"><img src="img/lumen-4.webp" alt="تم تیره" data-en="Dark theme" loading="lazy" width="540" height="1203"></figure>
+          <figure class="phone noisland" data-app="lumen"><img src="img/lumen-3.webp" alt="ویرایش جادویی" data-en="Magic edit" loading="lazy" width="540" height="1203"></figure>
+          <figure class="phone noisland" data-app="lumen"><img src="img/lumen-5.webp" alt="پوشه‌ها" data-en="Folders" loading="lazy" width="540" height="1203"></figure>
+          <figure class="phone" data-app="squish"><img src="img/squish-1.webp" alt="انتخاب کیفیت" data-en="Choosing quality" loading="lazy" width="540" height="1200"></figure>
+          <figure class="phone" data-app="squish"><img src="img/squish-2.webp" alt="نتیجه‌ی فشرده‌سازی" data-en="Compression result" loading="lazy" width="540" height="1200"></figure>
+          <figure class="phone" data-app="squish"><img src="img/squish-3.webp" alt="در حال فشرده‌سازی" data-en="Compressing" loading="lazy" width="540" height="1200"></figure>
+          <figure class="phone" data-app="squish"><img src="img/squish-4.webp" alt="تاریخچه در تم روشن" data-en="History, light theme" loading="lazy" width="540" height="1200"></figure>
+          <figure class="phone" data-app="squish"><img src="img/squish-5.webp" alt="نتیجه در تم روشن" data-en="Result, light theme" loading="lazy" width="540" height="1200"></figure>
+          <figure class="phone noisland" data-app="nevis"><img src="img/nevis-1.webp" alt="ضبط زنده" data-en="Live recording" loading="lazy" width="585" height="1187"></figure>
+          <figure class="phone noisland" data-app="nevis"><img src="img/nevis-2.webp" alt="کتابخانه متن‌ها" data-en="Transcript library" loading="lazy" width="585" height="1181"></figure>
+          <figure class="phone noisland" data-app="nevis"><img src="img/nevis-3.webp" alt="تنظیمات" data-en="Settings" loading="lazy" width="585" height="1185"></figure>
+          <figure class="phone" data-app="phoneclaw"><img src="img/phoneclaw-1.webp" alt="صفحه‌ی گفتگو" data-en="Chat screen" loading="lazy" width="585" height="1300"></figure>
+          <figure class="phone" data-app="phoneclaw"><img src="img/phoneclaw-2.webp" alt="انتخاب سرویس" data-en="Choosing a provider" loading="lazy" width="585" height="1300"></figure>
+          <figure class="phone" data-app="phoneclaw"><img src="img/phoneclaw-3.webp" alt="دسترسی‌ها" data-en="Permissions" loading="lazy" width="585" height="1300"></figure>
+          <figure class="phone" data-app="analyzer"><img src="img/analyzer-1.webp" alt="ورود به حساب" data-en="Sign in" loading="lazy" width="585" height="1300"></figure>
+          <figure class="phone" data-app="saranjam"><img src="img/saranjam-1.webp" alt="صفحه‌ی اصلی" data-en="Home screen" loading="lazy" width="585" height="1300"></figure>
+          <figure class="phone" data-app="saranjam"><img src="img/saranjam-3.webp" alt="خلاصه‌ی جلسه" data-en="Meeting summary" loading="lazy" width="585" height="1300"></figure>
+          <figure class="phone" data-app="saranjam"><img src="img/saranjam-5.webp" alt="کارها" data-en="Tasks" loading="lazy" width="585" height="1300"></figure>
+          <figure class="phone noisland" data-app="hamdam"><img src="img/hamdam-1.webp" alt="یادآور داروی امروز" data-en="Today's doses" loading="lazy" width="585" height="1258"></figure>
+          <figure class="phone noisland" data-app="hamdam"><img src="img/hamdam-2.webp" alt="دستیار صوتی" data-en="Voice assistant" loading="lazy" width="585" height="1258"></figure>
+          <figure class="phone noisland" data-app="hamdam"><img src="img/hamdam-3.webp" alt="داروها" data-en="Medications" loading="lazy" width="585" height="1258"></figure>
+        </div>
+        <div class="dots"></div>
+      </div>
+      <div class="cap"><b id="capName"></b><span id="capShot"></span></div>
+    </div>
 
-  <!-- Hamyar -->
-  <article class="app rv" style="--a1:#9A8CFF;--a2:#55E6D6">
-    <div class="info">
-      <div class="app-head">
-        <svg class="app-ico round" viewBox="0 0 108 108"><defs><radialGradient id="hbg" cx=".5" cy=".46" r=".75"><stop offset="0" stop-color="#28356A"/><stop offset="1" stop-color="#0F1630"/></radialGradient><linearGradient id="hfg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#9A8CFF"/><stop offset="1" stop-color="#55E6D6"/></linearGradient></defs><rect width="108" height="108" fill="url(#hbg)"/><path d="M74.7 46.5A22 22 0 1 1 57.8 32.3" stroke="url(#hfg)" stroke-width="6" stroke-linecap="round" fill="none"/><circle cx="68.6" cy="36.6" r="5" fill="#55E6D6"/><circle cx="54" cy="54" r="8" fill="#9A8CFF"/></svg>
-        <div><span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 9.2 19.3 6a.4.4 0 0 0-.7-.4l-1.8 3.2a11 11 0 0 0-9.6 0L5.4 5.6a.4.4 0 0 0-.7.4l1.8 3.2A10.4 10.4 0 0 0 1 17.5h22a10.4 10.4 0 0 0-5.5-8.3zM7 14.8a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg><span data-i18n="android">اندروید</span></span>
-          <h3 data-i18n="hName">همیار</h3><div class="tag" data-i18n="hTag">دستیار صوتی فارسی، کاملاً آفلاین</div></div>
-      </div>
-      <p class="d" data-i18n="hD">حرف بزن، همیار انجامش می‌ده. بدون اینترنت و روی گوشی‌های معمولی. گفتار فارسی روی خود گوشی به متن تبدیل می‌شه و مدل‌های زبانی که خودم فاین‌تیونشون کردم تصمیم می‌گیرن چه کاری انجام بشه.</p>
-      <ul class="feats">
-        <li><span data-i18n="hF1">دو مدل اختصاصی که خودم فاین‌تیون کردم: <b>همیار لایت</b> برای دستورهای سریع و <b>همیار پرو</b> برای گفتگو و کارهای چندمرحله‌ای</span></li>
-        <li><span data-i18n="hF2">جواب هر دستور در کمتر از ۰.۶ ثانیه، روی یه گوشی میان‌رده</span></li>
-        <li><span data-i18n="hF3">تماس، یادآور، مسیریابی، آب‌وهوا، تقویم شمسی و قمری، ماشین‌حساب</span></li>
-        <li><span data-i18n="hF4">هسته‌ی ذره‌ای سه‌بعدی که با صدای تو زنده می‌شه</span></li>
-      </ul>
-      <div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">LiteRT-LM</span><span class="chip">sherpa-onnx</span><span class="chip">Fine-tuning</span></div>
-      <div class="dl">
-        <a class="btn app-dl" href="https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/hamyar-v1.1.0/Hamyar-1.1.0.apk">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="dlApk">دانلود APK</span></a>
-        <div class="meta"><span data-i18n="hV">نسخه <b>۱.۱.۰</b></span><span data-i18n="hS">حجم <b>۱.۹ مگ</b></span></div>
-      </div>
+    <div class="cards">
+      <!-- Hamyar -->
+      <article class="card" style="--a1:#9A8CFF;--a2:#55E6D6" data-shots="hamyar">
+        <div class="chead">
+          <svg class="tile round full" viewBox="0 0 108 108"><defs><radialGradient id="hbg" cx=".5" cy=".46" r=".75"><stop offset="0" stop-color="#28356A"/><stop offset="1" stop-color="#0F1630"/></radialGradient><linearGradient id="hfg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#9A8CFF"/><stop offset="1" stop-color="#55E6D6"/></linearGradient></defs><rect width="108" height="108" fill="url(#hbg)"/><path d="M74.7 46.5A22 22 0 1 1 57.8 32.3" stroke="url(#hfg)" stroke-width="6" stroke-linecap="round" fill="none"/><circle cx="68.6" cy="36.6" r="5" fill="#55E6D6"/><circle cx="54" cy="54" r="8" fill="#9A8CFF"/></svg>
+          <div><h3 data-i18n="a1n">همیار</h3><div class="sub" data-i18n="a1t">دستیار صوتی فارسی و کاملاً آفلاین</div></div>
+        </div>
+        <p data-i18n="a1d">حرف بزن تا همیار انجامش بده<br>بدون اینترنت و روی گوشی‌های معمولی با <b>دو مدل زبانی که خودم فاین‌تیون کردم</b></p>
+        <div class="tech"><span>Kotlin</span><span>Compose</span><span>LiteRT-LM</span><span>sherpa-onnx</span></div>
+        <div class="cfoot">
+          <div class="meta"><span data-i18n="a1m">نسخه <b>۱.۱.۰</b> · <b>۱٫۹ مگ</b></span></div>
+          <div class="acts"><a class="dlb" data-dl="hamyar"><svg><use href="#i-dl"/></svg><span data-i18n="dlApk">دانلود APK</span></a></div>
+        </div>
+      </article>
+      <!-- Lumen Keep -->
+      <article class="card" style="--a1:#9B6BFF;--a2:#F48FD2" data-shots="lumen">
+        <div class="chead">
+          <div class="tile"><img src="img/lumen-icon.webp" alt="" width="46" height="46" loading="lazy"></div>
+          <div><h3 data-i18n="a2n">لومن کیپ</h3><div class="sub" data-i18n="a2t">یادداشت‌نگار هوشمند · منتشرشده در مایکت</div></div>
+        </div>
+        <p data-i18n="a2d">یادداشت آفلاین‌اول با مارک‌داون زنده و همگام‌سازی گوگل‌درایو<br><b>از یادداشت‌هات بپرس</b> و جواب رو با منبعش بگیر</p>
+        <div class="tech"><span>Kotlin</span><span>Compose</span><span>Cloudflare Workers</span><span>Drive sync</span></div>
+        <div class="cfoot">
+          <div class="meta"><span data-i18n="a2m">نسخه <b>۱.۸</b> · <b>۲٫۱ مگ</b></span></div>
+          <div class="acts"><a class="dlb" data-dl="lumen"><svg><use href="#i-dl"/></svg><span data-i18n="dlApk">دانلود APK</span></a></div>
+        </div>
+      </article>
+      <!-- Squish -->
+      <article class="card" style="--a1:#5BA8FF;--a2:#55E6D6" data-shots="squish">
+        <div class="chead">
+          <div class="tile round"><img src="img/squish-icon.webp" alt="" width="46" height="46" loading="lazy"></div>
+          <div><h3 data-i18n="a3n">اسکوییش</h3><div class="sub" data-i18n="a3t">فشرده‌ساز عکس و ویدیو</div></div>
+        </div>
+        <p data-i18n="a3d">همه‌چیز روی خود گوشی با <b>موتور ویدیوی سخت‌افزاری اختصاصی</b><br>بدون مجوز اینترنت و کل اپ حدود یک مگابایت</p>
+        <div class="tech"><span>Kotlin</span><span>MediaCodec HEVC</span><span>OpenGL</span></div>
+        <div class="cfoot">
+          <div class="meta"><span data-i18n="a3m">نسخه <b>۱.۰.۴</b> · <b>۱٫۱ مگ</b></span></div>
+          <div class="acts"><a class="gh" href="https://github.com/Sajjad-Majdi/Squish-Android" target="_blank" rel="noopener" aria-label="GitHub"><svg><use href="#i-gh"/></svg></a><a class="dlb" data-dl="squish"><svg><use href="#i-dl"/></svg><span data-i18n="dlApk">دانلود APK</span></a></div>
+        </div>
+      </article>
+      <!-- Nevis -->
+      <article class="card" style="--a1:#55E6D6;--a2:#9A8CFF" data-shots="nevis">
+        <div class="chead">
+          <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 11v2M7 8v8M11 4v16M15 8v8M19 11v2"/></svg></div>
+          <div><h3 data-i18n="a4n">نویس</h3><div class="sub" data-i18n="a4t">تبدیل گفتار به متن زنده و استودیویی</div></div>
+        </div>
+        <p data-i18n="a4d">حالت زنده و حالت استودیو با <b>برچسب گوینده</b> و ورود فایل و شمارنده مصرف<br>رابط کاملاً فارسی</p>
+        <div class="tech"><span>Flutter</span><span>Dart</span><span>WebSocket streaming</span></div>
+        <div class="cfoot">
+          <div class="meta"><span data-i18n="a4m">نسخه <b>۱.۰.۰</b> · <b>۲۰ مگ</b></span></div>
+          <div class="acts"><a class="gh" href="https://github.com/Sajjad-Majdi/Nevis-Voice-Transcriber" target="_blank" rel="noopener" aria-label="GitHub"><svg><use href="#i-gh"/></svg></a><a class="dlb" data-dl="nevis"><svg><use href="#i-dl"/></svg><span data-i18n="dlApk">دانلود APK</span></a></div>
+        </div>
+      </article>
+      <!-- PhoneClaw -->
+      <article class="card" style="--a1:#F48FD2;--a2:#FFC77A" data-shots="phoneclaw">
+        <div class="chead">
+          <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M12.8 7.5 10.3 12h3.6l-2.6 4.5"/></svg></div>
+          <div><h3 data-i18n="a5n">فون‌کلاو</h3><div class="sub" data-i18n="a5t">دستیاری که کارها رو هم انجام می‌ده</div></div>
+        </div>
+        <p data-i18n="a5d">فقط جواب نمی‌ده<br>تماس و پیامک و یادآور و کارهای زمان‌بندی‌شده و جستجوی وب و <b>ابزارهای MCP</b> و کنترل اپ‌های دیگه</p>
+        <div class="tech"><span>Flutter</span><span>Kotlin</span><span>Accessibility</span><span>MCP</span></div>
+        <div class="cfoot">
+          <div class="meta"><span data-i18n="a5m">نسخه <b>۱.۰.۴</b> · <b>۶۱ مگ</b></span></div>
+          <div class="acts"><a class="dlb" data-dl="phoneclaw"><svg><use href="#i-dl"/></svg><span data-i18n="dlApk">دانلود APK</span></a></div>
+        </div>
+      </article>
+      <!-- Analyzer app -->
+      <article class="card" style="--a1:#FFC77A;--a2:#F48FD2" data-shots="analyzer">
+        <div class="chead">
+          <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 15l4-5 3 3 5-7"/></svg></div>
+          <div><h3 data-i18n="a6n">آنالایزر</h3><div class="sub" data-i18n="a6t">کلاینت اندروید پلتفرم معاملاتی آنالایزر</div></div>
+        </div>
+        <p data-i18n="a6d">سیگنال و آزمایشگاه استراتژی و بک‌تست و <b>ربات‌های معامله خودکار</b> و کیف پول<br>ساخته‌شده برای تیم آنالایزر</p>
+        <div class="tech"><span>Flutter</span><span>Dart</span><span>REST API</span></div>
+        <div class="cfoot">
+          <div class="meta"><span data-i18n="a6m">نسخه <b>۱.۰.۰</b> · <b>۶۳ مگ</b></span></div>
+          <div class="acts"><a class="dlb" data-dl="analyzer"><svg><use href="#i-dl"/></svg><span data-i18n="dlApk">دانلود APK</span></a></div>
+        </div>
+      </article>
+      <!-- Saranjam Android -->
+      <article class="card" style="--a1:#FFA64D;--a2:#FFC77A" data-shots="saranjam">
+        <div class="chead">
+          <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M9.5 14.5l2 2 3.5-4"/></svg></div>
+          <div><h3 data-i18n="a7n">سرانجام</h3><div class="sub" data-i18n="a7t">صورت‌جلسه هوشمند از روی صدای جلسه</div></div>
+        </div>
+        <p data-i18n="a7d">ضبط یا آپلود جلسه و دریافت <b>خلاصه و مصوبات و اقدام‌ها</b><br>اپ رسمی سامانه سرانجام که برای تیم کارو ساختم</p>
+        <div class="tech"><span>Kotlin</span><span>Compose</span></div>
+        <div class="cfoot">
+          <div class="meta"><span data-i18n="a7m">نسخه <b>۱.۶.۴</b> · <b>۱٫۵ مگ</b></span></div>
+          <div class="acts"><a class="dlb" data-dl="saranjam"><svg><use href="#i-dl"/></svg><span data-i18n="dlSite">دانلود از سایت</span></a></div>
+        </div>
+      </article>
+      <!-- Hamdam -->
+      <article class="card" style="--a1:#F48FD2;--a2:#9A8CFF" data-shots="hamdam">
+        <div class="chead">
+          <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"/><path d="M12 10.5v5M9.5 13h5"/></svg></div>
+          <div><h3 data-i18n="a8n">همدم</h3><div class="sub" data-i18n="a8t">همراه دارویی و سلامت برای سالمند</div></div>
+        </div>
+        <p data-i18n="a8d">یادآور دوز دارو و <b>شناسایی قرص با دوربین</b> و دستیار صوتی فارسی<br>برای استفاده شخصی و بدون انتشار عمومی</p>
+        <div class="tech"><span>Kotlin</span><span>Compose</span><span>CameraX</span><span>SQLite</span></div>
+        <div class="cfoot">
+          <div class="meta"><span data-i18n="a8m">نسخه <b>۱.۴.۵</b> · <b>۳٫۸ مگ</b></span></div>
+          <div class="acts"><span class="nodl" data-i18n="private">نسخه شخصی</span></div>
+        </div>
+      </article>
     </div>
-    <div class="visual" data-stack>
-      <div class="phones" id="hamyar-phones" style="--ar:600/1240">
-        <figure class="phone noisland"><img src="img/hamyar-1.webp" alt="صفحه‌ی اصلی همیار" data-en="Hamyar home screen" loading="lazy"></figure>
-        <figure class="phone noisland"><img src="img/hamyar-2.webp" alt="جواب آب‌وهوا" data-en="Weather answer" loading="lazy"></figure>
-        <figure class="phone noisland"><img src="img/hamyar-3.webp" alt="به مامان زنگ بزن" data-en="Calling mom" loading="lazy"></figure>
-        <figure class="phone noisland"><img src="img/hamyar-4.webp" alt="دستیار روی هر صفحه" data-en="Assistant over any screen" loading="lazy"></figure>
-        <figure class="phone noisland"><img src="img/hamyar-5.webp" alt="تنظیمات" data-en="Settings" loading="lazy"></figure>
-      </div>
-      <div class="dots"></div>
-    </div>
-  </article>
-
-  <!-- Lumen -->
-  <article class="app rv" style="--a1:#9B6BFF;--a2:#F48FD2">
-    <div class="info">
-      <div class="app-head">
-        <img class="app-ico" src="img/lumen-icon.webp" alt="" width="68" height="68">
-        <div><span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 9.2 19.3 6a.4.4 0 0 0-.7-.4l-1.8 3.2a11 11 0 0 0-9.6 0L5.4 5.6a.4.4 0 0 0-.7.4l1.8 3.2A10.4 10.4 0 0 0 1 17.5h22a10.4 10.4 0 0 0-5.5-8.3zM7 14.8a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg><span data-i18n="androidMyket">اندروید · مایکت</span></span>
-          <h3 data-i18n="lName">لومن کیپ</h3><div class="tag" data-i18n="lTag">یادداشت‌نگار هوشمند</div></div>
-      </div>
-      <p class="d" data-i18n="lD">یادداشت‌هایی که یادشون می‌مونه. هر چی نوشتی رو با هوش مصنوعی بپرس و جواب رو همراه با منبعش بگیر. حرف بزن تا یادداشت بشه.</p>
-      <ul class="feats">
-        <li><span data-i18n="lF1">«از یادداشت‌هات بپرس» با ارجاع مستقیم به یادداشت‌ها</span></li>
-        <li><span data-i18n="lF2">یادداشت صوتی، تایپ با صدا و ویرایش جادویی متن</span></li>
-        <li><span data-i18n="lF3">آفلاین‌اول، با همگام‌سازی خصوصی روی گوگل درایو</span></li>
-        <li><span data-i18n="lF4">بخش کارها با پروژه و تقویم و ویجت روی صفحه‌ی اصلی</span></li>
-      </ul>
-      <div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Gemini</span><span class="chip">Cloudflare Workers</span><span class="chip">SQLite</span></div>
-      <div class="dl">
-        <a class="btn app-dl" href="https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/lumen-keep-v1.8/LumenKeep-1.8.apk">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="dlApk">دانلود APK</span></a>
-        <div class="meta"><span data-i18n="lV">نسخه <b>۱.۸</b></span><span data-i18n="lS">حجم <b>۲.۱ مگ</b></span></div>
-      </div>
-    </div>
-    <div class="visual" data-stack>
-      <div class="phones">
-        <figure class="phone noisland"><img src="img/lumen-1.webp" alt="صفحه‌ی اصلی لومن" data-en="Lumen home screen" loading="lazy"></figure>
-        <figure class="phone noisland"><img src="img/lumen-2.webp" alt="پرسش از یادداشت‌ها" data-en="Asking your notes" loading="lazy"></figure>
-        <figure class="phone noisland"><img src="img/lumen-4.webp" alt="تم تیره" data-en="Dark theme" loading="lazy"></figure>
-        <figure class="phone noisland"><img src="img/lumen-3.webp" alt="ویرایش جادویی" data-en="Magic edit" loading="lazy"></figure>
-        <figure class="phone noisland"><img src="img/lumen-5.webp" alt="پوشه‌ها" data-en="Folders" loading="lazy"></figure>
-      </div>
-      <div class="dots"></div>
-    </div>
-  </article>
-
-  <!-- Squish Android -->
-  <article class="app rv" style="--a1:#5BA8FF;--a2:#55E6D6">
-    <div class="info">
-      <div class="app-head">
-        <img class="app-ico round" src="img/squish-icon.webp" alt="" width="68" height="68">
-        <div><span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 9.2 19.3 6a.4.4 0 0 0-.7-.4l-1.8 3.2a11 11 0 0 0-9.6 0L5.4 5.6a.4.4 0 0 0-.7.4l1.8 3.2A10.4 10.4 0 0 0 1 17.5h22a10.4 10.4 0 0 0-5.5-8.3zM7 14.8a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg><span data-i18n="android">اندروید</span></span>
-          <h3 data-i18n="sName">اسکوییش</h3><div class="tag" data-i18n="sTag">فشرده‌ساز عکس و ویدیو</div></div>
-      </div>
-      <p class="d" data-i18n="sD">حجم عکس و ویدیو رو کم می‌کنه، بدون افتی که چشم ببینه. کیفیت هر فایل رو اندازه می‌گیره و دقیقاً همون‌قدر فشرده می‌کنه که لازمه. کل اپ حدود یک مگابایته.</p>
-      <ul class="feats">
-        <li><span data-i18n="sF1">موتور ویدیوی اختصاصی با HEVC سخت‌افزاری، بدون هیچ کتابخونه‌ی آماده</span></li>
-        <li><span data-i18n="sF2">نمره‌ی کیفیت برای هر فایل، با سنجش SSIM نسبت به نسخه‌ی اصلی</span></li>
-        <li><span data-i18n="sF3">تبدیل ویدیوی HDR به SDR و مقایسه‌ی قبل و بعد با اسلایدر</span></li>
-        <li><span data-i18n="sF4">رابط شیشه‌ای مایع با انیمیشن‌های نرم</span></li>
-      </ul>
-      <div class="chips"><span class="chip">Kotlin</span><span class="chip">Compose</span><span class="chip">MediaCodec</span><span class="chip">OpenGL ES</span><span class="chip">AGSL</span></div>
-      <div class="dl">
-        <a class="btn app-dl" href="https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/squish-android-v1.0.4/Squish-1.0.4.apk">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="dlApk">دانلود APK</span></a>
-        <div class="meta"><span data-i18n="sV">نسخه <b>۱.۰.۴</b></span><span data-i18n="sS">حجم <b>۱.۱ مگ</b></span></div>
-      </div>
-    </div>
-    <div class="visual" data-stack>
-      <div class="phones" id="squish-phones">
-        <figure class="phone"><img src="img/squish-1.webp" alt="انتخاب کیفیت" data-en="Choosing quality" loading="lazy"></figure>
-        <figure class="phone"><img src="img/squish-2.webp" alt="نتیجه‌ی فشرده‌سازی" data-en="Compression result" loading="lazy"></figure>
-        <figure class="phone"><img src="img/squish-3.webp" alt="در حال فشرده‌سازی" data-en="Compressing" loading="lazy"></figure>
-        <figure class="phone"><img src="img/squish-4.webp" alt="تاریخچه در تم روشن" data-en="History, light theme" loading="lazy"></figure>
-        <figure class="phone"><img src="img/squish-5.webp" alt="نتیجه در تم روشن" data-en="Result, light theme" loading="lazy"></figure>
-      </div>
-      <div class="dots"></div>
-    </div>
-  </article>
-
-  <!-- Squish Desktop -->
-  <article class="app rv" style="--a1:#8C7BFF;--a2:#C59BFF">
-    <div class="info">
-      <div class="app-head">
-        <img class="app-ico" src="img/squishd-icon.webp" alt="" width="68" height="68">
-        <div><span class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10 4.5v7H3zM11 4.4 21 3v8.5H11zM3 12.5h7v7L3 18.5zM11 12.5h10V21l-10-1.4z"/></svg><span data-i18n="windows">ویندوز</span></span>
-          <h3 data-i18n="dName">اسکوییش دسکتاپ</h3><div class="tag" data-i18n="dTag">فشرده‌ساز عکس و ویدیو برای ویندوز</div></div>
-      </div>
-      <p class="d" data-i18n="dD">فایل رو بکش و بنداز، بقیه‌ش خودکاره. رزولوشن دست نمی‌خوره و فقط حجم کم می‌شه. همه‌چیز روی همین کامپیوتر انجام می‌شه و هیچ فایلی جایی آپلود نمی‌شه.</p>
-      <ul class="feats">
-        <li><span data-i18n="dF1">کشیدن و رها کردن، با شروع خودکار فشرده‌سازی</span></li>
-        <li><span data-i18n="dF2">سه حالت: متعادل، کیفیت بالا و بیشترین صرفه‌جویی</span></li>
-        <li><span data-i18n="dF3">همه‌ی فرمت‌های رایج ویدیو و عکس، از MP4 و MKV تا PNG و WEBP</span></li>
-      </ul>
-      <div class="chips"><span class="chip">Tauri 2</span><span class="chip">Rust</span><span class="chip">FFmpeg</span><span class="chip">JavaScript</span></div>
-      <div class="dl">
-        <a class="btn app-dl" href="https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/squish-desktop-v1.1.0/Squish_1.1.0_x64-setup.exe">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="dlExe">دانلود نصب‌کننده</span></a>
-        <div class="meta"><span data-i18n="dV">نسخه <b>۱.۱.۰</b></span><span data-i18n="dS">حجم <b>۲۸ مگ</b></span></div>
-      </div>
-    </div>
-    <div class="visual desk">
-      <div class="win-glow"></div>
-      <img class="win" src="img/squishd-1.webp?v=2" alt="اسکوییش دسکتاپ" data-en="Squish Desktop" loading="lazy" width="844" height="440">
-    </div>
-  </article>
+  </div>
 </div></section>
 
+<!-- ================= LIVE WEBSITES ================= -->
 <section class="sec" id="webs"><div class="wrap">
   <div class="eyebrow rv" data-i18n="web2">وب</div>
-  <h2 class="rv" data-i18n="websH">وب‌سایت‌هایی که <em>ساختم</em></h2>
+  <h2 class="rv" data-i18n="websH">وب‌سایت‌های <em>آنلاین</em></h2>
   <div class="stage rv" id="stage">
     <div class="copies">
       <div class="wcopy on">
         <h3 data-i18n="w1h">تیم فناور کارو</h3>
-        <p data-i18n="w1">عضو تیم فناور کارو هستم و وب‌سایت تیم رو خودم طراحی کردم و ساختم</p>
-        <div class="tech" style="--k:var(--violet)"><span>Web Design</span><span>HTML &amp; CSS</span><span>Nginx</span></div>
-        <a class="btn s" href="https://caroai.ir" target="_blank" rel="noopener">caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <p data-i18n="w1">صفحه معرفی تیم فناور هوش مصنوعی کارو<br>عضو این تیم هستم و وب‌سایتش رو خودم از صفر طراحی کردم و ساختم</p>
+        <div class="tech" style="--k:var(--violet)"><span>HTML &amp; CSS</span><span>JavaScript</span><span>Nginx</span></div>
+        <a class="btn s" href="https://caroai.ir" target="_blank" rel="noopener">caroai.ir<svg><use href="#i-out"/></svg></a>
       </div>
       <div class="wcopy">
-        <h3 data-i18n="w2h">سامانه‌ی AIVA</h3>
-        <p data-i18n="w2">وب‌سایت و پنل سامانه‌ی تحلیل تماس‌های تلفنی با هوش مصنوعی برای شرکت‌ها</p>
-        <div class="tech" style="--k:var(--pink)"><span>Django</span><span>React</span><span>Speech AI</span></div>
-        <a class="btn s" href="https://aiva.caroai.ir" target="_blank" rel="noopener">aiva.caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <h3 data-i18n="w2h">سامانه‌ی آیوا</h3>
+        <p data-i18n="w2">سامانه تحلیل هوشمند تماس‌ها برای سازمان‌ها<br>هر تماس به نوع و نتیجه و فوریت و حس و موضوع و خلاصه تبدیل می‌شه و من تنها توسعه‌دهنده‌ش هستم</p>
+        <div class="tech" style="--k:var(--pink)"><span>Django REST</span><span>PostgreSQL</span><span>React</span><span>TypeScript</span><span>Docker</span></div>
+        <a class="btn s" href="https://aiva.caroai.ir" target="_blank" rel="noopener">aiva.caroai.ir<svg><use href="#i-out"/></svg></a>
       </div>
       <div class="wcopy">
         <h3 data-i18n="w3h">سرانجام</h3>
-        <p data-i18n="w3">سامانه‌ی هوشمند صورتجلسه که از صدای جلسه خلاصه و مصوبه‌ها و کارهای هر نفر رو درمیاره</p>
-        <div class="tech" style="--k:var(--cyan)"><span>Next.js</span><span>PostgreSQL</span><span>AI</span></div>
-        <a class="btn s" href="https://saranjam.caroai.ir" target="_blank" rel="noopener">saranjam.caroai.ir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <p data-i18n="w3">صورت‌جلسه هوشمند از صدای جلسه با خلاصه و مصوبات و اقدام هر نفر<br>رابط کاربری و پنل مدیریت و ورود پیامکی و اپ اندرویدش رو بازطراحی و توسعه دادم</p>
+        <div class="tech" style="--k:var(--cyan)"><span>Next.js 15</span><span>Prisma</span><span>PostgreSQL</span><span>Auth.js</span></div>
+        <a class="btn s" href="https://saranjam.caroai.ir" target="_blank" rel="noopener">saranjam.caroai.ir<svg><use href="#i-out"/></svg></a>
       </div>
     </div>
     <div class="dev">
@@ -587,13 +655,13 @@ h2 em{font-style:normal;color:var(--violet)}
           <div class="dots3"><i></i><i></i><i></i></div>
           <div class="tabs" role="tablist">
             <button class="tab on" role="tab" data-url="caroai.ir" data-i18n="w1h">تیم فناور کارو</button>
-            <button class="tab" role="tab" data-url="aiva.caroai.ir" data-i18n="w2h">سامانه‌ی AIVA</button>
+            <button class="tab" role="tab" data-url="aiva.caroai.ir" data-i18n="w2h">سامانه‌ی آیوا</button>
             <button class="tab" role="tab" data-url="saranjam.caroai.ir" data-i18n="w3h">سرانجام</button>
           </div>
         </div>
         <div class="addr">
           <span class="burl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span id="burl">caroai.ir</span></span>
-          <a class="bopen" id="bopen" href="https://caroai.ir" target="_blank" rel="noopener" aria-label="caroai.ir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="bopen" id="bopen" href="https://caroai.ir" target="_blank" rel="noopener" aria-label="caroai.ir"><svg><use href="#i-out"/></svg></a>
         </div>
         <div class="screen">
           <div class="pane on"><div class="shot">
@@ -628,37 +696,277 @@ h2 em{font-style:normal;color:var(--violet)}
   </div>
 </div></section>
 
-<section class="sec" id="projects"><div class="wrap">
-  <div class="eyebrow rv" data-i18n="ai">هوش مصنوعی</div>
-  <h2 class="rv" data-i18n="projH">پروژه‌های <em>هوش مصنوعی</em></h2>
-  <article class="feat rv" style="--k:var(--pink)">
-    <div>
-      <div class="ttl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><h3 data-i18n="p2h">سامانه‌ی AIVA</h3></div>
-      <p data-i18n="p2">تحلیل تماس‌های تلفنی شرکت‌ها با هوش مصنوعی<br>گفتار فارسی به متن تبدیل می‌شه و یه مدل زبانی هر تماس رو تحلیل می‌کنه</p>
-      <div class="tech"><span>Speech AI</span><span>LLM</span><span>Django</span></div>
+<!-- ================= DESKTOP SOFTWARE ================= -->
+<section class="sec" id="desktop"><div class="wrap">
+  <div class="eyebrow rv" data-i18n="deskE">ویندوز</div>
+  <h2 class="rv" data-i18n="deskH">نرم‌افزارهای <em>دسکتاپ</em></h2>
+  <div class="bento rv">
+    <!-- Squish Desktop -->
+    <article class="card big" style="--a1:#8C7BFF;--a2:#C59BFF">
+      <div class="wbar"><div class="dots3"><i></i><i></i><i></i></div><span class="wt">Squish 1.1.0</span><span class="os"><svg><use href="#i-win"/></svg><span data-i18n="windows">ویندوز</span></span></div>
+      <div class="bigbody">
+        <div>
+          <div class="chead">
+            <div class="tile"><img src="img/squishd-icon.webp" alt="" width="46" height="46" loading="lazy"></div>
+            <div><h3 data-i18n="d1n">اسکوییش دسکتاپ</h3><div class="sub" data-i18n="d1t">فشرده‌ساز عکس و ویدیو برای ویندوز</div></div>
+          </div>
+          <p data-i18n="d1d">فایل رو بکش و بنداز تا فشرده‌سازی خودش شروع بشه<br><b>رزولوشن هیچ‌وقت کم نمی‌شه</b> و هیچ فایلی جایی آپلود نمی‌شه</p>
+          <div class="tech"><span>Tauri 2</span><span>Rust</span><span>FFmpeg</span><span>WebView2</span></div>
+          <div class="cfoot">
+            <div class="meta"><span data-i18n="d1m">نسخه <b>۱.۱.۰</b> · <b>۲۸ مگ</b></span></div>
+            <div class="acts"><a class="gh" href="https://github.com/Sajjad-Majdi/Squish-Compressor" target="_blank" rel="noopener" aria-label="GitHub"><svg><use href="#i-gh"/></svg></a><a class="dlb" data-dl="squishDesktop"><svg><use href="#i-dl"/></svg><span data-i18n="dlExe">دانلود نصب‌کننده</span></a></div>
+          </div>
+        </div>
+        <div class="winbox"><img class="win" src="img/squishd-1.webp" alt="اسکوییش دسکتاپ" data-en="Squish Desktop" loading="lazy" width="844" height="440"></div>
+      </div>
+    </article>
+    <!-- Goya -->
+    <article class="card" style="--a1:#55E6D6;--a2:#5BA8FF">
+      <div class="wbar"><div class="dots3"><i></i><i></i><i></i></div><span class="wt">Goya 0.1.3</span><span class="os"><svg><use href="#i-win"/></svg><span data-i18n="windows">ویندوز</span></span></div>
+      <div class="chead">
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></div>
+        <div><h3 data-i18n="d2n">گویا</h3><div class="sub" data-i18n="d2t">تایپ صوتی فارسی در ویندوز</div></div>
+      </div>
+      <p data-i18n="d2d">توی هر کادر متنی <b>Win+F</b> رو بزن و حرف بزن تا تایپ بشه<br>بدون اینترنت هم با مدل روی خود سیستم کار می‌کنه</p>
+      <div class="fact" data-i18n="d2f">خطای واژه <b>۷٫۷٪</b> روی ۲۵ کلیپ · حدود <b>۴۵ ms</b> برای هر پنجره ۲۰ ثانیه‌ای روی RTX 3070 Ti</div>
+      <div class="tech"><span>Rust</span><span>ONNX Runtime</span><span>DirectML</span></div>
+      <div class="cfoot">
+        <div class="meta"><span data-i18n="d2m">نسخه <b>۰.۱.۳</b> · <b>۹۹٫۷ مگ</b></span></div>
+        <div class="acts"><a class="dlb" data-dl="goya"><svg><use href="#i-dl"/></svg><span data-i18n="dlExe">دانلود نصب‌کننده</span></a></div>
+      </div>
+    </article>
+    <!-- Kargah -->
+    <article class="card" style="--a1:#FFC77A;--a2:#F48FD2">
+      <div class="wbar"><div class="dots3"><i></i><i></i><i></i></div><span class="wt">Kargah 0.1.0</span><span class="os"><svg><use href="#i-win"/></svg><span data-i18n="windows">ویندوز</span></span></div>
+      <div class="dshot"><img src="img/kargah-2.webp" alt="کارگاه در حال کار" data-en="Kargah at work" loading="lazy" width="1240" height="820"></div>
+      <div class="chead">
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9l3 3-3 3M12 15h5"/></svg></div>
+        <div><h3 data-i18n="d3n">کارگاه</h3><div class="sub" data-i18n="d3t">ایجنت‌های کدنویسی فقط با مدل‌های محلی</div></div>
+      </div>
+      <p data-i18n="d3d">برنامه دسکتاپ سبک برای اجرای ایجنت‌های کدنویسی روی <b>مدل‌های محلی llama.cpp</b><br>انتخاب بک‌اند برای هر گفتگو</p>
+      <div class="fact" data-i18n="d3f">ساخت و ویرایش و اجرای یک اسکریپت در <b>۷ تا ۱۴ ثانیه</b> با یک مدل ۴B محلی · حدود <b>۶۴ توکن بر ثانیه</b></div>
+      <div class="tech"><span>Tauri 2</span><span>Rust</span><span>llama.cpp</span></div>
+      <div class="cfoot">
+        <div class="meta"><span data-i18n="d3m">نسخه <b>۰.۱.۰</b> · <b>۱٫۶ مگ</b></span></div>
+        <div class="acts"><a class="dlb" data-dl="kargah"><svg><use href="#i-dl"/></svg><span data-i18n="dlExe">دانلود نصب‌کننده</span></a></div>
+      </div>
+    </article>
+    <!-- SemSearch -->
+    <article class="card" style="--a1:#9A8CFF;--a2:#55E6D6">
+      <div class="wbar"><div class="dots3"><i></i><i></i><i></i></div><span class="wt">SemSearch</span><span class="os"><svg><use href="#i-win"/></svg><span data-i18n="windows">ویندوز</span></span></div>
+      <div class="chead">
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></div>
+        <div><h3 data-i18n="d4n">جستجوی معنایی</h3><div class="sub" data-i18n="d4t">جستجوی کامپیوتر با نام فایل و معنی محتوا</div></div>
+      </div>
+      <p data-i18n="d4d"><b>Win+Alt+Space</b> و جستجوی آنی نام فایل به‌همراه جستجو با معنی روی محتوا<br>فارسی و انگلیسی</p>
+      <div class="fact" data-i18n="d4f">روی ۳۰ جستجوی واقعی hit@1 برابر <b>۶۳٪</b> و hit@5 برابر <b>۹۰٪</b> · ایندکس ۸۵ مگ</div>
+      <div class="tech"><span>C# WPF</span><span>.NET 10</span><span>Python</span><span>Embeddings</span><span>SQLite FTS5</span></div>
+      <div class="cfoot">
+        <div class="meta"></div>
+        <div class="acts"><span class="nodl" data-i18n="personalTool">ابزار شخصی</span></div>
+      </div>
+    </article>
+    <!-- OpenCode GUI -->
+    <article class="card" style="--a1:#5BA8FF;--a2:#9B6BFF">
+      <div class="wbar"><div class="dots3"><i></i><i></i><i></i></div><span class="wt">OpenCode GUI 1.0</span><span class="os"><svg><use href="#i-win"/></svg><span data-i18n="windows">ویندوز</span></span></div>
+      <div class="dshot"><img src="img/opencode-1.webp" alt="رابط OpenCode" data-en="OpenCode GUI" loading="lazy" width="1240" height="820"></div>
+      <div class="chead">
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M9 13l-2 2 2 2M15 13l2 2-2 2"/></svg></div>
+        <div><h3 data-i18n="d5n">رابط OpenCode</h3><div class="sub" data-i18n="d5t">رابط وب سبک برای ایجنت کدنویسی opencode</div></div>
+      </div>
+      <p data-i18n="d5d">جلسه‌ها و <b>لاگ زنده</b> و انتخاب مدل و سطح تفکر و تأیید دستورها<br>با پشتیبانی کامل راست‌به‌چپ</p>
+      <div class="tech"><span>Node.js</span><span>Vanilla JS</span><span>SSE</span></div>
+      <div class="cfoot">
+        <div class="meta"><span data-i18n="d5m">نسخه <b>۱.۰</b> · <b>۶۳۵ کیلوبایت</b></span></div>
+        <div class="acts"><a class="dlb" data-dl="opencode"><svg><use href="#i-dl"/></svg><span data-i18n="dlZip">دانلود</span></a></div>
+      </div>
+    </article>
+  </div>
+</div></section>
+
+<!-- ================= CUSTOM AI MODELS ================= -->
+<section class="sec" id="models"><div class="wrap">
+  <div class="eyebrow rv" data-i18n="modE">مدل‌ها</div>
+  <h2 class="rv" data-i18n="modH">مدل‌های هوش مصنوعی <em>اختصاصی</em></h2>
+  <div class="models rv" id="models-ui">
+    <div class="mlist" role="tablist">
+      <button class="mtab on" role="tab" style="--k:var(--violet)"><b data-i18n="m1n">همیار لایت</b><span class="mb">FunctionGemma 270M · full fine-tune</span><span class="mk" data-i18n="m1k">از ≈۰٪ به ۹۶٫۱٪ دقت دستور</span></button>
+      <button class="mtab" role="tab" style="--k:var(--cyan)"><b data-i18n="m2n">همیار پرو</b><span class="mb">Qwen3.5-0.8B · LoRA r32</span><span class="mk" data-i18n="m2k">۹۷٫۸٪ انتخاب ابزار درست</span></button>
+      <button class="mtab" role="tab" style="--k:var(--pink)"><b data-i18n="m3n">تصمیم‌گیر محلی آیوا</b><span class="mb">Qwen3.5-0.8B · LoRA r32</span><span class="mk" data-i18n="m3k">۸۸٪ فوریت روی شرکت‌های ندیده</span></button>
+      <button class="mtab" role="tab" style="--k:var(--amber)"><b data-i18n="m4n">گفتار به متن فارسی</b><span class="mb">Gemma 4 E4B · QLoRA 4-bit</span><span class="mk" data-i18n="m4k">خطای واژه از ۱۳٫۲ به ۱۰٫۲</span></button>
+      <button class="mtab" role="tab" style="--k:var(--blue)"><b data-i18n="m5n">شنوا int8</b><span class="mb">Shenava Rizeh &amp; Koochik · int8</span><span class="mk" data-i18n="m5k">از ۱۱۷ به ۳۶ مگ با همون دقت</span></button>
     </div>
-    <svg class="viz" viewBox="0 0 300 200" fill="none" aria-hidden="true">
-      <g stroke="var(--line2)" stroke-width="1.5"><path d="M40 100 L120 50 M40 100 L120 100 M40 100 L120 150 M120 50 L200 75 M120 100 L200 75 M120 100 L200 125 M120 150 L200 125 M200 75 L265 100 M200 125 L265 100"/></g>
-      <g fill="var(--violet)"><circle cx="40" cy="100" r="9"/><circle cx="265" cy="100" r="11" fill="var(--cyan)"/></g>
-      <g fill="var(--surface-solid)" stroke="var(--violet)" stroke-width="2"><circle cx="120" cy="50" r="7"/><circle cx="120" cy="100" r="7"/><circle cx="120" cy="150" r="7"/><circle cx="200" cy="75" r="7"/><circle cx="200" cy="125" r="7"/></g>
-      <circle r="4" fill="var(--cyan)"><animateMotion dur="3s" repeatCount="indefinite" path="M40 100 L120 100 L200 75 L265 100"/></circle>
-      <circle r="4" fill="var(--pink)"><animateMotion dur="3s" begin="1.5s" repeatCount="indefinite" path="M40 100 L120 150 L200 125 L265 100"/></circle>
-    </svg>
-  </article>
-  <div class="pcols">
-    <div class="pcol rv" style="--k:var(--cyan)">
-      <div class="ttl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01M9 7l2 2 4-4"/></svg><h4>Agent PowerUI</h4></div>
-      <p data-i18n="p3">اپ فلاتری برای کار با ایجنت هوش مصنوعی، با رابطی که کار ایجنت رو قابل‌دیدن و قابل‌کنترل می‌کنه.</p>
-      <div class="tech"><span>Flutter</span><span>Dart</span><span>AI Agents</span></div>
-    </div>
-    <div class="pcol rv" style="--k:var(--amber)">
-      <div class="ttl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><h4 data-i18n="p4h">موزیک به موزیک‌ویدیو</h4></div>
-      <p data-i18n="p4">اپ و پایپلاینی که از یه آهنگ، موزیک‌ویدیو می‌سازه. مرحله‌ها با LangChain به هم وصل شدن.</p>
-      <div class="tech"><span>LangChain</span><span>Pipelines</span><span>GenAI</span></div>
+    <div class="msheets">
+      <!-- 1 Hamyar Lite -->
+      <article class="msheet on" style="--k:var(--violet)">
+        <header class="mh">
+          <div><h3><span data-i18n="m1n">همیار لایت</span><code>hamyar-1.1-lite</code></h3><p class="what" data-i18n="m1w">مدل کوچک فرمان‌دهی که جمله فارسی رو به دستور گوشی تبدیل می‌کنه<br>۴۷ ابزار داخل خود وزن‌ها آموزش دیده نه داخل پرامپت</p></div>
+          <span class="muse" data-i18n="m1u">منتشرشده داخل همیار ۱.۱.۰</span>
+        </header>
+        <dl class="spec">
+          <div><dt data-i18n="sBase">مدل پایه</dt><dd><b>FunctionGemma 270M</b></dd></div>
+          <div><dt data-i18n="sMethod">روش آموزش</dt><dd data-i18n="m1s1"><b>فاین‌تیون کامل</b> و نه LoRA · bf16 · ۳ epoch · حدود ۳۱ دقیقه روی RTX 3070 Ti لپ‌تاپ</dd></div>
+          <div><dt data-i18n="sData">داده</dt><dd data-i18n="m1s2"><b>۴۰٬۶۵۱ ردیف آموزشی</b> از ۲۸٬۲۸۰ ردیف یکتا که چون دیتاست فارسی فرمان گوشی وجود نداشت برای همین پروژه ساخته شد</dd></div>
+          <div><dt data-i18n="sComp">فشرده‌سازی</dt><dd data-i18n="m1s3">واژگان از ۲۶۲٬۱۴۴ به <b>۳۹٬۲۱۴ توکن</b> · GGUF Q8 از ۲۹۲ به <b>۱۳۴ مگ</b> · خروجی روی کل داده بدون هیچ تغییری</dd></div>
+          <div><dt data-i18n="sSpeed">سرعت</dt><dd data-i18n="m1s4"><b>۰٫۳ تا ۰٫۶ ثانیه</b> برای هر دستور روی Poco X3 · میانه <b>۱۱۱ ms</b> روی لپ‌تاپ که قبل از تریم واژگان ۱۹۰ بود</dd></div>
+          <div><dt data-i18n="sShip">انتشار</dt><dd data-i18n="m1s5">فایل litertlm به حجم <b>۱۳۹ مگ</b> داخل اپ · مدل و دیتاست روی هاگینگ‌فیس به‌صورت خصوصی</dd></div>
+        </dl>
+        <div class="bench">
+          <div class="bt" data-i18n="m1b">دقت exact match<small>۳۶۰ دستور دست‌نویس روی هر ۴۷ ابزار که هیچ‌وقت در آموزش نبودن</small></div>
+          <div class="pair"><span class="bl" data-i18n="m1b1">تست gold</span><i class="b" style="--b:.01;--w:.961"></i><span class="bv"><small data-i18n="m1v1">پایه ≈۰٪</small>۹۶٫۱٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m1b2">تست پیامک و تماس · ۳۱۰ مورد</span><i style="--w:.916"></i><span class="bv">۹۱٫۶٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m1b3">نسخه منتشرشده ۱.۱ روی gold</span><i style="--w:.947"></i><span class="bv">۹۴٫۷٪</span></div>
+          <div class="bn" data-i18n="m1bn">خط باریک یعنی مدل پایه خام روی همون تست که فقط حدود ۱ از ۹ دستور فارسی رو جواب می‌داد</div>
+        </div>
+      </article>
+      <!-- 2 Hamyar Pro -->
+      <article class="msheet" style="--k:var(--cyan)">
+        <header class="mh">
+          <div><h3><span data-i18n="m2n">همیار پرو</span><code>hamyar-1.1-pro</code></h3><p class="what" data-i18n="m2w">مدل قوی‌تر که در یک گذر ابزار رو انتخاب می‌کنه و گفتگوی چندمرحله‌ای فارسی رو هم نگه می‌داره<br>اطلاعات رو فقط از جستجوی وب می‌گه و چیزی از خودش نمی‌سازه</p></div>
+          <span class="muse" data-i18n="m2u">منتشرشده داخل همیار ۱.۱.۰</span>
+        </header>
+        <dl class="spec">
+          <div><dt data-i18n="sBase">مدل پایه</dt><dd><b>Qwen3.5-0.8B</b></dd></div>
+          <div><dt data-i18n="sMethod">روش آموزش</dt><dd data-i18n="m2s1"><b>LoRA با رتبه ۳۲</b> روی همه لایه‌های خطی و پروجکشن‌های DeltaNet · ۱٫۵ epoch و ۴۵۱ قدم در حدود ۸۰ دقیقه · پنج دور آموزش تا نسخه نهایی</dd></div>
+          <div><dt data-i18n="sData">داده</dt><dd data-i18n="m2s2">حدود <b>۳٬۷۱۸ گفتگوی چندمرحله‌ای</b> و ۴۷٬۸۱۱ دنباله · برچسب‌ها با دو بازبین مستقل بررسی شد و توافق ابزار ۹۶٪</dd></div>
+          <div><dt data-i18n="sComp">فشرده‌سازی</dt><dd data-i18n="m2s3">واژگان از ۲۴۸٬۳۲۰ به <b>۳۹٬۴۷۹ توکن</b> · GGUF Q4_K_M از ۵۴۲ به <b>۳۵۷ مگ</b> · هر ۹۳۸ خروجی ارزیابی با نسخه کامل یکسان</dd></div>
+          <div><dt data-i18n="sSpeed">سرعت</dt><dd data-i18n="m2s4">میانه <b>۲۴۳ تا ۲۸۷ ms</b> برای هر دستور روی GPU لپ‌تاپ · تریم واژگان ۱۵٪ سریع‌تر</dd></div>
+          <div><dt data-i18n="sShip">انتشار</dt><dd data-i18n="m2s5">اپ مدل رو از یک رله خصوصی دانلود می‌کنه · مدل و داده روی هاگینگ‌فیس به‌صورت خصوصی</dd></div>
+        </dl>
+        <div class="bench">
+          <div class="bt" data-i18n="m2b">دقت روی تست‌های دست‌نویس<small>GGUF Q4_K_M روی GPU</small></div>
+          <div class="pair"><span class="bl" data-i18n="m2b1">انتخاب ابزار · gold</span><i class="b" style="--b:.225;--w:.978"></i><span class="bv"><small data-i18n="m2v1">پایه ۲۲٫۵٪</small>۹۷٫۸٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m2b2">exact match کامل · gold</span><i style="--w:.911"></i><span class="bv">۹۱٫۱٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m2b3">پیامک و تماس</span><i style="--w:.919"></i><span class="bv">۹۱٫۹٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m2b4">تست سخت</span><i style="--w:.921"></i><span class="bv">۹۲٫۱٪</span></div>
+          <div class="bn" data-i18n="m2bn">عدد پایه یعنی Qwen خام با خروجی محدود به نام ۴۷ ابزار روی ۱۲۰ ردیف و عدد نهایی روی ۳۶۰ ردیف پس تعداد ردیف دو تست یکی نیست</div>
+        </div>
+      </article>
+      <!-- 3 AIVA decider -->
+      <article class="msheet" style="--k:var(--pink)">
+        <header class="mh">
+          <div><h3><span data-i18n="m3n">تصمیم‌گیر محلی آیوا</span><code>aiva-v8</code></h3><p class="what" data-i18n="m3w">یک مدل کوچک با یک آداپتور LoRA برای سه کار<br>تحلیل تماس در هفت فیلد و فهمیدن سؤال‌های «از آیوا بپرس» و نوشتن بخش‌های متنی</p></div>
+          <span class="muse" data-i18n="m3u">آزمایش‌شده با سایت به‌صورت محلی</span>
+        </header>
+        <dl class="spec">
+          <div><dt data-i18n="sBase">مدل پایه</dt><dd><b>Qwen3.5-0.8B</b></dd></div>
+          <div><dt data-i18n="sMethod">روش آموزش</dt><dd data-i18n="m3s1"><b>LoRA با رتبه ۳۲</b> با قالب تک‌گذر که برای هر فیلد فقط امتیاز گزینه‌ها رو حساب می‌کنه و فقط متن‌ها رو تولید می‌کنه · ادامه از آداپتور v4 · ۱ epoch</dd></div>
+          <div><dt data-i18n="sData">داده</dt><dd data-i18n="m3s2"><b>۳٬۶۰۰ تماس از ۳۰ شرکت</b> · هر برچسب فقط وقتی نگه داشته شد که دو بازبین مستقل و بی‌خبر از هم توافق داشتن · ۵۰۴ سؤال تست برای از آیوا بپرس</dd></div>
+          <div><dt data-i18n="sComp">فشرده‌سازی</dt><dd data-i18n="m3s3">فقط GGUF Q4_K_M به حجم <b>۵۴۲ مگ</b> · مدل ۲B آزمایش شد و روی شرکت‌های ندیده سود واقعی نداشت پس مدل کوچک موند</dd></div>
+          <div><dt data-i18n="sSpeed">سرعت</dt><dd data-i18n="m3s4">همه تصمیم‌های یک تماس در <b>۱٫۳ ثانیه</b> روی ۴ رشته CPU و ۰٫۰۶ ثانیه روی GPU · امتیازدهی گزینه‌ها ۵ برابر سریع‌تر از تولید JSON</dd></div>
+          <div><dt data-i18n="sShip">وضعیت</dt><dd data-i18n="m3s5">هنوز در تولید نیست چون سرور فعلی توان اجرای مدل محلی رو نداره</dd></div>
+        </dl>
+        <div class="bench">
+          <div class="bt" data-i18n="m3b">دقت روی ۲ شرکت ندیده<small>از نسخه v4 به v8 روی همون تست</small></div>
+          <div class="pair"><span class="bl" data-i18n="m3b1">نتیجه تماس</span><i class="b" style="--b:.778;--w:.865"></i><span class="bv"><small>۷۷٫۸٪</small>۸۶٫۵٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m3b2">فوریت</span><i class="b" style="--b:.797;--w:.88"></i><span class="bv"><small>۷۹٫۷٪</small>۸۸٫۰٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m3b3">حس تماس</span><i class="b" style="--b:.756;--w:.834"></i><span class="bv"><small>۷۵٫۶٪</small>۸۳٫۴٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m3b4">موضوع</span><i class="b" style="--b:.644;--w:.728"></i><span class="bv"><small>۶۴٫۴٪</small>۷۲٫۸٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m3b5">از آیوا بپرس · ۵۰۴ سؤال</span><i style="--w:.992"></i><span class="bv">۹۹٫۲٪+</span></div>
+          <div class="bn" data-i18n="m3bn">Qwen خام بدون آموزش روی یک تست دیگر با ۲۶۰ تماس فقط ۴۷٪ نوع تماس و ۲۳٪ نتیجه رو درست می‌گفت و هیچ‌کدام از ۱۰۹ سؤال رو جواب نداد · روی شرکت‌های دیده‌شده ۹۲ تا ۱۰۰٪</div>
+        </div>
+      </article>
+      <!-- 4 Gemma ASR -->
+      <article class="msheet" style="--k:var(--amber)">
+        <header class="mh">
+          <div><h3><span data-i18n="m4n">گفتار به متن فارسی</span><code>gemma-asr-fa</code></h3><p class="what" data-i18n="m4w">آموزش Gemma 4 E4B با ورودی صوت به‌عنوان بازشناس گفتار فارسی<br>پروژه پایانی کارشناسی با گزارش ۱۰۹ صفحه‌ای</p></div>
+          <span class="muse" data-i18n="m4u">پروژه کارشناسی · تحویل شهریور ۱۴۰۵</span>
+        </header>
+        <dl class="spec">
+          <div><dt data-i18n="sBase">مدل پایه</dt><dd><b>Gemma 4 E4B</b></dd></div>
+          <div><dt data-i18n="sMethod">روش آموزش</dt><dd data-i18n="m4s1"><b>QLoRA انتخابی با NF4</b> و رتبه ۱۶ روی برج صوت و مدل زبانی و پروجکتور · ۵ اجرا روی T4 رایگان Colab</dd></div>
+          <div><dt data-i18n="sData">داده</dt><dd data-i18n="m4s2"><b>۱۰ تا ۲۰ ساعت صوت فارسی</b> از Common Voice و FLEURS و نی‌شکر به‌همراه دو مجموعه ۱۰ ساعته خودم · تست‌ها ثابت و جدا</dd></div>
+          <div><dt data-i18n="sComp">فشرده‌سازی</dt><dd data-i18n="m4s3">بدون فشرده‌سازی · وزن‌ها روی گوگل‌درایو</dd></div>
+          <div><dt data-i18n="sSpeed">یافته</dt><dd data-i18n="m4s4"><b>۴۰٫۵٪ خطای مدل پایه</b> فقط قرارداد نگارشی بود مثل نیم‌فاصله و شکل عدد که با نرمال‌سازی حل شد</dd></div>
+          <div><dt data-i18n="sShip">وضعیت</dt><dd data-i18n="m4s5">به‌عنوان پروژه دانشگاهی تمام شد · چون مدل باز شنوا کوچیک با خطای ۷٫۰ بهتر بود کار روی Gemma متوقف شد</dd></div>
+        </dl>
+        <div class="bench">
+          <div class="bt" data-i18n="m4b">خطای واژه WER<small>کمتر بهتره · هر دو روی تست ثابت ۷۵ کلیپ</small></div>
+          <div class="pair"><span class="bl" data-i18n="m4b1">Gemma پایه</span><i style="--w:.66"></i><span class="bv">۱۳٫۱۷٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m4b2">فاین‌تیون‌شده</span><i class="b" style="--b:.66;--w:.51"></i><span class="bv">۱۰٫۱۵٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m4b3">بهترین اجرا روی ۱۸۰ کلیپ dev</span><i style="--w:.475"></i><span class="bv">۹٫۴۹٪</span></div>
+          <div class="bn" data-i18n="m4bn">حدود ۲۳٪ کاهش نسبی خطا روی همون تست · هدف ۶٫۰ بود و نرسید</div>
+        </div>
+      </article>
+      <!-- 5 Shenava int8 -->
+      <article class="msheet" style="--k:var(--blue)">
+        <header class="mh">
+          <div><h3><span data-i18n="m5n">شنوا int8</span><code>shenava-rizeh-fa-int8</code></h3><p class="what" data-i18n="m5w">نسخه فشرده و آماده موبایل مدل‌های باز گفتار به متن شنوا برای sherpa-onnx<br>آموزش مدل‌ها کار من نیست و فقط کوانتیزه و بسته‌بندی رو انجام دادم</p></div>
+          <a class="muse" href="https://huggingface.co/SajjadMajdi/shenava-rizeh-fa-int8" target="_blank" rel="noopener" data-i18n="m5u">عمومی روی هاگینگ‌فیس</a>
+        </header>
+        <dl class="spec">
+          <div><dt data-i18n="sBase">مدل پایه</dt><dd><b>Shenava Rizeh 32M</b> · <b>Koochik 114M</b></dd></div>
+          <div><dt data-i18n="sMethod">روش</dt><dd data-i18n="m5s1"><b>کوانتیزه int8 پویا</b> با حفظ متادیتا تا خروجی درست بمونه · خروجی ONNX</dd></div>
+          <div><dt data-i18n="sComp">فشرده‌سازی</dt><dd data-i18n="m5s2">ریزه از ۱۱۷ به <b>۳۶ مگ</b> · کوچیک int8 حدود <b>۱۲۶ مگ</b></dd></div>
+          <div><dt data-i18n="sSpeed">سرعت</dt><dd data-i18n="m5s3">ضریب بلادرنگ <b>۰٫۰۲۴</b> روی یک رشته لپ‌تاپ · کوچیک روی CPU سرور ۶۳ ثانیه صوت در ۳٫۴ ثانیه</dd></div>
+          <div><dt data-i18n="sData">تست تماس تلفنی</dt><dd data-i18n="m5s4">روی تماس‌های آیوا خطای واژه ریزه <b>۰٫۴۲۲</b> و کوچیک <b>۰٫۳۳۲</b> چون صدای تلفن خیلی سخت‌تره</dd></div>
+          <div><dt data-i18n="sShip">انتشار</dt><dd data-i18n="m5s5">دو مخزن عمومی <span class="ltr">shenava-rizeh-fa-int8</span> و <span class="ltr">shenava-koochik-fa-int8</span></dd></div>
+        </dl>
+        <div class="bench">
+          <div class="bt" data-i18n="m5b">قبل و بعد از کوانتیزه<small>۲۵ کلیپ تمیز</small></div>
+          <div class="pair"><span class="bl" data-i18n="m5b1">حجم ریزه</span><i class="b" style="--b:1;--w:.31"></i><span class="bv"><small data-i18n="m5v1">۱۱۷ مگ</small><span data-i18n="m5v2">۳۶ مگ</span></span></div>
+          <div class="pair"><span class="bl" data-i18n="m5b2">خطای واژه ریزه</span><i class="b" style="--b:.62;--w:.62"></i><span class="bv"><small>۱۲٫۴٪</small>۱۲٫۴٪</span></div>
+          <div class="pair"><span class="bl" data-i18n="m5b3">خطای واژه کوچیک</span><i class="b" style="--b:.405;--w:.465"></i><span class="bv"><small>۸٫۱٪</small>۹٫۳٪</span></div>
+          <div class="bn" data-i18n="m5bn">خط باریک یعنی مدل اصلی fp32 · ریزه بدون هیچ افت دقتی سه برابر کوچک‌تر شد</div>
+        </div>
+      </article>
     </div>
   </div>
 </div></section>
 
+<!-- ================= OTHER PROJECTS ================= -->
+<section class="sec" id="more"><div class="wrap">
+  <div class="eyebrow rv" data-i18n="moreE">بقیه</div>
+  <h2 class="rv" data-i18n="moreH">پروژه‌های <em>دیگه</em></h2>
+  <div class="cards four rv">
+    <article class="card" style="--a1:#5BA8FF;--a2:#55E6D6">
+      <div class="chead"><div class="tile"><svg><use href="#i-dl"/></svg></div><div><h3 data-i18n="o1n">ربات دانلودر تلگرام</h3><div class="sub" data-i18n="o1t">یوتیوب و اینستاگرام و ایکس</div></div></div>
+      <p data-i18n="o1d">دانلود ویدیو با انتخاب کیفیت و بدون نگه‌داشتن هیچ فایلی روی سرور<br>منوی کیفیت یوتیوب در <b>کمتر از ۳٫۳ ثانیه</b> و ۹۳ تست خودکار</p>
+      <div class="tech"><span>Python</span><span>aiohttp</span><span>yt-dlp</span><span>Docker</span><span>Cloudflare Workers</span></div>
+      <div class="cfoot"><div class="meta"><span class="ltr">@sajjad_downloader_bot</span></div><div class="acts"><a class="gh" href="https://github.com/Sajjad-Majdi/everything-downloader-bot" target="_blank" rel="noopener" aria-label="GitHub"><svg><use href="#i-gh"/></svg></a></div></div>
+    </article>
+    <article class="card" style="--a1:#9A8CFF;--a2:#F48FD2">
+      <div class="chead"><div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-4 3.5V17H6a2 2 0 0 1-2-2z"/><path d="M9 10.5h.01M15 10.5h.01"/></svg></div><div><h3 data-i18n="o2n">ایجنت دیسکورد</h3><div class="sub" data-i18n="o2t">پشتیبان هوشمند جامعه کاربران یک محصول</div></div></div>
+      <p data-i18n="o2d">به هر عضو تازه خوش‌آمد می‌گه و سؤال‌ها رو از روی <b>مستندات محصول</b> جواب می‌ده<br>گفتگوی هر کاربر رو جداگانه به خاطر می‌سپاره</p>
+      <div class="tech"><span>Python</span><span>discord.py</span><span>LlamaIndex</span><span>SQLite</span></div>
+    </article>
+    <article class="card" style="--a1:#55E6D6;--a2:#9A8CFF">
+      <div class="chead"><div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M9 12.5h.01M15 12.5h.01M12 4v3M8 21h8"/></svg></div><div><h3>Agent PowerUI</h3><div class="sub" data-i18n="o3t">دستیار شخصی دسکتاپ ویندوز</div></div></div>
+      <p data-i18n="o3d"><b>حافظه بلندمدت</b> و جستجوی وب و مرور فایل و زیرایجنت‌های MCP<br>مدل ابری یا مدل محلی با یک کلید حریم خصوصی</p>
+      <div class="tech"><span>Flutter</span><span>BLoC</span><span>Flask</span><span>MCP</span><span>llama.cpp</span></div>
+      <div class="cfoot"><div class="meta"></div><div class="acts"><a class="gh" href="https://github.com/Sajjad-Majdi/Agent-PowerUI" target="_blank" rel="noopener" aria-label="GitHub"><svg><use href="#i-gh"/></svg></a></div></div>
+    </article>
+    <article class="card" style="--a1:#FFC77A;--a2:#F48FD2">
+      <div class="chead"><div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div><div><h3 data-i18n="o4n">موزیک به موزیک‌ویدیو</h3><div class="sub" data-i18n="o4t">پایپلاین ساخت ویدیو از روی یک آهنگ</div></div></div>
+      <p data-i18n="o4d">آهنگ می‌گیره و با تولید تصویر و چیدن ویدیو یک <b>موزیک‌ویدیو</b> تحویل می‌ده<br>نمونه اولیه با بک‌اند و فرانت جدا</p>
+      <div class="tech"><span>Python</span><span>LangGraph</span><span>Flask</span><span>Flutter</span></div>
+      <div class="cfoot"><div class="meta"></div><div class="acts"><a class="gh" href="https://github.com/Sajjad-Majdi/music-to-video" target="_blank" rel="noopener" aria-label="GitHub"><svg><use href="#i-gh"/></svg></a></div></div>
+    </article>
+    <article class="card" style="--a1:#F48FD2;--a2:#FFC77A">
+      <div class="chead"><div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></div><div><h3 data-i18n="o5n">دوره ویدیویی ترنسفورمر</h3><div class="sub" data-i18n="o5t">تکامل ترنسفورمر از ۲۰۱۷ تا ۲۰۲۶</div></div></div>
+      <p data-i18n="o5d">ویدیوی آموزشی <b>۲۷ دقیقه‌ای</b> فارسی از صفر تا صد با ۳۵ صحنه و ۲۷۲ جمله روایت<br>از KV cache تا حافظه n-gram</p>
+      <div class="tech"><span>Remotion</span><span>React</span><span>AI voice</span></div>
+    </article>
+    <article class="card" style="--a1:#55E6D6;--a2:#5BA8FF">
+      <div class="chead"><div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div><div><h3 data-i18n="o6n">دوره ویدیویی سخت‌افزار</h3><div class="sub" data-i18n="o6t">از الکترونیک پایه تا ساخت پردازنده</div></div></div>
+      <p data-i18n="o6d">ویدیوی آموزشی <b>۲۵ دقیقه‌ای</b> فارسی با ۴۴ صحنه و ۲۷۸ جمله<br>از قطعات و منطق دیجیتال و حافظه تا آزمایشگاه معماری</p>
+      <div class="tech"><span>Remotion</span><span>React</span><span>AI voice</span></div>
+    </article>
+    <article class="card" style="--a1:#9B6BFF;--a2:#55E6D6">
+      <div class="chead"><div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg></div><div><h3 data-i18n="o7n">ویدیوهای معرفی محصول</h3><div class="sub" data-i18n="o7t">لومن کیپ و آیوا</div></div></div>
+      <p data-i18n="o7d">ویدیوهای تبلیغاتی کوتاه برای معرفی <b>لومن کیپ</b> و <b>آیوا</b> با موشن‌گرافیک کدنویسی‌شده</p>
+      <div class="tech"><span>Remotion</span><span>React</span></div>
+    </article>
+    <article class="card" style="--a1:#FFA64D;--a2:#F48FD2">
+      <div class="chead"><div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><div><h3 data-i18n="o8n">نمایش حمله CSRF</h3><div class="sub" data-i18n="o8t">پروژه آموزشی امنیت وب</div></div></div>
+      <p data-i18n="o8d">یک سایت قربانی و یک سایت مهاجم که نشون می‌ده حمله <b>CSRF</b> چطور رخ می‌ده</p>
+      <div class="tech"><span>Python</span><span>Flask</span></div>
+      <div class="cfoot"><div class="meta"></div><div class="acts"><a class="gh" href="https://github.com/Sajjad-Majdi/CSRF-Attack-educational-" target="_blank" rel="noopener" aria-label="GitHub"><svg><use href="#i-gh"/></svg></a></div></div>
+    </article>
+  </div>
+</div></section>
+
+<!-- ================= WORK ================= -->
 <section class="sec" id="work"><div class="wrap split">
   <div>
     <div class="eyebrow rv" data-i18n="xpE">سابقه کار</div>
@@ -669,7 +977,7 @@ h2 em{font-style:normal;color:var(--violet)}
       <div class="tl-when" data-i18n="x1w">از ۱۴۰۴ تا امروز</div>
       <h4 data-i18n="x1h">تیم فناور کارو</h4>
       <div class="tl-role" data-i18n="x1r">توسعه‌دهنده اندروید و وب و متخصص هوش مصنوعی</div>
-      <p data-i18n="x1">ساخت سامانه‌ی تحلیل تماس AIVA و سامانه‌ی صورتجلسه‌ی سرانجام و وب‌سایت تیم</p>
+      <p data-i18n="x1">ساخت سامانه‌ی تحلیل تماس آیوا و بازطراحی سامانه‌ی صورت‌جلسه‌ی سرانجام و ساخت وب‌سایت تیم و اپ اندروید سرانجام</p>
     </div>
     <div class="tli rv">
       <div class="tl-when" data-i18n="x2w">تابستان ۱۴۰۵</div>
@@ -679,18 +987,19 @@ h2 em{font-style:normal;color:var(--violet)}
   </div>
 </div></section>
 
+<!-- ================= SKILLS ================= -->
 <section class="sec" id="skills"><div class="wrap">
   <div class="eyebrow rv" data-i18n="toolbox">جعبه‌ابزار</div>
   <h2 class="rv" data-i18n="skills">مهارت‌ها</h2>
-  <div class="spec">
+  <div class="spec-t">
     <div class="srow rv" style="--k:var(--violet)"><h4><i></i><span data-i18n="sk1">هوش مصنوعی</span></h4><div class="slist">
-      <span data-i18n="c1">ساخت ایجنت و ورک‌فلو</span><span>LangGraph</span><span>LangChain</span><span>LlamaIndex</span><span data-i18n="c2">RAG و چت‌بات</span><span data-i18n="c3">LLM و VLM</span><span>Hugging Face</span><span>PyTorch</span><span>Deep Learning</span></div></div>
+      <span data-i18n="c1">فاین‌تیون مدل زبانی</span><span>LoRA &amp; QLoRA</span><span data-i18n="c9">کوانتیزه و فشرده‌سازی</span><span data-i18n="c10">گفتار به متن</span><span data-i18n="c2">ساخت ایجنت و RAG</span><span>LangGraph</span><span>LlamaIndex</span><span>PyTorch</span><span>Hugging Face</span><span>llama.cpp</span><span>ONNX</span></div></div>
     <div class="srow rv" style="--k:var(--cyan)"><h4><i></i><span data-i18n="sk2">برنامه‌نویسی و اپ</span></h4><div class="slist">
-      <span>Python</span><span data-i18n="c4">Flutter و Dart</span><span data-i18n="c5">++C</span><span>SQL</span><span data-i18n="c6">اپ اندروید</span><span data-i18n="c7">اپ ویندوز</span></div></div>
+      <span>Python</span><span data-i18n="c4">Kotlin و Jetpack Compose</span><span data-i18n="c5">Flutter و Dart</span><span data-i18n="c11">Rust و Tauri</span><span data-i18n="c12">Django و React</span><span>Next.js</span><span>Node.js</span><span data-i18n="c13">++C</span><span>SQL</span></div></div>
     <div class="srow rv" style="--k:var(--pink)"><h4><i></i><span data-i18n="sk3">زیرساخت و ابزار</span></h4><div class="slist">
-      <span>Docker</span><span>Docker Compose</span><span>Nginx</span><span data-i18n="c8">Git و GitHub</span></div></div>
+      <span>Docker</span><span>Nginx</span><span>PostgreSQL</span><span>Cloudflare Workers</span><span data-i18n="c8">Git و GitHub</span><span>Linux</span></div></div>
     <div class="srow rv" style="--k:var(--amber)"><h4><i></i><span data-i18n="eduL">تحصیلات</span></h4><div class="edu">
-      <div class="big" data-i18n="edu1">کارشناسی مهندسی کامپیوتر</div><div class="sm" data-i18n="edu2">دانشگاه تهران · از ۱۴۰۱، در حال تحصیل</div></div></div>
+      <div class="big" data-i18n="edu1">کارشناسی مهندسی کامپیوتر</div><div class="sm" data-i18n="edu2">دانشگاه تهران · از ۱۴۰۱ · در حال تحصیل</div></div></div>
     <div class="srow rv" style="--k:#5BA8FF"><h4><i></i><span data-i18n="langL">زبان‌ها</span></h4><div class="langs">
       <div class="lang"><div class="ln"><span data-i18n="fa">فارسی</span><span class="sm" data-i18n="native">زبان مادری</span></div><div class="bar"><i style="--w:1"></i></div></div>
       <div class="lang"><div class="ln"><span data-i18n="en">انگلیسی</span><span class="sm" data-i18n="pro">حرفه‌ای</span></div><div class="bar"><i style="--w:.9"></i></div></div>
@@ -698,16 +1007,17 @@ h2 em{font-style:normal;color:var(--violet)}
   </div>
 </div></section>
 
+<!-- ================= CONTACT ================= -->
 <section class="sec" id="contact"><div class="wrap">
   <div class="contact rv">
     <div class="eyebrow" data-i18n="contact">تماس</div>
     <h2 data-i18n="contactH">بیا با هم یه چیز <em>خفن</em> بسازیم</h2>
-    <p data-i18n="contactP">برای همکاری یا سفارش پروژه، تو تلگرام پیام بده.</p>
+    <p data-i18n="contactP">برای همکاری یا سفارش پروژه توی تلگرام پیام بده</p>
     <div class="links">
       <a class="lnk" href="https://sajjad-majdi.github.io/"><svg viewBox="0 0 24 24" fill="none" stroke="#8C7BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg><b data-i18n="web">وب‌سایت</b><span>sajjad-majdi.github.io</span></a>
       <a class="lnk" href="https://t.me/Sajjad313_5" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#40A9E8"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.4-.1-.6-.6-.2l-11 6.9L1.8 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3z"/></svg><b data-i18n="tg">تلگرام</b><span>@Sajjad313_5</span></a>
-      <a class="lnk" href="https://t.me/AIAcademyPersian" target="_blank" rel="noopener"><i class="avt"><img src="img/aiacademy.webp" alt="" width="30" height="30"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#40A9E8"/><path fill="#EEF5FC" transform="translate(5.2 5.6) scale(.56)" d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.4-.1-.6-.6-.2l-11 6.9L1.8 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3z"/></svg></i><b data-i18n="tgc">کانال تلگرام</b><span>@AIAcademyPersian</span></a>
-      <a class="lnk" href="https://github.com/Sajjad-Majdi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg><b data-i18n="github">گیت‌هاب</b><span>Sajjad-Majdi</span></a>
+      <a class="lnk" href="https://t.me/AIAcademyPersian" target="_blank" rel="noopener"><i class="avt"><img src="img/aiacademy.webp" alt="" width="30" height="30" loading="lazy"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#40A9E8"/><path fill="#EEF5FC" transform="translate(5.2 5.6) scale(.56)" d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.4-.1-.6-.6-.2l-11 6.9L1.8 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3z"/></svg></i><b data-i18n="tgc">کانال تلگرام</b><span>@AIAcademyPersian</span></a>
+      <a class="lnk" href="https://github.com/Sajjad-Majdi" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg><b data-i18n="github">گیت‌هاب</b><span>Sajjad-Majdi</span></a>
       <a class="lnk" href="https://huggingface.co/SajjadMajdi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#FFD21E"/><circle cx="8.6" cy="10" r="1.3" fill="#3A3B45"/><circle cx="15.4" cy="10" r="1.3" fill="#3A3B45"/><path d="M8 14c1 2.2 7 2.2 8 0" stroke="#3A3B45" stroke-width="1.6" fill="#FF9D0B" stroke-linecap="round"/></svg><b data-i18n="hf">هاگینگ‌فیس</b><span>SajjadMajdi</span></a>
       <a class="lnk" href="https://www.linkedin.com/in/sajjad-majdi-412363336" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#0A66C2"/><path fill="#EEF3FB" d="M7 9.5h2.6V18H7zM8.3 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM11.2 9.5h2.5v1.2c.4-.7 1.2-1.4 2.6-1.4 2.7 0 3.2 1.8 3.2 4V18H17v-4.1c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2V18h-2.6z"/></svg><b data-i18n="li">لینکدین</b><span>sajjad-majdi</span></a>
     </div>
@@ -717,17 +1027,93 @@ h2 em{font-style:normal;color:var(--violet)}
 
 <script>
 (()=>{
+/* ===== Download links: the ONE place to update release assets ===== */
+const DL={
+  hamyar:'https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/hamyar-v1.1.0/Hamyar-1.1.0.apk',
+  lumen:'https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/lumen-keep-v1.8/LumenKeep-1.8.apk',
+  squish:'https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/squish-android-v1.0.4/Squish-1.0.4.apk',
+  nevis:'https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/nevis-v1.0.0/Nevis-1.0.0-android-arm64-v8a.apk',
+  phoneclaw:'https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/phoneclaw-v1.0.4/PhoneClaw-1.0.4.apk',
+  analyzer:'https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/analyzer-v1.0.0/Analyzer-1.0.0.apk',
+  saranjam:'https://saranjam.caroai.ir/download/android',
+  squishDesktop:'https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/squish-desktop-v1.1.0/Squish_1.1.0_x64-setup.exe',
+  goya:'https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/goya-v0.1.3/Goya-0.1.3-setup.exe',
+  kargah:'https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/kargah-v0.1.0/Kargah_0.1.0_x64-setup.exe',
+  opencode:'https://github.com/Sajjad-Majdi/Sajjad-Apps/releases/download/opencode-gui-v1.0/opencode-gui-setup.zip'
+};
+document.querySelectorAll('[data-dl]').forEach(a=>{a.href=DL[a.dataset.dl]||'#';if(a.dataset.dl==='saranjam'){a.target='_blank';a.rel='noopener'}});
+
 const R=document.documentElement, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let lang='fa',roleGen=0,ri=0;
 let vtOn=false;
 const vt=f=>{if(vtOn){f();return null}vtOn=true;const t=document.startViewTransition(f);for(const k of ['ready','updateCallbackDone'])t[k].catch(()=>{});t.finished.catch(()=>{}).then(()=>vtOn=false);return t};
 const fa=s=>lang==='en'?String(s):String(s).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
-const EN={"apps": "Apps", "projects": "Projects", "skills": "Skills", "contact": "Contact", "h1": "Sajjad <span class=\"g\">Majdi</span>", "lead": "I take ideas all the way to real products: from AI agents and RAG systems to custom-trained language models and apps that run fast and light on a phone.", "st1": "apps released", "st2": "platforms: Android & Windows", "st3": "fine-tuned language models", "st5": "websites and web systems", "st4": "smallest app", "myWork": "My work", "appsH": "Apps that <em>actually shipped</em>", "hName": "Hamyar", "hTag": "A fully offline Persian voice assistant", "hD": "Just talk and Hamyar gets it done, with no internet, on ordinary phones. Persian speech becomes text right on the device, and language models I fine-tuned myself decide what to do.", "hF1": "Two custom models I fine-tuned: <b>Hamyar Lite</b> for quick commands and <b>Hamyar Pro</b> for conversation and multi-step tasks", "hF2": "Answers each command in under 0.6 s on a mid-range phone", "hF3": "Calls, reminders, navigation, weather, Persian and lunar calendars, calculator", "hF4": "A 3D particle core that comes alive with your voice", "hV": "Version <b>1.1.0</b>", "hS": "Size <b>1.9 MB</b>", "lName": "Lumen Keep", "lTag": "Smart note keeper", "lD": "Notes that remember for you. Ask AI anything about what you wrote and get the answer with its source. Just talk, and it becomes a note.", "lF1": "“Ask your notes”, with answers linked to the notes they came from", "lF2": "Voice notes, dictation and one-tap magic edits", "lF3": "Offline-first, with private sync to Google Drive", "lF4": "A Tasks section with projects, a calendar and a home-screen widget", "lV": "Version <b>1.8</b>", "lS": "Size <b>2.1 MB</b>", "sName": "Squish", "sTag": "Photo and video compressor", "sD": "Shrinks photos and videos with no loss the eye can see. It measures the quality of every file and compresses exactly as much as it should. The whole app is about one megabyte.", "sF1": "Its own video engine on hardware HEVC, with no ready-made media libraries", "sF2": "A quality score for every file, measured with SSIM against the original", "sF3": "HDR to SDR tone mapping and a before/after compare slider", "sF4": "A liquid-glass interface with fluid motion", "sV": "Version <b>1.0.4</b>", "sS": "Size <b>1.1 MB</b>", "dName": "Squish Desktop", "dTag": "Photo and video compressor for Windows", "dD": "Drag and drop, and the rest is automatic. Resolution stays the same, only the size drops. Everything runs on your own computer and nothing is uploaded anywhere.", "dF1": "Drag and drop, and compression starts on its own", "dF2": "Three modes: Balanced, High quality and Max savings", "dF3": "All common video and photo formats, from MP4 and MKV to PNG and WEBP", "dV": "Version <b>1.1.0</b>", "dS": "Size <b>28 MB</b>", "ai": "Artificial intelligence", "projH": "<em>AI</em> projects", "p2h": "AIVA System", "p2": "AI analysis of companies’ phone calls<br>Persian speech becomes text and a language model analyzes every call", "p3": "A Flutter app for working with an AI agent, with an interface that makes the agent’s work visible and controllable.", "p4h": "Music to music video", "p4": "An app and pipeline that turns a song into a music video, with every step chained in LangChain.", "xpE": "Experience", "xpH": "Where I have <em>worked</em>", "x1h": "Caro tech team", "x1r": "Android, web and AI developer", "x1w": "2025 to now", "x1": "Built the AIVA call-analysis system, the Saranjam meeting-minutes system and the team website", "x2h": "Ahar company", "x2r": "Software engineering intern", "x2w": "Summer 2026", "webs": "Websites", "web2": "Web", "websH": "Websites I <em>built</em>", "w1h": "Caro tech team", "w1": "I am a member of the Caro tech team and designed and built the team website myself", "w2h": "AIVA System", "w2": "Website and panel of an AI system that analyzes companies’ phone calls", "w3h": "Saranjam", "w3": "A smart meeting-minutes system that turns meeting audio into a summary, decisions and each person’s tasks", "toolbox": "Toolbox", "c1": "Agents & workflows", "c2": "RAG & chatbots", "c3": "LLM & VLM", "c4": "Flutter & Dart", "c5": "C++", "c6": "Android apps", "c7": "Windows apps", "c8": "Git & GitHub", "edu1": "B.Sc. in Computer Engineering", "edu2": "University of Tehran · since 2022, in progress", "fa": "Persian", "native": "native", "en": "English", "pro": "professional", "contactH": "Let’s build something <em>great</em> together", "contactP": "For work or a project, message me on Telegram.", "web": "Website", "tg": "Telegram", "tgc": "Telegram channel", "github": "GitHub", "hf": "Hugging Face", "li": "LinkedIn", "pill": "Computer Engineering, University of Tehran", "rolePre": "I build", "seeApps": "See my apps", "n2": "2", "n1": "2", "n11": "1.1<small style=\"font-size:16px\"> MB</small>", "android": "Android", "androidMyket": "Android · Myket", "windows": "Windows", "dlApk": "Download APK", "dlExe": "Download installer", "sk1": "AI", "sk2": "Programming & apps", "sk3": "Infrastructure & tools", "eduL": "Education", "langL": "Languages"};
-const ROLES={fa:['ایجنت‌های هوش مصنوعی','سامانه‌های RAG','مدل‌های زبانی اختصاصی','اپ‌های اندروید سبک و سریع','ابزارهای ویندوز'],
-  en:['AI agents','RAG systems','custom language models','fast, light Android apps','Windows tools']};
+const EN={
+nApps:"Apps",nWeb:"Web",nDesk:"Desktop",nModels:"Models",nMore:"Projects",nSkills:"Skills",contact:"Contact",
+h1:"Sajjad <span class=\"g\">Majdi</span>",pill:"Computer Engineering, University of Tehran",rolePre:"I build",
+lead:"I take ideas all the way to real products<br>from AI agents and custom-trained language models to apps that run fast and light on a phone",
+seeApps:"See my work",github:"GitHub",
+st1:"Android apps",st2:"desktop apps",st3:"live websites",st4:"fine-tuned models",
+andE:"Android",andH:"Android <em>apps</em>",
+a1n:"Hamyar",a1t:"Persian voice assistant, fully offline",a1d:"Just talk and Hamyar gets it done<br>No internet, on ordinary phones, with <b>two language models I fine-tuned myself</b>",a1m:"Version <b>1.1.0</b> · <b>1.9 MB</b>",
+a2n:"Lumen Keep",a2t:"Smart notes · published on Myket",a2d:"Offline-first notes with live Markdown and Google Drive sync<br><b>Ask your notes</b> and get the answer with its source",a2m:"Version <b>1.8</b> · <b>2.1 MB</b>",
+a3n:"Squish",a3t:"Photo and video compressor",a3d:"Everything on the device with its <b>own hardware video pipeline</b><br>No internet permission, and the whole app is about one megabyte",a3m:"Version <b>1.0.4</b> · <b>1.1 MB</b>",
+a4n:"Nevis",a4t:"Live and studio speech to text",a4d:"Live mode and studio mode with <b>speaker labels</b>, file import and a usage meter<br>Fully Persian interface",a4m:"Version <b>1.0.0</b> · <b>20 MB</b>",
+a5n:"PhoneClaw",a5t:"An assistant that also acts",a5d:"It does not only answer<br>Calls, SMS, reminders, scheduled errands, web research, <b>MCP tools</b> and control of other apps",a5m:"Version <b>1.0.4</b> · <b>61 MB</b>",
+a6n:"Analyzer",a6t:"Android client of the Analyzer trading platform",a6d:"Signals, strategy lab, backtests, <b>auto-trade bots</b> and wallet<br>Built for the Analyzer team",a6m:"Version <b>1.0.0</b> · <b>63 MB</b>",
+a7n:"Saranjam",a7t:"Smart meeting minutes from audio",a7d:"Record or upload a meeting and get the <b>summary, resolutions and action items</b><br>The official app of the Saranjam system, built for team Caro",a7m:"Version <b>1.6.4</b> · <b>1.5 MB</b>",
+a8n:"Hamdam",a8t:"Medication and health companion for an elder",a8d:"Dose reminders, <b>pill recognition by camera</b> and a Persian voice assistant<br>Personal use, no public release",a8m:"Version <b>1.4.5</b> · <b>3.8 MB</b>",
+dlApk:"Download APK",dlSite:"Download from site",dlExe:"Download installer",dlZip:"Download",private:"Private build",personalTool:"Personal tool",windows:"Windows",
+web2:"Web",websH:"Live <em>websites</em>",
+w1h:"Caro tech team",w1:"Landing page of Caro, a small AI technology team<br>I am a member of the team and designed and built the site myself from zero",
+w2h:"AIVA",w2:"Call-analysis system for organizations<br>Every call becomes type, outcome, urgency, sentiment, topic and summary, and I am its sole developer",
+w3h:"Saranjam",w3:"Smart meeting minutes from audio, with summary, resolutions and each person’s actions<br>I redesigned and extended its UI, admin panel, SMS login and Android app",
+deskE:"Windows",deskH:"Desktop <em>software</em>",
+d1n:"Squish Desktop",d1t:"Photo and video compressor for Windows",d1d:"Drop a file and compression starts on its own<br><b>Resolution is never reduced</b> and nothing is uploaded anywhere",d1m:"Version <b>1.1.0</b> · <b>28 MB</b>",
+d2n:"Goya",d2t:"Persian voice typing for Windows",d2d:"Press <b>Win+F</b> in any text box and speak to type<br>Works offline too with an on-device model",d2f:"Word error rate <b>7.7%</b> on 25 clips · about <b>45 ms</b> per 20-second window on an RTX 3070 Ti",d2m:"Version <b>0.1.3</b> · <b>99.7 MB</b>",
+d3n:"Kargah",d3t:"Coding agents on local models only",d3d:"A light desktop app that runs coding agents on <b>local llama.cpp models</b><br>Backend choice per conversation",d3f:"Creates, edits and runs a script in <b>7 to 14 s</b> with a local 4B model · about <b>64 tokens/s</b>",d3m:"Version <b>0.1.0</b> · <b>1.6 MB</b>",
+d4n:"SemSearch",d4t:"PC search by file name and by meaning",d4d:"<b>Win+Alt+Space</b> for instant name search plus search by meaning over content<br>Persian and English",d4f:"On 30 real queries hit@1 is <b>63%</b> and hit@5 is <b>90%</b> · 85 MB index",
+d5n:"OpenCode GUI",d5t:"Light web UI for the opencode coding agent",d5d:"Sessions, <b>live logs</b>, model and thinking-level pickers and command approvals<br>Full right-to-left support",d5m:"Version <b>1.0</b> · <b>635 KB</b>",
+modE:"Models",modH:"Custom <em>AI models</em>",
+m1n:"Hamyar Lite",m1k:"≈0% to 96.1% command accuracy",m2n:"Hamyar Pro",m2k:"97.8% correct tool choice",m3n:"AIVA local decider",m3k:"88% urgency on unseen companies",m4n:"Persian speech to text",m4k:"WER from 13.2 to 10.2",m5n:"Shenava int8",m5k:"117 to 36 MB, same accuracy",
+sBase:"Base model",sMethod:"Training",sData:"Data",sComp:"Compression",sSpeed:"Speed",sShip:"Release",
+m1w:"A small function-calling model that turns a Persian sentence into a phone command<br>47 tools are baked into the weights, not into the prompt",m1u:"Shipped inside Hamyar 1.1.0",
+m1s1:"<b>Full fine-tune</b>, not LoRA · bf16 · 3 epochs · about 31 min on a laptop RTX 3070 Ti",m1s2:"<b>40,651 training rows</b> from 28,280 unique rows, built for this project because no Persian phone-command dataset existed",m1s3:"Vocabulary from 262,144 to <b>39,214 tokens</b> · GGUF Q8 from 292 to <b>134 MB</b> · the whole corpus tokenizes identically",m1s4:"<b>0.3 to 0.6 s</b> per command on a Poco X3 · median <b>111 ms</b> on the laptop, down from 190 before the vocabulary trim",m1s5:"A <b>139 MB</b> litertlm file inside the app · model and dataset on Hugging Face, private",
+m1b:"Exact-match accuracy<small>360 hand-written commands over all 47 tools, never seen in training</small>",m1b1:"Gold test",m1v1:"base ≈0%",m1b2:"SMS and call test · 310 items",m1b3:"Shipped v1.1 on gold",m1bn:"The thin line is the stock base model on the same test, which answered only about 1 of 9 Persian commands",
+m2w:"A larger model that picks tools in one pass and holds multi-turn Persian conversation<br>Facts come only from web search, nothing is invented",m2u:"Shipped inside Hamyar 1.1.0",
+m2s1:"<b>LoRA rank 32</b> on all linear layers and DeltaNet projections · 1.5 epochs, 451 steps in about 80 min · five training rounds to the final version",m2s2:"About <b>3,718 multi-turn dialogues</b> and 47,811 sequences · labels audited by two independent reviewers, 96% tool agreement",m2s3:"Vocabulary from 248,320 to <b>39,479 tokens</b> · GGUF Q4_K_M from 542 to <b>357 MB</b> · all 938 eval outputs identical to the full model",m2s4:"Median <b>243 to 287 ms</b> per command on the laptop GPU · 15% faster after the vocabulary trim",m2s5:"The app downloads the model from a private relay · model and data on Hugging Face, private",
+m2b:"Accuracy on hand-written tests<small>GGUF Q4_K_M on GPU</small>",m2b1:"Tool choice · gold",m2v1:"base 22.5%",m2b2:"Full exact match · gold",m2b3:"SMS and calls",m2b4:"Hard set",m2bn:"The base number is stock Qwen with output limited to the 47 tool names on 120 rows, the final number is on 360 rows, so the two tests differ in size",
+m3w:"One small model with one LoRA adapter for three jobs<br>Call analysis in seven fields, understanding “Ask AIVA” questions and writing the text parts",m3u:"Tested locally with the website",
+m3s1:"<b>LoRA rank 32</b> with a one-pass format that only scores the options of each field and generates only the texts · continued from the v4 adapter · 1 epoch",m3s2:"<b>3,600 calls from 30 companies</b> · a label is kept only where two independent blind reviewers agree · 504 test questions for Ask AIVA",m3s3:"GGUF Q4_K_M only, <b>542 MB</b> · a 2B model was tried and gave no real gain on unseen companies, so the small one stays",m3s4:"All decisions of a call in <b>1.3 s</b> on 4 CPU threads and 0.06 s on GPU · option scoring is 5x faster than generating JSON",m3s5:"Not in production yet because the current server cannot run a local model",
+m3b:"Accuracy on 2 unseen companies<small>from v4 to v8 on the same test</small>",m3b1:"Call outcome",m3b2:"Urgency",m3b3:"Sentiment",m3b4:"Topic",m3b5:"Ask AIVA · 504 questions",m3bn:"Stock Qwen with no training, on a different test of 260 calls, got only 47% of call types and 23% of outcomes right and answered none of 109 questions · on seen companies 92 to 100%",
+m4w:"Fine-tuning Gemma 4 E4B with audio input as a Persian speech recognizer<br>B.Sc. final project with a 109-page report",m4u:"B.Sc. project · delivered September 2026",
+m4s1:"<b>Selective NF4 QLoRA</b>, rank 16, on the audio tower, language model and projector · 5 runs on a free Colab T4",m4s2:"<b>10 to 20 hours of Persian audio</b> from Common Voice, FLEURS and Neyshekar plus two 10-hour sets of my own · frozen, separate test sets",m4s3:"No compression · checkpoints on Google Drive",m4s4:"<b>40.5% of the base error</b> was only spelling convention such as ZWNJ and number form, fixed by normalization",m4s5:"Finished as a university project · paused because the open Shenava Koochik model, at 7.0 WER, was better",
+m4b:"Word error rate<small>lower is better · both on the frozen 75-clip test</small>",m4b1:"Base Gemma",m4b2:"Fine-tuned",m4b3:"Best run on the 180-clip dev set",m4bn:"About 23% relative error reduction on the same test · the 6.0 target was not reached",
+m5w:"Compressed, phone-ready exports of the open Shenava speech-to-text models for sherpa-onnx<br>The models were not trained by me, I did the quantization and packaging",m5u:"Public on Hugging Face",
+m5s1:"<b>Dynamic int8 quantization</b> with metadata kept so the output stays correct · ONNX export",m5s2:"Rizeh from 117 to <b>36 MB</b> · Koochik int8 about <b>126 MB</b>",m5s3:"Real-time factor <b>0.024</b> on one laptop thread · Koochik on a server CPU does 63 s of audio in 3.4 s",m5s4:"On AIVA phone calls the WER is <b>0.422</b> for Rizeh and <b>0.332</b> for Koochik, since phone audio is much harder",m5s5:"Two public repos, <span class=\"ltr\">shenava-rizeh-fa-int8</span> and <span class=\"ltr\">shenava-koochik-fa-int8</span>",
+m5b:"Before and after quantization<small>25 clean clips</small>",m5b1:"Rizeh size",m5v1:"117 MB",m5v2:"36 MB",m5b2:"Rizeh WER",m5b3:"Koochik WER",m5bn:"The thin line is the original fp32 model · Rizeh got three times smaller with no accuracy loss",
+moreE:"More",moreH:"Other <em>projects</em>",
+o1n:"Telegram downloader bot",o1t:"YouTube, Instagram and X",o1d:"Video download with a quality choice and no file kept on the server<br>YouTube quality menu in <b>under 3.3 s</b> and 93 automated tests",
+o2n:"Discord Agent",o2t:"AI support agent for a product community",o2d:"Greets every new member and answers questions from the <b>product documentation</b><br>Remembers each user’s conversation separately",
+o3t:"Windows desktop personal assistant",o3d:"<b>Long-term memory</b>, web search, file explorer and MCP sub-agents<br>Cloud models or a local model with a privacy toggle",
+o4n:"Music to music video",o4t:"Pipeline that builds a video from a song",o4d:"Takes a song and delivers a <b>music video</b> through image generation and video assembly<br>Prototype with separate backend and front end",
+o5n:"Transformer video course",o5t:"Transformer evolution from 2017 to 2026",o5d:"A <b>27-minute</b> narrated Persian explainer, zero to hero, with 35 scenes and 272 narration sentences<br>From KV cache to n-gram memory",
+o6n:"Hardware video course",o6t:"From basic electronics to building a CPU",o6d:"A <b>25-minute</b> narrated Persian course with 44 scenes and 278 sentences<br>From components, digital logic and memory to the architecture lab",
+o7n:"Product promo videos",o7t:"Lumen Keep and AIVA",o7d:"Short promo videos for <b>Lumen Keep</b> and <b>AIVA</b> with code-driven motion graphics",
+o8n:"CSRF attack demo",o8t:"Educational web-security project",o8d:"A victim site and an attacker site that show how a <b>CSRF</b> attack happens",
+xpE:"Experience",xpH:"Where I have <em>worked</em>",x1h:"Caro tech team",x1r:"Android, web and AI developer",x1w:"2025 to now",x1:"Built the AIVA call-analysis system, redesigned the Saranjam meeting-minutes system, and built the team website and the Saranjam Android app",x2h:"Ahar company",x2r:"Software engineering intern",x2w:"Summer 2026",
+toolbox:"Toolbox",skills:"Skills",sk1:"AI",sk2:"Programming & apps",sk3:"Infrastructure & tools",
+c1:"Language-model fine-tuning",c9:"Quantization & compression",c10:"Speech to text",c2:"Agents & RAG",c4:"Kotlin & Jetpack Compose",c5:"Flutter & Dart",c11:"Rust & Tauri",c12:"Django & React",c13:"C++",c8:"Git & GitHub",
+eduL:"Education",edu1:"B.Sc. in Computer Engineering",edu2:"University of Tehran · since 2022 · in progress",langL:"Languages",fa:"Persian",native:"native",en:"English",pro:"professional",
+contactH:"Let’s build something <em>great</em> together",contactP:"For work or a project, message me on Telegram",web:"Website",tg:"Telegram",tgc:"Telegram channel",hf:"Hugging Face",li:"LinkedIn"
+};
+const ROLES={fa:['ایجنت‌های هوش مصنوعی','اپ‌های اندروید سبک و سریع','مدل‌های زبانی اختصاصی','سامانه‌های تحت وب','ابزارهای ویندوز'],
+  en:['AI agents','fast, light Android apps','custom language models','web systems','Windows tools']};
+const NAMES={hamyar:{fa:'همیار',en:'Hamyar'},lumen:{fa:'لومن کیپ',en:'Lumen Keep'},squish:{fa:'اسکوییش',en:'Squish'},nevis:{fa:'نویس',en:'Nevis'},phoneclaw:{fa:'فون‌کلاو',en:'PhoneClaw'},analyzer:{fa:'آنالایزر',en:'Analyzer'},saranjam:{fa:'سرانجام',en:'Saranjam'},hamdam:{fa:'همدم',en:'Hamdam'}};
 const TITLE={fa:'سجاد مجدی | هوش مصنوعی و ساخت اپ',en:'Sajjad Majdi | AI engineer & app builder'};
 function setLang(l){lang=l;R.lang=l;R.dir=l==='en'?'ltr':'rtl';document.title=TITLE[l];
-  document.querySelectorAll('[data-i18n]').forEach(el=>{if(el.dataset.fa===undefined)el.dataset.fa=el.innerHTML;el.innerHTML=l==='en'?EN[el.dataset.i18n]:el.dataset.fa});
+  document.querySelectorAll('.bv').forEach(el=>{if(el.dataset.fa===undefined)el.dataset.fa=el.innerHTML;el.innerHTML=l==='en'?el.dataset.fa.replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/٫/g,'.').replace(/٪/g,'%'):el.dataset.fa});
+  document.querySelectorAll('[data-i18n]').forEach(el=>{if(el.dataset.fa===undefined)el.dataset.fa=el.innerHTML;el.innerHTML=l==='en'?(EN[el.dataset.i18n]??el.dataset.fa):el.dataset.fa});
   document.querySelectorAll('img[data-en]').forEach(im=>{if(im.dataset.faAlt===undefined)im.dataset.faAlt=im.alt;im.alt=l==='en'?im.dataset.en:im.dataset.faAlt});
   const b=document.getElementById('lang');b.textContent=l==='en'?'فا':'EN';b.setAttribute('aria-label',l==='en'?'فارسی':'English');
   document.getElementById('theme').setAttribute('aria-label',l==='en'?'Toggle theme':'تغییر تم');
@@ -742,6 +1128,7 @@ document.getElementById('lang').addEventListener('click',()=>{
 
 /* theme */
 try{const t=localStorage.getItem('theme');if(t)R.dataset.theme=t}catch(e){}
+{const q=new URLSearchParams(location.search).get('theme');if(q==='dark'||q==='light')R.dataset.theme=q}
 const isLight=()=>R.dataset.theme?R.dataset.theme==='light':matchMedia('(prefers-color-scheme: light)').matches;
 document.getElementById('theme').addEventListener('click',e=>{
   const next=isLight()?'dark':'light';
@@ -760,7 +1147,7 @@ if(!reduce)setInterval(()=>{const g=roleGen,roles=ROLES[lang];ri=(ri+1)%roles.le
 const tr=document.getElementById('track');tr.innerHTML+=tr.innerHTML;
 
 /* reveal + counters */
-const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.12});
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.08});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 document.querySelectorAll('[data-count]').forEach(el=>{const n=+el.dataset.count;let k=0;const s=setInterval(()=>{el.textContent=fa(++k);if(k>=n)clearInterval(s)},180)});
 
@@ -769,21 +1156,20 @@ const links=[...document.querySelectorAll('.nav a.lk')];
 const so=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
 document.querySelectorAll('section.sec').forEach(s=>so.observe(s));
 
-/* spotlight */
-document.querySelectorAll('.app,.feat').forEach(el=>el.addEventListener('pointermove',e=>{const b=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-b.left)+'px');el.style.setProperty('--my',(e.clientY-b.top)+'px')}));
-
-/* phone stacks */
+/* phone stack (Android section) */
+const STACK={};
 document.querySelectorAll('[data-stack]').forEach(v=>{
   const box=v.querySelector('.phones');let ph=[...box.children];
-  // drop phones whose image is missing
   ph.forEach(p=>p.querySelector('img').addEventListener('error',()=>{p.remove();ph=[...box.children];build();lay()}));
-  const dots=v.querySelector('.dots');let cur=0,timer,hover=false,vis=false;
+  const dots=v.querySelector('.dots'),capN=document.getElementById('capName'),capS=document.getElementById('capShot');
+  let cur=0,timer,hover=false,vis=false;
   function build(){dots.innerHTML='';ph.forEach((_,i)=>{const b=document.createElement('button');b.setAttribute('aria-label',(lang==='en'?'Image ':'تصویر ')+fa(i+1));b.onclick=()=>go(i);dots.append(b)});if(cur>=ph.length)cur=0}
-  function lay(){const n=ph.length,w=v.clientWidth<500?62:96;
+  function lay(){const n=ph.length,w=v.clientWidth<500?58:84;
     ph.forEach((p,i)=>{let d=i-cur;if(d>n/2)d-=n;if(d<-n/2)d+=n;const a=Math.abs(d);
       p.style.transform=`translateX(${-d*w}px) translateZ(${-a*120}px) rotateY(${d*-14}deg) rotateZ(${d*-3}deg)`;
-      p.style.zIndex=10-a;p.style.opacity=a>2?0:1-a*.18;p.style.filter=a?`brightness(${1-a*.22}) saturate(${1-a*.2})`:'none'});
-    [...dots.children].forEach((b,i)=>b.classList.toggle('on',i===cur))}
+      p.style.zIndex=10-a;p.style.opacity=a>2?0:1-a*.18;p.style.filter=a?`brightness(${1-a*.22}) saturate(${1-a*.2})`:'none';p.style.pointerEvents=a>2?'none':''});
+    [...dots.children].forEach((b,i)=>b.classList.toggle('on',i===cur));
+    const c=ph[cur];if(c&&capN){const app=c.dataset.app,nm=NAMES[app];capN.textContent=nm?nm[lang]:'';capS.textContent=c.querySelector('img').alt}}
   function go(i){cur=(i+ph.length)%ph.length;lay();restart()}
   function restart(){clearInterval(timer);if(!reduce)timer=setInterval(()=>{if(!hover&&vis&&!document.hidden)go(cur+1)},3600)}
   ph.forEach((p,i)=>p.addEventListener('click',()=>go(i===cur?i+1:i)));
@@ -793,12 +1179,23 @@ document.querySelectorAll('[data-stack]').forEach(v=>{
   v.addEventListener('touchend',e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)go(cur+(dx>0?1:-1));sx=null});
   new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(v);
   build();lay();restart();addEventListener('resize',lay);
+  STACK.goApp=app=>{const i=ph.findIndex(p=>p.dataset.app===app);if(i>=0&&ph[cur].dataset.app!==app)go(i)};
+});
+/* app cards with screenshots steer the phone stack */
+document.querySelectorAll('.card[data-shots]').forEach(c=>{
+  c.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&STACK.goApp)STACK.goApp(c.dataset.shots)});
+  c.addEventListener('click',e=>{if(e.target.closest('a'))return;if(STACK.goApp)STACK.goApp(c.dataset.shots)});
 });
 
 /* website tabs */
 {const st=document.getElementById('stage');if(st){const tabs=[...st.querySelectorAll('.tab')],pan=[...st.querySelectorAll('.pane')],pp=[...st.querySelectorAll('.pp')],cp=[...st.querySelectorAll('.wcopy')],u=document.getElementById('burl'),o=document.getElementById('bopen');
 const ts=st.querySelector('.tabs'),more=()=>{ts.classList.toggle('me',ts.scrollWidth-ts.clientWidth-ts.scrollLeft>2);ts.classList.toggle('ms',ts.scrollLeft>2)};ts.addEventListener('scroll',more,{passive:true});addEventListener('resize',more);more();
 tabs.forEach((t,i)=>t.addEventListener('click',()=>{[tabs,pan,pp,cp].forEach(a=>a.forEach((e,j)=>e.classList.toggle('on',i===j)));u.textContent=t.dataset.url;o.href='https://'+t.dataset.url;o.setAttribute('aria-label',t.dataset.url);t.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'})}))}}
+
+/* model picker */
+{const m=document.getElementById('models-ui');if(m){const tabs=[...m.querySelectorAll('.mtab')],sheets=[...m.querySelectorAll('.msheet')];
+tabs.forEach((t,i)=>t.addEventListener('click',()=>{tabs.forEach((e,j)=>e.classList.toggle('on',i===j));sheets.forEach((e,j)=>e.classList.toggle('on',i===j));
+  if(innerWidth<=900){t.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'})}}))}}
 
 /* hero particle core around the portrait */
 const cv=document.getElementById('core'),cx=cv.getContext('2d'),cv2=document.getElementById('core2'),cx2=cv2.getContext('2d'),por=document.getElementById('portrait');
