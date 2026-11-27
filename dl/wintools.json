@@ -1,0 +1,14 @@
+{
+  "fm": {
+    "version": "0.2.10",
+    "url": "https://sajjad-majdi.ource--ode.workers.dev/dl/RustFileExplorer-0.2.10-setup.exe",
+    "size": 3730040,
+    "notes": ["Built-in updates", "Size and spacing sliders for Grid and Details", "Grid items sit closer together", ".iso files open like in Explorer (mounted)"]
+  },
+  "tm": {
+    "version": "0.2.10",
+    "url": "https://sajjad-majdi.ource--ode.workers.dev/dl/RustTaskManager-0.2.10-setup.exe",
+    "size": 1103309,
+    "notes": ["Built-in updates", "Settings shows the version and has Check for updates"]
+  }
+}
