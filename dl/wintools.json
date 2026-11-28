@@ -1,14 +1,23 @@
 {
   "fm": {
-    "version": "0.2.10",
-    "url": "https://sajjad-majdi.ource--ode.workers.dev/dl/RustFileExplorer-0.2.10-setup.exe",
-    "size": 3730040,
-    "notes": ["Built-in updates", "Size and spacing sliders for Grid and Details", "Grid items sit closer together", ".iso files open like in Explorer (mounted)"]
+    "version": "0.2.11",
+    "url": "https://sajjad-majdi.ource--ode.workers.dev/dl/RustFileExplorer-0.2.11-setup.exe",
+    "size": 3751486,
+    "notes": [
+      "Drive list updates live (USB, ISO, network)",
+      "Eject for ISO, USB and discs",
+      "Read-only discs: no Paste, clear message",
+      "Search inside mounted discs",
+      "Enter on a mounted ISO reuses its tab"
+    ]
   },
   "tm": {
     "version": "0.2.10",
     "url": "https://sajjad-majdi.ource--ode.workers.dev/dl/RustTaskManager-0.2.10-setup.exe",
     "size": 1103309,
-    "notes": ["Built-in updates", "Settings shows the version and has Check for updates"]
+    "notes": [
+      "Built-in updates",
+      "Settings shows the version and has Check for updates"
+    ]
   }
 }
